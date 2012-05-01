@@ -1,0 +1,138 @@
+---------------------------
+--   "archKiss" theme 	 --
+--       By lorenzog     --
+--      CC BY-SA 3.0     --
+---------------------------
+
+-- Main
+require("awful.util")
+theme = {}
+home          = os.getenv("HOME")
+config        = awful.util.getdir("config")
+shared        = "/usr/share/awesome"
+if not awful.util.file_readable(shared .. "/icons/awesome16.png") then
+    shared    = "/usr/share/local/awesome"
+end
+sharedicons   = shared .. "/icons"
+sharedthemes  = shared .. "/themes"
+themes        = config .. "/themes"
+themename     = "/kiss"
+if not awful.util.file_readable(themes .. themename .. "/theme.lua") then
+       themes = sharedthemes
+end
+themedir      = themes .. themename
+taglistdir    = themedir .. "/taglist"
+titlebardir   = themedir .. "/titlebar"
+layoutdir	  = themedir .. "/layouts"
+wallpaperdir  = themedir .. "/wallpaper/"
+icondir       = themedir .. "/icons"
+
+-- Fonts
+theme.font          = "sans 8"
+
+-- Main colors
+theme.bg_normal     = "#202020"
+theme.bg_focus      = "#202020"
+theme.bg_urgent     = "#303030"
+theme.bg_minimize   = "#101010"
+theme.fg_normal     = "#636363"
+theme.fg_focus      = "#0090B4"
+theme.fg_urgent     = "#ff0000"
+theme.fg_minimize   = "#505050"
+
+-- Main borders
+theme.border_width  = "1"
+theme.border_normal = theme.bg_urgent 
+theme.border_focus  = theme.fg_focus 
+theme.border_marked = "#91231c"
+
+-- Tooltips
+theme.tooltip_bg_color = theme.bg_urgent
+theme.tooltip_fg_color = theme.fg_focus
+theme.tooltip_border_width = theme.border_width
+theme.tooltip_border_color = theme.border_focus
+
+-- Titlebar colors
+theme.titlebar_bg_normal = theme.bg_normal
+theme.titlebar_bg_focus  = theme.bg_focus
+
+-- Widgets colors
+theme.fg_widget        = "#1994d1"
+
+-- Taglist and Tasklist colors
+theme.taglist_bg_focus = theme.bg_focus
+theme.taglist_bg_urgent = theme.bg_urgent
+theme.taglist_fg_focus = theme.fg_focus
+theme.taglist_fg_urgent = theme.fg_urgent
+theme.tasklist_bg_focus = theme.bg_focus
+theme.tasklist_bg_urgent = theme.bg_urgent
+theme.tasklist_fg_focus = theme.fg_focus
+theme.tasklist_fg_urgent = theme.fg_urgent
+
+-- Menu
+theme.menu_bg_normal = theme.bg_normal
+theme.menu_fg_normal = theme.fg_normal
+theme.menu_bg_focus = theme.bg_focus 
+theme.menu_fg_focus = theme.fg_focus
+theme.menu_height = "15"
+theme.menu_width  = "100"
+theme.menu_border_color = theme.border_color
+theme.menu_border_width = theme.border_width
+
+-- Taglist squares
+theme.taglist_squares_sel   = taglistdir  .. "/squaref.png"
+theme.taglist_squares_unsel = taglistdir  .. "/square.png"
+
+-- Misc icons
+theme.awesome_icon = themedir .. "/arch.png"
+theme.menu_submenu_icon = themedir .. "/submenu.png"
+theme.tasklist_floating_icon = themedir .. "/tasklist/floatingw.png"
+
+-- Titlebar button icons
+theme.titlebar_close_button_normal = titlebardir .. "/close_normal.png"
+theme.titlebar_close_button_focus  = titlebardir .. "/close_focus.png"
+theme.titlebar_ontop_button_normal_inactive = titlebardir  .. "/ontop_normal_inactive.png"
+theme.titlebar_ontop_button_focus_inactive  = titlebardir  .. "/ontop_focus_inactive.png"
+theme.titlebar_ontop_button_normal_active = titlebardir  .. "/ontop_normal_active.png"
+theme.titlebar_ontop_button_focus_active  = titlebardir  .. "/ontop_focus_active.png"
+theme.titlebar_sticky_button_normal_inactive = titlebardir  .. "/sticky_normal_inactive.png"
+theme.titlebar_sticky_button_focus_inactive  = titlebardir  .. "/sticky_focus_inactive.png"
+theme.titlebar_sticky_button_normal_active = titlebardir  .. "/sticky_normal_active.png"
+theme.titlebar_sticky_button_focus_active  = titlebardir  .. "/sticky_focus_active.png"
+theme.titlebar_floating_button_normal_inactive = titlebardir  .. "/floating_normal_inactive.png"
+theme.titlebar_floating_button_focus_inactive  = titlebardir  .. "/floating_focus_inactive.png"
+theme.titlebar_floating_button_normal_active = titlebardir  .. "/floating_normal_active.png"
+theme.titlebar_floating_button_focus_active  = titlebardir  .. "/floating_focus_active.png"
+theme.titlebar_maximized_button_normal_inactive = titlebardir  .. "/maximized_normal_inactive.png"
+theme.titlebar_maximized_button_focus_inactive  = titlebardir  .. "/maximized_focus_inactive.png"
+theme.titlebar_maximized_button_normal_active = titlebardir  .. "/maximized_normal_active.png"
+theme.titlebar_maximized_button_focus_active  = titlebardir  .. "/maximized_focus_active.png"
+
+-- Random wallpaper
+theme.wallpaper_cmd = { "awsetbg -r " .. wallpaperdir }
+
+-- Layout icons
+theme.layout_fairh = layoutdir .. "/fairh.png"
+theme.layout_fairv = layoutdir .. "/fairv.png"
+theme.layout_floating  = layoutdir .. "/floating.png"
+theme.layout_magnifier = layoutdir .. "/magnifier.png"
+theme.layout_max = layoutdir .. "/max.png"
+theme.layout_fullscreen = layoutdir .. "/fullscreen.png"
+theme.layout_tilebottom = layoutdir .. "/tilebottom.png"
+theme.layout_tileleft   = layoutdir .. "/tileleft.png"
+theme.layout_tile = layoutdir .. "/tile.png"
+theme.layout_tiletop = layoutdir .. "/tiletop.png"
+theme.layout_spiral  = layoutdir .. "/spiral.png"
+theme.layout_dwindle = layoutdir .. "/dwindle.png"
+
+-- Widget icons
+theme.os = icondir  .. "/os.png"
+theme.uptime = icondir  .. "/uptime.png"
+theme.cpu = icondir  .. "/cpu.png"
+theme.ram = icondir  .. "/ram.png"
+theme.temp = icondir  .. "/temp.png"
+theme.fs = icondir  .. "/fs.png"
+theme.net = icondir  .. "/net.png"
+theme.cal = icondir  .. "/cal.png"
+
+return theme

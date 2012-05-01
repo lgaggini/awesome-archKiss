@@ -1,0 +1,28 @@
+--------------------------
+-- Awesome 3.x archKiss --
+--     by lorenzog      --
+--------------------------
+
+-- README --
+This is my theme and configuration file for Awesome 3.x WM inspired by Archlinux dark colors and KISS (Keep it simple stupid) philosophy. 
+It uses 3 wallpapers randomly chosen and icons from other great awesome themes at https://github.com/mikar/awesome-themes (see credits for details).
+I using it with GTK elementaryDark theme available for GTK 3 and GTK 2 at http://satya164.deviantart.com/art/elementary-Dark-GTK3-Theme-244257862? .
+
+-- LICENSE --
+Feel free to use, fork, modify and share it as you want.
+Creative Commons Attribution-ShareAlike 3.0 Unported (CC BY-SA 3.0)
+https://creativecommons.org/licenses/by-sa/3.0/
+
+-- CREDITS --
+-- Taglists squares
+dust awesome theme by tdy
+-- Titlebar icons
+zenburn awesome theme by Adrian C. (anrxc)
+-- Layout icons
+grey-new awesome theme by Andreas Persson (greyscale, grey)
+-- Widget icons
+sunjack awesome theme by ?
+-- Wallpapers
+http://allhopeislost.deviantart.com/art/DM-Intercepting-1920-Preview-91167980
+http://www.wallz.eu/desktop/442592/Cubes_1080
+http://www.zeusbox.com/the_path_1080_zeusbox_com_h082011-wallpapers.html
