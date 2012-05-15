@@ -1,7 +1,7 @@
 ---------------------------
 --   "archKiss" config   --
---       By lorenzog     --
---      CC BY-SA 3.0     --
+--      By lorenzog      --
+--     CC BY-SA 3.0.     --
 ---------------------------
 
 -- Standard awesome library
@@ -49,21 +49,21 @@ beautiful.init(awful.util.getdir("config") .. "/themes/kiss/theme.lua")
 fg_widget = " <span color=\"" .. beautiful.fg_widget .. "\">"
 
 -- This is used later as the default applications to run.
-terminal = "sakura"
+terminal = "urxvt"
 browser = "chromium --disk-cache-dir=/tmp/.cache/chromium"
 filemanager = "xfe"
-editor = os.getenv("EDITOR") or "nano"
+editor = os.getenv("EDITOR") or "vim"
 editor_cmd = terminal .. " -e " .. editor
 geditor = "geany"
 email= "alpine"
-email_cmd = terminal .. " --class=" .. email .. " -e " .. email
+email_cmd = terminal .. " -name " .. email .. " -e " .. email
 news= "newsbeuter"
-news_cmd = terminal .. " --class=" .. news .. " -e " .. news 
+news_cmd = terminal .. " -name " .. news .. " -e " .. news 
 music= "mocp"
-music_cmd = terminal .. " --class=" .. music .. " -e " .. music
+music_cmd = terminal .. " -name " .. music .. " -e " .. music
 media= "smplayer"
 task= "htop"
-task_cmd = terminal .. "--class=" .. task .. " -e " .. task 
+task_cmd = terminal .. " -name " .. task .. " -e " .. task 
 gtask= "lxtask"
 irc= "xchat"
 jabber= "gajim"
@@ -99,19 +99,19 @@ layouts =
 -- }}}
 
 -- {{{ Function definitions
--- Custom widget for sys temp	
+-- Custom widget for sys temp
 function systemp()
-	local fd = io.popen("sensors|grep SYSTIN|gawk '{print $2'}", "r")
-	local temp = fd:read()
-	io.close(fd)
-	return fg_widget .. temp .. " | </span>"	
+    local fd = io.popen("sensors|grep SYSTIN|gawk '{print $2'}", "r")
+    local temp = fd:read()
+    io.close(fd)
+    return fg_widget .. temp .. " | </span>"
 end
 -- Custom widget for one line calendar
 function cal()
     local fd = io.popen(onelinecal, "r")
-	local cal = fd:read()
-	io.close(fd)
-	return cal	
+    local cal = fd:read()
+    io.close(fd)
+    return cal
 end	
 -- }}}
 
@@ -138,19 +138,19 @@ menu_items = freedesktop.menu.new()
 
 
 mymainmenu = awful.menu({ items = { { "applications", menu_items },
-									{ "terminal", terminal },
+                                    { "terminal", terminal },
                                     { "browser", browser },
                                     { "file manager", filemanager },
-                                    { "editor", geditor },  
-                                    { "email", email_cmd }, 
-                                    { "feed",  news_cmd },  
-                                    { "music", music_cmd }, 
-                                    { "media", media },  
-                                    { "tasks", gtask },                                 
-									{ "awesome", myawesomemenu },
-									{ "reboot", reboot },
-         						    { "poweroff", poweroff }
-         						  }
+                                    { "editor", geditor },
+                                    { "email", email_cmd },
+                                    { "feed",  news_cmd },
+                                    { "music", music_cmd },
+                                    { "media", media },
+                                    { "tasks", gtask },
+                                    { "awesome", myawesomemenu },
+                                    { "reboot", reboot },
+                                    { "poweroff", poweroff }
+                                    }
                         })
 
 mylauncher = awful.widget.launcher({ image = image(beautiful.awesome_icon),
@@ -384,36 +384,36 @@ globalkeys = awful.util.table.join(
               end),
 
     -- Application launcher common
-	awful.key({ modkey,        	},"b",function () awful.util.spawn_with_shell(browser) end),
-	awful.key({	modkey,		  	},"f",function () awful.util.spawn_with_shell(filemanager) end),
-	awful.key({	modkey,		  	},"e",function () awful.util.spawn_with_shell(geditor) end),
-	awful.key({ modkey,			},"a", function () awful.util.spawn_with_shell(email_cmd) end),
-	awful.key({	modkey,			},"m", function () awful.util.spawn_with_shell(music_cmd) end),
-	awful.key({	modkey,			},"v", function () awful.util.spawn_with_shell(media) end),
-	awful.key({	modkey,			},"n", function () awful.util.spawn_with_shell(news_cmd) end),
-	awful.key({	modkey,			},"i", function () awful.util.spawn_with_shell(irc) end),
-	awful.key({	modkey,			},"g", function () awful.util.spawn_with_shell(jabber) end),
-	awful.key({	modkey,			},"t",function () awful.util.spawn_with_shell(gtask) end),	
-	
-	-- Application launcher extra
-	awful.key({					  },"#152", function () awful.util.spawn_with_shell(terminal) end),
-	awful.key({					  },"#180", function () awful.util.spawn_with_shell(browser) end),
-	awful.key({					  },"#225", function () awful.util.spawn_with_shell(filemanager) end),
-	awful.key({					  },"#181", function () awful.util.spawn_with_shell(editor) end),
-	awful.key({					  },"#163", function () awful.util.spawn_with_shell(email_cmd) end),
-	awful.key({					  },"#166", function () awful.util.spawn_with_shell(news_cmd) end),
-	awful.key({					  },"#164", function () awful.util.spawn_with_shell(music_cmd) end),
-	awful.key({					  },"#179", function () awful.util.spawn_with_shell(media) end),
-	awful.key({					  },"#167", function () awful.util.spawn_with_shell(task) end),
-	
-	-- Multimedia keys
-	awful.key({					  },"#122", function () awful.util.spawn_with_shell("amixer -q set Master 5- unmute") end),
-	awful.key({					  },"#123", function () awful.util.spawn_with_shell("amixer -q set Master 5+ unmute") end),
-	awful.key({					  },"#121", function () awful.util.spawn_with_shell("amixer -q set Master toggle") end),
-	awful.key({					  },"#174", function () awful.util.spawn_with_shell("mocp --stop") end),
-	awful.key({					  },"#172", function () awful.util.spawn_with_shell("mocp --toggle-pause") end),
-	awful.key({					  },"#173", function () awful.util.spawn_with_shell("mocp --previous") end),
-	awful.key({					  },"#171", function () awful.util.spawn_with_shell("mocp --next") end)
+    awful.key({ modkey,         },"b",function () awful.util.spawn_with_shell(browser) end),
+    awful.key({	modkey,         },"f",function () awful.util.spawn_with_shell(filemanager) end),
+    awful.key({	modkey,         },"e",function () awful.util.spawn_with_shell(geditor) end),
+    awful.key({ modkey,         },"a", function () awful.util.spawn_with_shell(email_cmd) end),
+    awful.key({	modkey,         },"m", function () awful.util.spawn_with_shell(music_cmd) end),
+    awful.key({	modkey,         },"v", function () awful.util.spawn_with_shell(media) end),
+    awful.key({	modkey,         },"n", function () awful.util.spawn_with_shell(news_cmd) end),
+    awful.key({	modkey,         },"i", function () awful.util.spawn_with_shell(irc) end),
+    awful.key({	modkey,         },"g", function () awful.util.spawn_with_shell(jabber) end),
+    awful.key({	modkey,         },"t",function () awful.util.spawn_with_shell(gtask) end),
+
+    -- Application launcher extra
+    awful.key({                   },"#152", function () awful.util.spawn_with_shell(terminal) end),
+    awful.key({                   },"#180", function () awful.util.spawn_with_shell(browser) end),
+    awful.key({                   },"#225", function () awful.util.spawn_with_shell(filemanager) end),
+    awful.key({                   },"#181", function () awful.util.spawn_with_shell(editor) end),
+    awful.key({                   },"#163", function () awful.util.spawn_with_shell(email_cmd) end),
+    awful.key({                   },"#166", function () awful.util.spawn_with_shell(news_cmd) end),
+    awful.key({                   },"#164", function () awful.util.spawn_with_shell(music_cmd) end),
+    awful.key({                   },"#179", function () awful.util.spawn_with_shell(media) end),
+    awful.key({                   },"#167", function () awful.util.spawn_with_shell(task) end),
+
+    -- Multimedia keys
+    awful.key({                   },"#122", function () awful.util.spawn_with_shell("amixer -q set Master 5- unmute") end),
+    awful.key({                   },"#123", function () awful.util.spawn_with_shell("amixer -q set Master 5+ unmute") end),
+    awful.key({                   },"#121", function () awful.util.spawn_with_shell("amixer -q set Master toggle") end),
+    awful.key({                   },"#174", function () awful.util.spawn_with_shell("mocp --stop") end),
+    awful.key({                   },"#172", function () awful.util.spawn_with_shell("mocp --toggle-pause") end),
+    awful.key({                   },"#173", function () awful.util.spawn_with_shell("mocp --previous") end),
+    awful.key({                   },"#171", function () awful.util.spawn_with_shell("mocp --next") end)
 
 )
 
@@ -504,82 +504,82 @@ awful.rules.rules = {
     -- Set Firefox to always map on tags number 2 of screen 1.
     -- { rule = { class = "Firefox" },
     --   properties = { tag = tags[1][2] } },
-    
+ 
      -- 1:admin Admin
-     { rule = { class = "Sakura" },
+     { rule = { class = "URxvt" },
        properties = { tag = tags[1][1], switchtotag = true } },
-       
+
      { rule = { class = "Xfe" },
        properties = { tag = tags[1][1], switchtotag = true } },
-       
+
      { rule = { class = "xarchiver" },
        properties = { tag = tags[1][1], switchtotag = true } },
-     
+
      { rule = { class = "Lxtask" },
        properties = { tag = tags[1][1], switchtotag = true } },
-       
-     { rule = { class = "htop" },
+
+     { rule = { instance = "htop" },
        properties = { tag = tags[1][1], switchtotag = true } },
-       
+
      { rule = { class = "gFTP" },
        properties = { tag = tags[1][1], switchtotag = true } },  
-       
-       
-  	 -- 2:web Web
+
+
+     -- 2:web Web
      { rule = { class = "Chromium" },
        properties = { tag = tags[1][2], switchtotag = true } },
-       
-     { rule = { class = "links" },
+
+     { rule = { instance = "links" },
        properties = { tag = tags[1][2], switchtotag = true } },
-       
-     { rule = { class = "newsbeuter" },
+
+     { rule = { instance = "newsbeuter" },
        properties = { tag = tags[1][3], switchtotag = true } }, 
-       
+
      { rule = { class = "fbreader" },
        properties = { tag = tags[1][2], switchtotag = true } },
-       
+
      { rule = { class = "epdfiew" },
        properties = { tag = tags[1][2], switchtotag = true } },
-            
-       
+
+
      -- 3:com - Communications
-     { rule = { class = "alpine" },
+     { rule = { instance = "alpine" },
        properties = { tag = tags[1][3], switchtotag = true } },
-       
+
      { rule = { class = "Gajim" },
        properties = { tag = tags[1][3], switchtotag = true } },
-       
+
      { rule = { class = "Xchat" },
        properties = { tag = tags[1][3], switchtotag = true } }, 
-       
-	 
-	 -- 4:dev - Development           
+
+
+     -- 4:dev - Development
      { rule = { class = "libreoffice-startcenter" },
        properties = { tag = tags[1][4], switchtotag = true } },
-     
+
      { rule = { class = "libreoffice-writer" },
        properties = { tag = tags[1][4], switchtotag = true } },
-       
+
      { rule = { class = "libreoffice-calc" },
        properties = { tag = tags[1][4], switchtotag = true } }, 
-       
+
      { rule = { class = "libreoffice-impress" },
        properties = { tag = tags[1][4], switchtotag = true } }, 
-                 
-               
-	-- 5:media - Multimedia
+
+
+     -- 5:media - Multimedia
      { rule = { class = "Smplayer" },
        properties = { tag = tags[1][5], switchtotag = true } },    
-       
-     { rule = { class = "moc" },
+
+     { rule = { instance = "mocp" },
        properties = { tag = tags[1][5], switchtotag = true } },
-       
+
      { rule = { class = "easytag" },
        properties = { tag = tags[1][5], switchtotag = true } },
-       
+
      { rule = { class = "recorder" },
        properties = { tag = tags[1][5], switchtotag = true } },
-                                     
+
 }
 -- }}}
 
