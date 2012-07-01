@@ -1,7 +1,7 @@
 ---------------------------
---   "archKiss" config   --
---      By lorenzog      --
---     CC BY-SA 3.0.     --
+--   "archKiss" rc.lua   --
+--      by lorenzog      --
+--      CC BY-SA 3.0     --
 ---------------------------
 
 -- Standard awesome library
@@ -55,18 +55,23 @@ filemanager = "xfe"
 editor = os.getenv("EDITOR") or "vim"
 editor_cmd = terminal .. " -e " .. editor
 geditor = "geany"
-email= "alpine"
+email= "mutt"
 email_cmd = terminal .. " -name " .. email .. " -e " .. email
 news= "newsbeuter"
 news_cmd = terminal .. " -name " .. news .. " -e " .. news 
-music= "mocp"
+music= "ncmpcpp"
 music_cmd = terminal .. " -name " .. music .. " -e " .. music
 media= "smplayer"
 task= "htop"
 task_cmd = terminal .. " -name " .. task .. " -e " .. task 
 gtask= "lxtask"
-irc= "xchat"
+irc="irssi"
+irc_cmd= terminal .. " -name " .. irc .. " -e screen " .. irc
+girc= "xchat"
 jabber= "gajim"
+--lock= "slock"
+--single= "sh ~/bin/single.sh"
+--dual= "sh ~/bin/dual-above.sh"
 poweroff= "sudo halt"
 reboot= "sudo reboot"
 
@@ -144,6 +149,8 @@ mymainmenu = awful.menu({ items = { { "applications", menu_items },
                                     { "editor", geditor },
                                     { "email", email_cmd },
                                     { "feed",  news_cmd },
+                                    { "jabber", jabber },
+                                    { "irc",  irc_cmd },
                                     { "music", music_cmd },
                                     { "media", media },
                                     { "tasks", gtask },
@@ -213,6 +220,10 @@ vicious.register(netwidget, vicious.widgets.net, fg_widget .. "${eth0 up_kb}</sp
 calicon = widget({ type = "imagebox" })
 calicon.image = image(beautiful.cal)
 calwidget = widget({ type = "textbox" })
+
+-- Create a battery widget
+-- batterywidget = widget({ type = "textbox" })
+-- vicious.register(batterywidget, vicious.widgets.bat, "<span color=\"#1994d1\">$2 $1 |</span> ", 61, "BAT0")
 
 -- Create a wibox for each screen and add it
 mywibox = {}
@@ -385,15 +396,15 @@ globalkeys = awful.util.table.join(
 
     -- Application launcher common
     awful.key({ modkey,         },"b",function () awful.util.spawn_with_shell(browser) end),
-    awful.key({	modkey,         },"f",function () awful.util.spawn_with_shell(filemanager) end),
-    awful.key({	modkey,         },"e",function () awful.util.spawn_with_shell(geditor) end),
+    awful.key({ modkey,         },"f",function () awful.util.spawn_with_shell(filemanager) end),
+    awful.key({ modkey,         },"e",function () awful.util.spawn_with_shell(geditor) end),
     awful.key({ modkey,         },"a", function () awful.util.spawn_with_shell(email_cmd) end),
-    awful.key({	modkey,         },"m", function () awful.util.spawn_with_shell(music_cmd) end),
-    awful.key({	modkey,         },"v", function () awful.util.spawn_with_shell(media) end),
-    awful.key({	modkey,         },"n", function () awful.util.spawn_with_shell(news_cmd) end),
-    awful.key({	modkey,         },"i", function () awful.util.spawn_with_shell(irc) end),
-    awful.key({	modkey,         },"g", function () awful.util.spawn_with_shell(jabber) end),
-    awful.key({	modkey,         },"t",function () awful.util.spawn_with_shell(gtask) end),
+    awful.key({ modkey,         },"m", function () awful.util.spawn_with_shell(music_cmd) end),
+    awful.key({ modkey,         },"v", function () awful.util.spawn_with_shell(media) end),
+    awful.key({ modkey,         },"n", function () awful.util.spawn_with_shell(news_cmd) end),
+    awful.key({ modkey,         },"i", function () awful.util.spawn_with_shell(irc) end),
+    awful.key({ modkey,         },"g", function () awful.util.spawn_with_shell(jabber) end),
+    awful.key({ modkey,         },"t",function () awful.util.spawn_with_shell(gtask) end),
 
     -- Application launcher extra
     awful.key({                   },"#152", function () awful.util.spawn_with_shell(terminal) end),
@@ -494,7 +505,9 @@ awful.rules.rules = {
                      border_color = beautiful.border_normal,
                      focus = true,
                      keys = clientkeys,
-                     buttons = clientbuttons } },
+                     buttons = clientbuttons,
+                     size_hints_honor = false
+                   }},
     { rule = { class = "MPlayer" },
       properties = { floating = true } },
     { rule = { class = "pinentry" },
@@ -543,13 +556,24 @@ awful.rules.rules = {
 
 
      -- 3:com - Communications
-     { rule = { instance = "alpine" },
-       properties = { tag = tags[1][3], switchtotag = true } },
-
-     { rule = { class = "Gajim" },
+     { rule = { class = "Gajim", role = "roster" },
+       properties = { tag = tags[1][3], switchtotag = true, floating = true } ,
+       
+       callback = function( c )
+        local w_area = screen[ c.screen ].workarea
+        local strutwidth = 200
+        c:struts( { right = strutwidth } )
+        c:geometry( { x = w_area.width, width = strutwidth, y = w_area.y + 15, height = w_area.height - 15 } )
+      end
+     },
+     
+     { rule = { instance = "mutt" },
        properties = { tag = tags[1][3], switchtotag = true } },
 
      { rule = { class = "Xchat" },
+       properties = { tag = tags[1][3], switchtotag = true } },
+       
+     { rule = { instance = "irssi" },
        properties = { tag = tags[1][3], switchtotag = true } }, 
 
 
@@ -571,7 +595,7 @@ awful.rules.rules = {
      { rule = { class = "Smplayer" },
        properties = { tag = tags[1][5], switchtotag = true } },    
 
-     { rule = { instance = "mocp" },
+     { rule = { instance = "ncmpcpp" },
        properties = { tag = tags[1][5], switchtotag = true } },
 
      { rule = { class = "easytag" },
@@ -627,6 +651,3 @@ client.add_signal("unfocus", function(c) c.border_color = beautiful.border_norma
 -- }}}
 
 -- Autorun programs at startup
-awful.util.spawn_with_shell("~/scripts/run-once.sh volumeicon")
-awful.util.spawn_with_shell("xrdb -merge ~/.Xresources")
-awful.util.spawn_with_shell("numlockx")
