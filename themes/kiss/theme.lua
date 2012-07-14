@@ -1,6 +1,6 @@
 ---------------------------
---   "archKiss" theme 	 --
---       by lorenzog     --
+-- "archKiss" theme.lua	 --
+--      by lgaggini      --
 --      CC BY-SA 3.0     --
 ---------------------------
 
@@ -127,6 +127,9 @@ theme.layout_dwindle = layoutdir .. "/dwindle.png"
 
 -- Widget icons
 theme.os = icondir  .. "/os.png"
+theme.music = icondir .. "/music.png"
+theme.mail = icondir .. "/mail.png"
+theme.bat = icondir .. "/bat.png"
 theme.uptime = icondir  .. "/uptime.png"
 theme.cpu = icondir  .. "/cpu.png"
 theme.ram = icondir  .. "/ram.png"

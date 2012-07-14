@@ -1,6 +1,6 @@
 ---------------------------
 --   "archKiss" rc.lua   --
---      by lorenzog      --
+--      by lgaggini      --
 --      CC BY-SA 3.0     --
 ---------------------------
 
@@ -166,7 +166,7 @@ mylauncher = awful.widget.launcher({ image = image(beautiful.awesome_icon),
 
 -- {{{ Wibox
 -- Create a textclock widget
-mytextclock = awful.widget.textclock({ align = "right" }, fg_widget .. "%B %Y | %H:%M</span> ")
+mytextclock = awful.widget.textclock({ align = "right" }, fg_widget .. "%B %Y %H:%M | </span>")
 mytextday = awful.widget.textclock({ align = "left" }, fg_widget .. "%A</span> ")
 
 -- Create a systray
@@ -184,7 +184,7 @@ upicon.image = image(beautiful.uptime)
 upwidget = widget({ type = "textbox" })
 vicious.register(upwidget, vicious.widgets.uptime, 
     function (widget, args)
-      return string.format(fg_widget .. "%02d:%02d | </span>", args[2], args[3])
+        return string.format(fg_widget .. "%02d:%02d | </span>", args[2], args[3])
     end, 61)
 
 -- Create a cpu widget
@@ -199,6 +199,15 @@ ramicon.image = image(beautiful.ram)
 ramwidget = widget({ type = "textbox" })
 vicious.register(ramwidget, vicious.widgets.mem, fg_widget .. "$1% | </span>")
 
+-- Create an htop button
+htopbuttons = awful.util.table.join(
+        awful.button({ }, 1, function () awful.util.spawn(task_cmd) end)
+)
+cpuicon:buttons(htopbuttons)
+cpuwidget:buttons(htopbuttons)
+ramicon:buttons(htopbuttons)
+ramwidget:buttons(htopbuttons)
+
 -- Create a temp widget
 tempicon = widget({ type = "imagebox" })
 tempicon.image = image(beautiful.temp)
@@ -208,13 +217,61 @@ tempwidget = widget({ type = "textbox" })
 fsicon = widget({ type = "imagebox" })
 fsicon.image = image(beautiful.fs)
 fswidget = widget({ type = "textbox" })
-vicious.register(fswidget, vicious.widgets.fs, " root:" .. fg_widget .. "${/ used_p}%</span> home:" .. fg_widget .. "${/home used_p}%</span> var:" .. fg_widget .. "${/var used_p}% | </span>")
+vicious.register(fswidget, vicious.widgets.fs, " /:" .. fg_widget .. "${/ used_p}%</span> ~:" .. fg_widget .. "${/home used_p}%</span> var:" .. fg_widget .. "${/var used_p}% | </span>")
+
+-- Create a fs button
+fsbuttons = awful.util.table.join(
+        awful.button({ }, 1, function () awful.util.spawn(filemanager) end)
+)
+fsicon:buttons(fsbuttons)
+fswidget:buttons(fsbuttons)
 
 -- Create a net widget
 neticon = widget({ type = "imagebox" })
 neticon.image = image(beautiful.net)
 netwidget = widget({ type = "textbox" })
 vicious.register(netwidget, vicious.widgets.net, fg_widget .. "${eth0 up_kb}</span> kb/ " .. fg_widget .. "${eth0 down_kb}</span> kb " .. fg_widget .. "| </span> ")
+
+-- Create a mpd widget
+mpdicon = widget({ type = "imagebox" })
+mpdicon.image = image(beautiful.music)
+mpdwidget = widget({ type = "textbox" })
+vicious.register(mpdwidget, vicious.widgets.mpd, 
+    function (widget, args)
+        if args["{state}"] == "Stop" then
+            mpdicon.visible = false
+            return ""
+        elseif args["{state}"] == "Play" then
+            mpdicon.visible = true
+            return fg_widget .. args["{Artist}"] .. " - " .. args["{Title}"] .. " | </span>"
+        elseif args["{state}"] == "Pause" then
+            mpdicon.visible = true
+            return fg_widget .. "paused | </span>"
+        end
+    end)
+    
+-- Create a mpd button
+mpdbuttons = awful.util.table.join(
+        awful.button({ }, 1, function () awful.util.spawn(music_cmd) end)
+)
+mpdicon:buttons(mpdbuttons)
+mpdwidget:buttons(mpdbuttons)
+
+-- Create a maildir widget
+mdiricon = widget({ type = "imagebox" })
+mdiricon.image = image(beautiful.mail)
+mdirwidget = widget({ type = "textbox" })
+vicious.register(mdirwidget, vicious.widgets.mdir, 
+    function (widget, args)
+        return string.format(fg_widget .. "%02d | </span>", args[1]+args[2]) 
+    end, 600,  {'~/offlinemail/INBOX'})
+
+-- Create a maildir button
+mdirbuttons = awful.util.table.join(
+        awful.button({ }, 1, function () awful.util.spawn(email_cmd) end)
+)
+mdiricon:buttons(mdirbuttons)
+mdirwidget:buttons(mdirbuttons)
 
 -- Create a calendar widget
 calicon = widget({ type = "imagebox" })
@@ -223,7 +280,8 @@ calwidget = widget({ type = "textbox" })
 
 -- Create a battery widget
 -- batterywidget = widget({ type = "textbox" })
--- vicious.register(batterywidget, vicious.widgets.bat, "<span color=\"#1994d1\">$2 $1 |</span> ", 61, "BAT0")
+-- batteryicon.image = image(beautiful.bat)
+-- vicious.register(batterywidget, vicious.widgets.bat, fg_widget .."$2 $1 |</span> ", 61, "BAT0")
 
 -- Create a wibox for each screen and add it
 mywibox = {}
@@ -302,6 +360,8 @@ for s = 1, screen.count() do
         },
         mylayoutbox[s],
         s == 1 and mysystray or nil,
+        mdirwidget,
+        mdiricon,
         mytextclock,
         calwidget,
         mytextday,
@@ -318,6 +378,8 @@ for s = 1, screen.count() do
         cpuicon,
         upwidget,
         upicon,
+        mpdwidget,
+        mpdicon,
         oswidget,
         osicon,
         -- mytasklist[s],
@@ -398,8 +460,8 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey,         },"b",function () awful.util.spawn_with_shell(browser) end),
     awful.key({ modkey,         },"f",function () awful.util.spawn_with_shell(filemanager) end),
     awful.key({ modkey,         },"e",function () awful.util.spawn_with_shell(geditor) end),
-    awful.key({ modkey,         },"a", function () awful.util.spawn_with_shell(email_cmd) end),
-    awful.key({ modkey,         },"m", function () awful.util.spawn_with_shell(music_cmd) end),
+    awful.key({ modkey,         },"m", function () awful.util.spawn_with_shell(email_cmd) end),
+    awful.key({ modkey,         },"a", function () awful.util.spawn_with_shell(music_cmd) end),
     awful.key({ modkey,         },"v", function () awful.util.spawn_with_shell(media) end),
     awful.key({ modkey,         },"n", function () awful.util.spawn_with_shell(news_cmd) end),
     awful.key({ modkey,         },"i", function () awful.util.spawn_with_shell(irc) end),
@@ -421,10 +483,10 @@ globalkeys = awful.util.table.join(
     awful.key({                   },"#122", function () awful.util.spawn_with_shell("amixer -q set Master 5- unmute") end),
     awful.key({                   },"#123", function () awful.util.spawn_with_shell("amixer -q set Master 5+ unmute") end),
     awful.key({                   },"#121", function () awful.util.spawn_with_shell("amixer -q set Master toggle") end),
-    awful.key({                   },"#174", function () awful.util.spawn_with_shell("mocp --stop") end),
-    awful.key({                   },"#172", function () awful.util.spawn_with_shell("mocp --toggle-pause") end),
-    awful.key({                   },"#173", function () awful.util.spawn_with_shell("mocp --previous") end),
-    awful.key({                   },"#171", function () awful.util.spawn_with_shell("mocp --next") end)
+    awful.key({                   },"#174", function () awful.util.spawn_with_shell("mpc stop") end),
+    awful.key({                   },"#172", function () awful.util.spawn_with_shell("mpc toggle") end),
+    awful.key({                   },"#173", function () awful.util.spawn_with_shell("mpc prev") end),
+    awful.key({                   },"#171", function () awful.util.spawn_with_shell("mpc next") end)
 
 )
 
@@ -566,6 +628,9 @@ awful.rules.rules = {
         c:geometry( { x = w_area.width, width = strutwidth, y = w_area.y + 15, height = w_area.height - 15 } )
       end
      },
+     
+     { rule = { class = "Gajim" },
+      properties = { tag = tags[1][3], switchtotag = true } },
      
      { rule = { instance = "mutt" },
        properties = { tag = tags[1][3], switchtotag = true } },
