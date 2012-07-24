@@ -663,7 +663,7 @@ awful.rules.rules = {
      { rule = { instance = "ncmpcpp" },
        properties = { tag = tags[1][5], switchtotag = true } },
 
-     { rule = { class = "easytag" },
+     { rule = { class = "Easytag" },
        properties = { tag = tags[1][5], switchtotag = true } },
 
      { rule = { class = "recorder" },
