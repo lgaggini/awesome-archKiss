@@ -72,7 +72,7 @@ jabber= "gajim"
 --lock= "slock"
 --single= "sh ~/bin/single.sh"
 --dual= "sh ~/bin/dual-above.sh"
-poweroff= "sudo halt"
+poweroff= "sudo poweroff"
 reboot= "sudo reboot"
 
 -- One line calendar command
@@ -643,16 +643,16 @@ awful.rules.rules = {
 
 
      -- 4:dev - Development
-     { rule = { class = "libreoffice-startcenter" },
+     { rule = { name = "LibreOffice" },
        properties = { tag = tags[1][4], switchtotag = true } },
 
-     { rule = { class = "libreoffice-writer" },
+     { rule = { name = "* - LibreOffice Writer" },
        properties = { tag = tags[1][4], switchtotag = true } },
 
-     { rule = { class = "libreoffice-calc" },
+     { rule = { name = "* - LibreOffice Calc" },
        properties = { tag = tags[1][4], switchtotag = true } }, 
 
-     { rule = { class = "libreoffice-impress" },
+     { rule = { name = "* - LibreOffice Impress" },
        properties = { tag = tags[1][4], switchtotag = true } }, 
 
 
