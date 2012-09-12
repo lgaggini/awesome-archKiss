@@ -587,7 +587,7 @@ awful.rules.rules = {
      { rule = { class = "Xfe" },
        properties = { tag = tags[1][1], switchtotag = true } },
 
-     { rule = { class = "xarchiver" },
+     { rule = { class = "File-roller" },
        properties = { tag = tags[1][1], switchtotag = true } },
 
      { rule = { class = "Lxtask" },
