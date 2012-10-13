@@ -457,16 +457,16 @@ globalkeys = awful.util.table.join(
               end),
 
     -- Application launcher common
-    awful.key({ modkey,         },"b",function () awful.util.spawn_with_shell(browser) end),
-    awful.key({ modkey,         },"f",function () awful.util.spawn_with_shell(filemanager) end),
-    awful.key({ modkey,         },"e",function () awful.util.spawn_with_shell(geditor) end),
+    awful.key({ modkey,         },"b", function () awful.util.spawn_with_shell(browser) end),
+    awful.key({ modkey,         },"f", function () awful.util.spawn_with_shell(filemanager) end),
+    awful.key({ modkey,         },"e", function () awful.util.spawn_with_shell(geditor) end),
     awful.key({ modkey,         },"m", function () awful.util.spawn_with_shell(email_cmd) end),
     awful.key({ modkey,         },"a", function () awful.util.spawn_with_shell(music_cmd) end),
     awful.key({ modkey,         },"v", function () awful.util.spawn_with_shell(media) end),
     awful.key({ modkey,         },"n", function () awful.util.spawn_with_shell(news_cmd) end),
     awful.key({ modkey,         },"i", function () awful.util.spawn_with_shell(irc) end),
     awful.key({ modkey,         },"g", function () awful.util.spawn_with_shell(jabber) end),
-    awful.key({ modkey,         },"t",function () awful.util.spawn_with_shell(gtask) end),
+    awful.key({ modkey,         },"t", function () awful.util.spawn_with_shell(gtask) end),
 
     -- Application launcher extra
     awful.key({                   },"#152", function () awful.util.spawn_with_shell(terminal) end),
@@ -602,7 +602,7 @@ awful.rules.rules = {
 
      -- 2:web Web
      { rule = { class = "Chromium" },
-       properties = { tag = tags[1][2], switchtotag = true } },
+       properties = { tag = tags[1][2], switchtotag = true, floating = false } },
 
      { rule = { instance = "links" },
        properties = { tag = tags[1][2], switchtotag = true } },
@@ -647,13 +647,13 @@ awful.rules.rules = {
        properties = { tag = tags[1][4], switchtotag = true } },
 
      { rule = { name = "* - LibreOffice Writer" },
-       properties = { tag = tags[1][4], switchtotag = true } },
+       properties = { tag = tags[1][4], switchtotag = true, floating = false } },
 
      { rule = { name = "* - LibreOffice Calc" },
-       properties = { tag = tags[1][4], switchtotag = true } }, 
+       properties = { tag = tags[1][4], switchtotag = true, floating = false } }, 
 
      { rule = { name = "* - LibreOffice Impress" },
-       properties = { tag = tags[1][4], switchtotag = true } }, 
+       properties = { tag = tags[1][4], switchtotag = true, floating = false } }, 
 
 
      -- 5:media - Multimedia
