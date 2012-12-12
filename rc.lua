@@ -13,7 +13,7 @@ require("beautiful")
 -- Notification library
 require("naughty")
 -- Sysmon widget library
-require("vicious")
+local vicious = require("vicious")
 -- Application menu
 require('freedesktop.utils')
 require('freedesktop.menu')
@@ -51,10 +51,11 @@ fg_widget = " <span color=\"" .. beautiful.fg_widget .. "\">"
 -- This is used later as the default applications to run.
 terminal = "urxvt"
 browser = "chromium --disk-cache-dir=/tmp/.cache/chromium"
-filemanager = "xfe"
+filemanager = "ranger"
+filemanager_cmd = terminal .. " -name " .. filemanager .. " -e " .. filemanager
 editor = os.getenv("EDITOR") or "vim"
-editor_cmd = terminal .. " -e " .. editor
-geditor = "geany"
+editor_cmd = terminal .. " -name " .. editor .. " -e " .. editor
+geditor = "gvim"
 email= "mutt"
 email_cmd = terminal .. " -name " .. email .. " -e " .. email
 news= "newsbeuter"
@@ -145,7 +146,7 @@ menu_items = freedesktop.menu.new()
 mymainmenu = awful.menu({ items = { { "applications", menu_items },
                                     { "terminal", terminal },
                                     { "browser", browser },
-                                    { "file manager", filemanager },
+                                    { "file manager", filemanager_cmd },
                                     { "editor", geditor },
                                     { "email", email_cmd },
                                     { "feed",  news_cmd },
@@ -458,7 +459,7 @@ globalkeys = awful.util.table.join(
 
     -- Application launcher common
     awful.key({ modkey,         },"b", function () awful.util.spawn_with_shell(browser) end),
-    awful.key({ modkey,         },"f", function () awful.util.spawn_with_shell(filemanager) end),
+    awful.key({ modkey,         },"f", function () awful.util.spawn_with_shell(filemanager_cmd) end),
     awful.key({ modkey,         },"e", function () awful.util.spawn_with_shell(geditor) end),
     awful.key({ modkey,         },"m", function () awful.util.spawn_with_shell(email_cmd) end),
     awful.key({ modkey,         },"a", function () awful.util.spawn_with_shell(music_cmd) end),
@@ -471,7 +472,7 @@ globalkeys = awful.util.table.join(
     -- Application launcher extra
     awful.key({                   },"#152", function () awful.util.spawn_with_shell(terminal) end),
     awful.key({                   },"#180", function () awful.util.spawn_with_shell(browser) end),
-    awful.key({                   },"#225", function () awful.util.spawn_with_shell(filemanager) end),
+    awful.key({                   },"#225", function () awful.util.spawn_with_shell(filemanager_cmd) end),
     awful.key({                   },"#181", function () awful.util.spawn_with_shell(editor) end),
     awful.key({                   },"#163", function () awful.util.spawn_with_shell(email_cmd) end),
     awful.key({                   },"#166", function () awful.util.spawn_with_shell(news_cmd) end),
@@ -584,7 +585,7 @@ awful.rules.rules = {
      { rule = { class = "URxvt" },
        properties = { tag = tags[1][1], switchtotag = true } },
 
-     { rule = { class = "Xfe" },
+     { rule = { name = "ranger" },
        properties = { tag = tags[1][1], switchtotag = true } },
 
      { rule = { class = "File-roller" },
@@ -613,7 +614,7 @@ awful.rules.rules = {
      { rule = { class = "fbreader" },
        properties = { tag = tags[1][2], switchtotag = true } },
 
-     { rule = { class = "epdfiew" },
+     { rule = { class = "Zathura" },
        properties = { tag = tags[1][2], switchtotag = true } },
 
 
@@ -643,6 +644,9 @@ awful.rules.rules = {
 
 
      -- 4:dev - Development
+     { rule = { class = "Gvim" },
+       properties = { tag = tags[1][4], switchtotag = true } },
+
      { rule = { name = "LibreOffice" },
        properties = { tag = tags[1][4], switchtotag = true } },
 
