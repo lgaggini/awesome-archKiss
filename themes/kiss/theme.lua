@@ -1,29 +1,21 @@
 ---------------------------
--- "archKiss" theme.lua	 --
+-- "archKiss" theme.lua  --
 --      by lgaggini      --
 --      CC BY-SA 3.0     --
 ---------------------------
 
 -- Main
-require("awful.util")
 theme = {}
-home          = os.getenv("HOME")
-config        = awful.util.getdir("config")
+config        = "/home/lorenzo/.config/awesome"
 shared        = "/usr/share/awesome"
-if not awful.util.file_readable(shared .. "/icons/awesome16.png") then
-    shared    = "/usr/share/local/awesome"
-end
 sharedicons   = shared .. "/icons"
 sharedthemes  = shared .. "/themes"
 themes        = config .. "/themes"
 themename     = "/kiss"
-if not awful.util.file_readable(themes .. themename .. "/theme.lua") then
-       themes = sharedthemes
-end
 themedir      = themes .. themename
 taglistdir    = themedir .. "/taglist"
 titlebardir   = themedir .. "/titlebar"
-layoutdir	  = themedir .. "/layouts"
+layoutdir     = themedir .. "/layouts"
 wallpaperdir  = themedir .. "/wallpaper/"
 icondir       = themedir .. "/icons"
 
@@ -109,7 +101,8 @@ theme.titlebar_maximized_button_normal_active = titlebardir  .. "/maximized_norm
 theme.titlebar_maximized_button_focus_active  = titlebardir  .. "/maximized_focus_active.png"
 
 -- Random wallpaper
-theme.wallpaper_cmd = { "awsetbg -r " .. wallpaperdir }
+theme.wallpaper_cmd = "find " .. wallpaperdir .. " -type f -print0 | shud -n1 -z | xargs -0 feh --bg-scale"
+theme.wallpaper_dir = wallpaperdir
 
 -- Layout icons
 theme.layout_fairh = layoutdir .. "/fairh.png"
