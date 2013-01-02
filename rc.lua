@@ -49,7 +49,8 @@ do
 
 -- {{{ Variable definitions
 -- Themes define colours, icons, and wallpapers
-beautiful.init("/home/lorenzo/.config/awesome/themes/kiss/theme.lua")
+-- beautiful.init("/home/lorenzo/.config/awesome/themes/kiss/theme.lua")
+beautiful.init("/home/lorenzo/.config/awesome/themes/kiss/theme_default.lua")
 
 -- This is used later as the default applications to run.
 terminal = "urxvt"
@@ -406,7 +407,6 @@ end
 
 -- {{{ Mouse bindings
 root.buttons(awful.util.table.join(
-    awful.button({ }, 1, function () mymainmenu:hide() end),
     awful.button({ }, 3, function () mymainmenu:toggle() end),
     awful.button({ }, 4, awful.tag.viewnext),
     awful.button({ }, 5, awful.tag.viewprev)
@@ -584,7 +584,8 @@ awful.rules.rules = {
                      border_color = beautiful.border_normal,
                      focus = awful.client.focus.filter,
                      keys = clientkeys,
-                     buttons = clientbuttons } },
+                     buttons = clientbuttons,
+                     size_hints_honor = false } },
     { rule = { class = "MPlayer" },
       properties = { floating = true } },
     { rule = { class = "pinentry" },
