@@ -57,6 +57,7 @@ terminal = "urxvt"
 browser = "chromium --disk-cache-dir=/tmp/.cache/chromium"
 filemanager = "ranger"
 filemanager_cmd = terminal .. " -name " .. filemanager .. " -e " .. filemanager
+gfilemanager = "thunar"
 editor = os.getenv("EDITOR") or "vim"
 editor_cmd = terminal .. " -name " .. editor .. " -e " .. editor
 geditor = "gvim"
@@ -415,8 +416,8 @@ root.buttons(awful.util.table.join(
 
 -- {{{ Key bindings
 globalkeys = awful.util.table.join(
-    awful.key({ modkey,           }, "h",   awful.tag.viewprev       ),
-    awful.key({ modkey,           }, "l",  awful.tag.viewnext       ),
+    awful.key({ modkey, "Shift"   }, "h",   awful.tag.viewprev       ),
+    awful.key({ modkey, "Shift"   }, "l",  awful.tag.viewnext       ),
     awful.key({ modkey,           }, "Escape", awful.tag.history.restore),
 
     awful.key({ modkey,           }, "j",
@@ -434,8 +435,8 @@ globalkeys = awful.util.table.join(
     -- Layout manipulation
     awful.key({ modkey, "Shift"   }, "j", function () awful.client.swap.byidx(  1)    end),
     awful.key({ modkey, "Shift"   }, "k", function () awful.client.swap.byidx( -1)    end),
-    awful.key({ modkey,           }, "o", function () awful.screen.focus_relative( 1) end),
-    awful.key({ modkey,           }, "n", function () awful.screen.focus_relative(-1) end),
+    awful.key({ modkey,           }, "l", function () awful.screen.focus_relative( 1) end),
+    awful.key({ modkey,           }, "h", function () awful.screen.focus_relative(-1) end),
     awful.key({ modkey,           }, "u", awful.client.urgent.jumpto),
     awful.key({ modkey,           }, "Tab",
         function ()
@@ -476,7 +477,7 @@ globalkeys = awful.util.table.join(
 
     -- Application launcher common
     awful.key({ modkey,         },"b", function () awful.util.spawn_with_shell(browser) end),
-    awful.key({ modkey,         },"f", function () awful.util.spawn_with_shell(filemanager_cmd) end),
+    awful.key({ modkey,         },"f", function () awful.util.spawn_with_shell(gfilemanager) end),
     awful.key({ modkey,         },"e", function () awful.util.spawn_with_shell(geditor) end),
     awful.key({ modkey,         },"m", function () awful.util.spawn_with_shell(email_cmd) end),
     awful.key({ modkey,         },"a", function () awful.util.spawn_with_shell(music_cmd) end),
@@ -489,7 +490,7 @@ globalkeys = awful.util.table.join(
     -- Application launcher extra
     awful.key({                   },"#152", function () awful.util.spawn_with_shell(terminal) end),
     awful.key({                   },"#180", function () awful.util.spawn_with_shell(browser) end),
-    awful.key({                   },"#225", function () awful.util.spawn_with_shell(filemanager_cmd) end),
+    awful.key({                   },"#225", function () awful.util.spawn_with_shell(gfilemanager) end),
     awful.key({                   },"#181", function () awful.util.spawn_with_shell(editor) end),
     awful.key({                   },"#163", function () awful.util.spawn_with_shell(email_cmd) end),
     awful.key({                   },"#166", function () awful.util.spawn_with_shell(news_cmd) end),
@@ -601,6 +602,9 @@ awful.rules.rules = {
        properties = { tag = tags[1][1], switchtotag = true } },
 
      { rule = { name = "ranger" },
+       properties = { tag = tags[1][1], switchtotag = true } },
+     
+     { rule = { class = "Thunar" },
        properties = { tag = tags[1][1], switchtotag = true } },
 
      { rule = { class = "File-roller" },
