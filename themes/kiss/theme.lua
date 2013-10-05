@@ -6,7 +6,8 @@
 
 -- Main
 theme = {}
-config        = "/home/lorenzo/.config/awesome"
+home          = "/home/lg"
+config        = home .. "/.config/awesome"
 shared        = "/usr/share/awesome"
 sharedicons   = shared .. "/icons"
 sharedthemes  = shared .. "/themes"
@@ -101,7 +102,7 @@ theme.titlebar_maximized_button_normal_active = titlebardir  .. "/maximized_norm
 theme.titlebar_maximized_button_focus_active  = titlebardir  .. "/maximized_focus_active.png"
 
 -- Random wallpaper
-theme.wallpaper_cmd = "find " .. wallpaperdir .. " -type f -print0 | shud -n1 -z | xargs -0 feh --bg-scale"
+wallpaperdir  = home .. "/.wallpaper/"
 theme.wallpaper_dir = wallpaperdir
 
 -- Layout icons
