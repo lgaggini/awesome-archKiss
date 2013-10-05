@@ -103,7 +103,7 @@ local layouts =
 -- {{{ Function definitions
 -- Custom widget for sys temp
 function systemp()
-    local fd = io.popen("sensors|grep SYSTIN|gawk '{print $2'}", "r")
+    local fd = io.popen("sensors|grep temp1|tail -1|gawk '{print $2'}", "r")
     local temp = fd:read()
     io.close(fd)
     return temp
@@ -176,8 +176,9 @@ menubar.utils.terminal = terminal -- Set the terminal for applications that requ
 
 -- {{{ Wibox
 -- Create a textclock widget
-mytextclock = awful.widget.textclock("%B %Y %H:%M")
+mytextclock = awful.widget.textclock("%m/%y %H:%M ")
 mytextday = awful.widget.textclock("%A ")
+mytextnumber = awful.widget.textclock("%d/")
 
 -- Create an os widget
 osicon = wibox.widget.imagebox()
@@ -209,7 +210,7 @@ vicious.register(ramwidget, vicious.widgets.mem, "$1%")
 -- Create an htop button
 htopbuttons = awful.util.table.join(
         awful.button({ }, 1, function () awful.util.spawn(task_cmd) end)
- )
+)
 cpuicon:buttons(htopbuttons)
 cpuwidget:buttons(htopbuttons)
 ramicon:buttons(htopbuttons)
@@ -224,20 +225,31 @@ tempwidget = wibox.widget.textbox()
 fsicon = wibox.widget.imagebox()
 fsicon:set_image(beautiful.fs)
 fswidget = wibox.widget.textbox()
-vicious.register(fswidget, vicious.widgets.fs, " /: ${/ used_p}% ~: ${/home used_p}% var: ${/var used_p}%")
+vicious.register(fswidget, vicious.widgets.fs, " /: ${/ used_p}% ~: ${/home used_p}%")
 
 -- Create a fs button
 fsbuttons = awful.util.table.join(
        awful.button({ }, 1, function () awful.util.spawn(filemanager) end)
- )
--- fsicon:buttons(fsbuttons)
+)
+fsicon:buttons(fsbuttons)
 fswidget:buttons(fsbuttons)
 
 -- Create a net widget
 neticon = wibox.widget.imagebox()
 neticon:set_image(beautiful.net)
 netwidget = wibox.widget.textbox()
-vicious.register(netwidget, vicious.widgets.net, "${eth0 up_kb} kb/ ${eth0 down_kb} kb")
+vicious.register(netwidget, vicious.widgets.net,
+    function(widget, args)
+        if args["{enp12s0 carrier}"] == 1
+            then
+                return args["{enp12s0 up_kb}"] .. "kb/" .. args["{enp12s0 down_kb}"] .. "kb"
+        elseif args["{wlp2s0 carrier}"] == 1
+            then
+                return args["{wlp2s0 up_kb}"] .. "kb/" .. args["{wlp2s0 down_kb}"] ..  "kb"
+        else
+            return "no network"
+        end
+    end,1)
 
 -- Create a mpd widget
 mpdicon = wibox.widget.imagebox()
@@ -256,7 +268,7 @@ vicious.register(mpdwidget, vicious.widgets.mpd,
         return "paused"
       end
     end)
-    
+
 -- Create a mpd button
 mpdbuttons = awful.util.table.join(
   awful.button({ }, 1, function () awful.util.spawn(music_cmd) end)
@@ -286,9 +298,10 @@ calicon:set_image(beautiful.cal)
 calwidget = wibox.widget.textbox()
 
 -- Create a battery widget
--- batterywidget = wibox.widget.textbox()
--- batteryicon:set_image(beautiful.bat)
--- vicious.register(batterywidget, vicious.widgets.bat, fg_widget .."$2 $1 |</span> ", 61, "BAT0")
+batteryicon = wibox.widget.imagebox()
+batteryicon:set_image(beautiful.bat)
+batterywidget = wibox.widget.textbox()
+vicious.register(batterywidget, vicious.widgets.bat, "$2 $1", 61, "BAT0")
 
 -- Create a wibox for each screen and add it
 mywibox = {}
@@ -368,6 +381,8 @@ for s = 1, screen.count() do
     local right_layout = wibox.layout.fixed.horizontal()
     right_layout:add(osicon)
     right_layout:add(oswidget)
+    right_layout:add(mpdicon)
+    right_layout:add(mpdwidget)
     right_layout:add(upicon)
     right_layout:add(upwidget)
     right_layout:add(cpuicon)
@@ -380,12 +395,14 @@ for s = 1, screen.count() do
     right_layout:add(fswidget)
     right_layout:add(neticon)
     right_layout:add(netwidget)
+    right_layout:add(batteryicon)
+    right_layout:add(batterywidget)
     right_layout:add(calicon)
-    right_layout:add(mytextday)
-    right_layout:add(calwidget)
+    -- right_layout:add(mytextday)
+    if s == 2 then right_layout:add(calwidget) else right_layout:add(mytextnumber) end
     right_layout:add(mytextclock)
-    right_layout:add(mdiricon)
-    right_layout:add(mdirwidget)
+    -- right_layout:add(mdiricon)
+    -- right_layout:add(mdirwidget)
     if s == 1 then right_layout:add(wibox.widget.systray()) end
     right_layout:add(mylayoutbox[s])
 
