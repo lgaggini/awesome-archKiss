@@ -114,16 +114,11 @@ function cal()
     local cal = fd:read()
     io.close(fd)
     return cal
-end	
+end
 -- }}}
 
 -- {{{ Wallpaper
--- if beautiful.wallpaper then
---  for s = 1, screen.count() do
---     gears.wallpaper.maximized(beautiful.wallpaper, s, true)
---  end
---end
-
+-- Random selection from theme related wallpaper directory
 os.execute("find " .. beautiful.wallpaper_dir .. " -type f -print0 | shuf -n1 -z | xargs -0 feh --bg-scale")
 -- }}}
 
@@ -418,6 +413,7 @@ end
 
 -- {{{ Mouse bindings
 root.buttons(awful.util.table.join(
+    awful.button({ }, 1, function () mymainmenu:hide() end),
     awful.button({ }, 3, function () mymainmenu:toggle() end),
     awful.button({ }, 4, awful.tag.viewnext),
     awful.button({ }, 5, awful.tag.viewprev)
