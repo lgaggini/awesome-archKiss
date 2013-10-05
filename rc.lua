@@ -426,8 +426,8 @@ root.buttons(awful.util.table.join(
 
 -- {{{ Key bindings
 globalkeys = awful.util.table.join(
-    awful.key({ modkey, "Shift"   }, "h",   awful.tag.viewprev       ),
-    awful.key({ modkey, "Shift"   }, "l",  awful.tag.viewnext       ),
+    awful.key({ modkey, "Shift"   }, "h", awful.tag.viewprev),
+    awful.key({ modkey, "Shift"   }, "l", awful.tag.viewnext),
     awful.key({ modkey,           }, "Escape", awful.tag.history.restore),
 
     awful.key({ modkey,           }, "j",
@@ -445,8 +445,8 @@ globalkeys = awful.util.table.join(
     -- Layout manipulation
     awful.key({ modkey, "Shift"   }, "j", function () awful.client.swap.byidx(  1)    end),
     awful.key({ modkey, "Shift"   }, "k", function () awful.client.swap.byidx( -1)    end),
-    awful.key({ modkey,           }, "l", function () awful.screen.focus_relative( 1) end),
-    awful.key({ modkey,           }, "h", function () awful.screen.focus_relative(-1) end),
+    awful.key({ modkey,           }, "h", function () awful.screen.focus_relative( 1) end),
+    awful.key({ modkey,           }, "l", function () awful.screen.focus_relative(-1) end),
     awful.key({ modkey,           }, "u", awful.client.urgent.jumpto),
     awful.key({ modkey,           }, "Tab",
         function ()
@@ -458,6 +458,10 @@ globalkeys = awful.util.table.join(
 
     -- Standard program
     awful.key({ modkey,           }, "Return", function () awful.util.spawn(terminal) end),
+    awful.key({ modkey,           }, "F1",     function () awful.screen.focus(1) end),
+    awful.key({ modkey,           }, "F2",     function () awful.screen.focus(2) end),
+    awful.key({                   }, "XF86MonBrightnessDown", function () awful.util.spawn_with_shell(bright_down) end),
+    awful.key({                   }, "XF86MonBrightnessUp",   function () awful.util.spawn_with_shell(bright_up) end),
     awful.key({ modkey, "Control" }, "r", awesome.restart),
     awful.key({ modkey, "Shift"   }, "q", awesome.quit),
 
