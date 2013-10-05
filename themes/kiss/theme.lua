@@ -17,11 +17,11 @@ themedir      = themes .. themename
 taglistdir    = themedir .. "/taglist"
 titlebardir   = themedir .. "/titlebar"
 layoutdir     = themedir .. "/layouts"
-wallpaperdir  = themedir .. "/wallpaper/"
 icondir       = themedir .. "/icons"
 
 -- Fonts
 theme.font          = "sans 8"
+theme.taglist_font = "sans 12"
 
 -- Main colors
 theme.bg_normal     = "#202020"
