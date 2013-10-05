@@ -49,35 +49,26 @@ do
 
 -- {{{ Variable definitions
 -- Themes define colours, icons, and wallpapers
--- beautiful.init("/home/lorenzo/.config/awesome/themes/kiss/theme.lua")
-beautiful.init("/home/lorenzo/.config/awesome/themes/kiss/theme_default.lua")
+beautiful.init("/home/lg/.config/awesome/themes/kiss/theme_default.lua")
 
 -- This is used later as the default applications to run.
 terminal = "urxvt"
-browser = "chromium --disk-cache-dir=/tmp/.cache/chromium"
-filemanager = "ranger"
-filemanager_cmd = terminal .. " -name " .. filemanager .. " -e " .. filemanager
-gfilemanager = "thunar"
-editor = os.getenv("EDITOR") or "vim"
-editor_cmd = terminal .. " -name " .. editor .. " -e " .. editor
-geditor = "gvim"
-email= "mutt"
-email_cmd = terminal .. " -name " .. email .. " -e " .. email
-news= "newsbeuter"
-news_cmd = terminal .. " -name " .. news .. " -e " .. news 
-music= "ncmpcpp"
-music_cmd = terminal .. " -name " .. music .. " -e " .. music
-media= "smplayer"
-task= "htop"
-task_cmd = terminal .. " -name " .. task .. " -e " .. task 
-gtask= "lxtask"
-irc="irssi"
-irc_cmd= terminal .. " -name " .. irc .. " -e screen " .. irc
-girc= "xchat"
+browser = "chromium"
+filemanager = "thunar"
+editor = "gvim"
+email_term= "mutt"
+email = terminal .. " -name " .. email_term .. " -e " .. email_term
+feed_term = "newsbeuter"
+feed = terminal .. " -name " .. feed_term .. " -e " .. feed_term
+pad = "leafpad"
+note = "zim"
+task= "lxtask"
 jabber= "gajim"
---lock= "slock"
---single= "sh ~/bin/single.sh"
---dual= "sh ~/bin/dual-above.sh"
+irc="hexchat"
+music="sonata"
+media="smplayer"
+bright_down="xbacklight -dec 10"
+bright_up="xbacklight -inc 10" 
 poweroff= "sudo poweroff"
 reboot= "sudo reboot"
 
@@ -149,7 +140,7 @@ end
 -- Create a laucher widget and a main menu
 myawesomemenu = {
    { "manual", terminal .. " -e man awesome" },
-   { "edit config", editor_cmd .. " " .. awesome.conffile },
+   { "edit config", editor .. " " .. awesome.conffile },
    { "restart", awesome.restart },
    { "quit", awesome.quit }
 }
@@ -159,15 +150,17 @@ menu_items = freedesktop.menu.new()
 mymainmenu = awful.menu({ items = { { "applications", menu_items },
                                     { "terminal", terminal },
                                     { "browser", browser },
-                                    { "file manager", filemanager_cmd },
-                                    { "editor", geditor },
-                                    { "email", email_cmd },
-                                    { "feed",  news_cmd },
+                                    { "file manager", filemanager },
+                                    { "editor", editor },
+                                    { "email", email },
+                                    { "feed", feed },
+                                    { "pad", pad },
+                                    { "note", note },
                                     { "jabber", jabber },
-                                    { "irc",  irc_cmd },
-                                    { "music", music_cmd },
+                                    { "irc", irc },
+                                    { "music", music },
                                     { "media", media },
-                                    { "tasks", gtask },
+                                    { "tasks", task },
                                     { "awesome", myawesomemenu },
                                     { "reboot", reboot },
                                     { "poweroff", poweroff }
@@ -278,11 +271,11 @@ mdirwidget = wibox.widget.textbox()
 vicious.register(mdirwidget, vicious.widgets.mdir, 
     function (widget, args)
        return string.format("%02d", args[1]+args[2]) 
-    end, 600,  {'~/offlinemail/INBOX'})
+    end, 600,  {'~/mail/'})
 
 -- Create a maildir button
 mdirbuttons = awful.util.table.join(
-        awful.button({ }, 1, function () awful.util.spawn(email_cmd) end)
+        awful.button({ }, 1, function () awful.util.spawn(email) end)
 )
 mdiricon:buttons(mdirbuttons)
 mdirwidget:buttons(mdirbuttons)
@@ -477,36 +470,14 @@ globalkeys = awful.util.table.join(
 
     -- Application launcher common
     awful.key({ modkey,         },"b", function () awful.util.spawn_with_shell(browser) end),
-    awful.key({ modkey,         },"f", function () awful.util.spawn_with_shell(gfilemanager) end),
-    awful.key({ modkey,         },"e", function () awful.util.spawn_with_shell(geditor) end),
-    awful.key({ modkey,         },"m", function () awful.util.spawn_with_shell(email_cmd) end),
-    awful.key({ modkey,         },"a", function () awful.util.spawn_with_shell(music_cmd) end),
-    awful.key({ modkey,         },"v", function () awful.util.spawn_with_shell(media) end),
-    awful.key({ modkey,         },"n", function () awful.util.spawn_with_shell(news_cmd) end),
-    awful.key({ modkey,         },"i", function () awful.util.spawn_with_shell(irc) end),
+    awful.key({ modkey,         },"f", function () awful.util.spawn_with_shell(filemanager) end),
+    awful.key({ modkey,         },"e", function () awful.util.spawn_with_shell(editor) end),
+    awful.key({ modkey,         },"m", function () awful.util.spawn_with_shell(email) end),
+    awful.key({ modkey,         },"s", function () awful.util.spawn_with_shell(pad) end),
+    awful.key({ modkey,         },"n", function () awful.util.spawn_with_shell(note) end),
     awful.key({ modkey,         },"g", function () awful.util.spawn_with_shell(jabber) end),
-    awful.key({ modkey,         },"t", function () awful.util.spawn_with_shell(gtask) end),
-
-    -- Application launcher extra
-    awful.key({                   },"#152", function () awful.util.spawn_with_shell(terminal) end),
-    awful.key({                   },"#180", function () awful.util.spawn_with_shell(browser) end),
-    awful.key({                   },"#225", function () awful.util.spawn_with_shell(gfilemanager) end),
-    awful.key({                   },"#181", function () awful.util.spawn_with_shell(editor) end),
-    awful.key({                   },"#163", function () awful.util.spawn_with_shell(email_cmd) end),
-    awful.key({                   },"#166", function () awful.util.spawn_with_shell(news_cmd) end),
-    awful.key({                   },"#164", function () awful.util.spawn_with_shell(music_cmd) end),
-    awful.key({                   },"#179", function () awful.util.spawn_with_shell(media) end),
-    awful.key({                   },"#167", function () awful.util.spawn_with_shell(task) end),
-
-    -- Multimedia keys
-    awful.key({                   },"#122", function () awful.util.spawn_with_shell("amixer -q set Master 5- unmute") end),
-    awful.key({                   },"#123", function () awful.util.spawn_with_shell("amixer -q set Master 5+ unmute") end),
-    awful.key({                   },"#121", function () awful.util.spawn_with_shell("amixer -q set Master toggle") end),
-    awful.key({                   },"#174", function () awful.util.spawn_with_shell("mpc stop") end),
-    awful.key({                   },"#172", function () awful.util.spawn_with_shell("mpc toggle") end),
-    awful.key({                   },"#173", function () awful.util.spawn_with_shell("mpc prev") end),
-    awful.key({                   },"#171", function () awful.util.spawn_with_shell("mpc next") end)
-
+    awful.key({ modkey,         },"i", function () awful.util.spawn_with_shell(irc) end),
+    awful.key({ modkey,         },"t", function () awful.util.spawn_with_shell(task) end)
 )
 
 clientkeys = awful.util.table.join(
@@ -597,102 +568,90 @@ awful.rules.rules = {
     -- { rule = { class = "Firefox" },
     --   properties = { tag = tags[1][2] } },
 
- -- 1:admin Admin
+      -- 1:adm Admin
      { rule = { class = "URxvt" },
        properties = { tag = tags[1][1], switchtotag = true } },
 
-     { rule = { name = "ranger" },
-       properties = { tag = tags[1][1], switchtotag = true } },
-     
-     { rule = { class = "Thunar" },
-       properties = { tag = tags[1][1], switchtotag = true } },
+      -- 2:util Utils
+
+     { rule = { name = "Thunar" },
+       properties = { tag = tags[1][2], switchtotag = true } },
 
      { rule = { class = "File-roller" },
-       properties = { tag = tags[1][1], switchtotag = true } },
+       properties = { tag = tags[1][2], switchtotag = true } },
 
      { rule = { class = "Lxtask" },
-       properties = { tag = tags[1][1], switchtotag = true } },
-
-     { rule = { instance = "htop" },
-       properties = { tag = tags[1][1], switchtotag = true } },
-
-     { rule = { class = "gFTP" },
-       properties = { tag = tags[1][1], switchtotag = true } },  
-
-
-     -- 2:web Web
-     { rule = { class = "Chromium" },
-       properties = { tag = tags[1][2], switchtotag = true, floating = false } },
-
-     { rule = { instance = "links" },
        properties = { tag = tags[1][2], switchtotag = true } },
+
+     -- 3:web Web
+     { rule = { class = "Chromium" },
+       properties = { tag = tags[1][3], switchtotag = true, floating = false } },
 
      { rule = { instance = "newsbeuter" },
-       properties = { tag = tags[1][3], switchtotag = true } }, 
-
-     { rule = { class = "fbreader" },
-       properties = { tag = tags[1][2], switchtotag = true } },
-
-     { rule = { class = "Zathura" },
-       properties = { tag = tags[1][2], switchtotag = true } },
-
-
-     -- 3:com - Communications
-     { rule = { class = "Gajim", role = "roster" },
-       properties = { tag = tags[1][3], switchtotag = true, floating = true } ,
-       
-       callback = function( c )
-        local w_area = screen[ c.screen ].workarea
-        local strutwidth = 200
-        c:struts( { right = strutwidth } )
-        c:geometry( { x = w_area.width, width = strutwidth, y = w_area.y + 15, height = w_area.height - 15 } )
-      end
-     },
-     
-     { rule = { class = "Gajim" },
-      properties = { tag = tags[1][3], switchtotag = true } },
-     
-     { rule = { instance = "mutt" },
        properties = { tag = tags[1][3], switchtotag = true } },
-
-     { rule = { class = "Xchat" },
-       properties = { tag = tags[1][3], switchtotag = true } },
-       
-     { rule = { instance = "irssi" },
-       properties = { tag = tags[1][3], switchtotag = true } }, 
-
 
      -- 4:dev - Development
      { rule = { class = "Gvim" },
        properties = { tag = tags[1][4], switchtotag = true } },
 
+     -- 5:mail - Mail
+
+     { rule = { instance = "mutt" },
+       properties = { tag = tags[1][5], switchtotag = true } },
+
+     -- 6:doc - Documentation
      { rule = { name = "LibreOffice" },
-       properties = { tag = tags[1][4], switchtotag = true } },
+       properties = { tag = tags[1][6], switchtotag = true } },
 
      { rule = { name = "* - LibreOffice Writer" },
-       properties = { tag = tags[1][4], switchtotag = true, floating = false } },
+       properties = { tag = tags[1][6], switchtotag = true, floating = false } },
 
      { rule = { name = "* - LibreOffice Calc" },
-       properties = { tag = tags[1][4], switchtotag = true, floating = false } }, 
+       properties = { tag = tags[1][6], switchtotag = true, floating = false } },
 
      { rule = { name = "* - LibreOffice Impress" },
-       properties = { tag = tags[1][4], switchtotag = true, floating = false } }, 
+       properties = { tag = tags[1][6], switchtotag = true, floating = false } },
 
+     { rule = { class = "Zathura" },
+       properties = { tag = tags[1][6], switchtotag = true } },
 
-     -- 5:media - Multimedia
+     { rule = { class = "Leafpad" },
+       properties = { tag = tags[1][6], switchtotag = true } },
+
+     { rule = { class = "Zim" },
+       properties = { tag = tags[1][6], switchtotag = true } },
+
+     { rule = { class = "Ristretto" },
+       properties = { tag = tags[1][6], switchtotag = true } },
+
+     -- 7:com - Communication
+     { rule = { class = "Gajim", role = "roster" },
+       properties = { tag = tags[1][7], switchtotag = true, floating = true } ,
+       
+       callback = function( c )
+        local w_area = screen[ c.screen ].workarea
+        local strutwidth = 200
+        c:struts( { right = strutwidth } )
+        c:geometry( { x = w_area.width, width = strutwidth, y = w_area.y, height = w_area.height - 20 } )
+      end
+     },
+     
+     { rule = { class = "Gajim" },
+      properties = { tag = tags[1][7], switchtotag = true, floating = true } },
+     
+     { rule = { class = "Hexchat" },
+       properties = { tag = tags[1][7], switchtotag = true } },
+
+     -- 8:ent Entertainment
+
      { rule = { class = "Smplayer" },
-       properties = { tag = tags[1][5], switchtotag = true } },    
+       properties = { tag = tags[1][8], switchtotag = true } },
 
-     { rule = { instance = "ncmpcpp" },
-       properties = { tag = tags[1][5], switchtotag = true } },
-
-     { rule = { class = "Easytag" },
-       properties = { tag = tags[1][5], switchtotag = true } },
-
-     { rule = { class = "recorder" },
-       properties = { tag = tags[1][5], switchtotag = true } },
-
+     { rule = { class = "Sonata" },
+       properties = { tag = tags[1][8], switchtotag = true } },
 }
+
+
 -- }}}
 
 -- {{{ Signals
