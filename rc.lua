@@ -132,7 +132,7 @@ os.execute("find " .. beautiful.wallpaper_dir .. " -type f -print0 | shuf -n1 -z
 tags = {}
 for s = 1, screen.count() do
     -- Each screen has its own tag table.
-    tags[s] = awful.tag({ "1:adm", "2:web", "3:com", "4:dev", "5:media"}, s, layouts[6])
+    tags[s] = awful.tag({ "♕", "⚒", "ℹ", "✎", "✉", "✍", "✆", "♫"}, s, layouts[6])
 end
 -- }}}
 
