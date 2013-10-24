@@ -62,15 +62,17 @@ feed_term = "newsbeuter"
 feed = terminal .. " -name " .. feed_term .. " -e " .. feed_term
 pad = "leafpad"
 note = "zim"
-task= "lxtask"
-jabber= "gajim"
-irc="hexchat"
-music="sonata"
-media="smplayer"
-bright_down="xbacklight -dec 10"
-bright_up="xbacklight -inc 10" 
-poweroff= "sudo poweroff"
-reboot= "sudo reboot"
+task = "lxtask"
+jabber = "gajim"
+irc = "hexchat"
+music = "sonata"
+media = "smplayer"
+password="pwsafe"
+vm = "virt-manager"
+bright_down = "xbacklight -dec 10"
+bright_up = "xbacklight -inc 10"
+poweroff = "sudo poweroff"
+reboot = "sudo reboot"
 
 -- One line calendar command
 onelinecal = [[ cal | tail -n +3 | sed -e "s/\<$(date +%-d)\>/\<span color=\"]] .. "#1994d1" .. [[\">&\<\/span>/" | sed 's/^[ \t]*//' | tr "\n" " "]]
@@ -127,7 +129,7 @@ os.execute("find " .. beautiful.wallpaper_dir .. " -type f -print0 | shuf -n1 -z
 tags = {}
 for s = 1, screen.count() do
     -- Each screen has its own tag table.
-    tags[s] = awful.tag({ "♕", "⚒", "ℹ", "✎", "✉", "✍", "✆", "♫"}, s, layouts[6])
+    tags[s] = awful.tag({ "♕", "⚒", "ℹ", "✎", "✉", "✍", "✆", "♫","☢"}, s, layouts[6])
 end
 -- }}}
 
@@ -155,7 +157,9 @@ mymainmenu = awful.menu({ items = { { "applications", menu_items },
                                     { "irc", irc },
                                     { "music", music },
                                     { "media", media },
+                                    { "vm", vm },
                                     { "tasks", task },
+                                    { "passwords", password },
                                     { "awesome", myawesomemenu },
                                     { "reboot", reboot },
                                     { "poweroff", poweroff }
@@ -422,8 +426,8 @@ root.buttons(awful.util.table.join(
 
 -- {{{ Key bindings
 globalkeys = awful.util.table.join(
-    awful.key({ modkey, "Shift"   }, "h", awful.tag.viewprev),
-    awful.key({ modkey, "Shift"   }, "l", awful.tag.viewnext),
+    awful.key({ modkey,           }, "h", awful.tag.viewprev       ),
+    awful.key({ modkey,           }, "l", awful.tag.viewnext       ),
     awful.key({ modkey,           }, "Escape", awful.tag.history.restore),
 
     awful.key({ modkey,           }, "j",
@@ -490,11 +494,14 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey,         },"f", function () awful.util.spawn_with_shell(filemanager) end),
     awful.key({ modkey,         },"e", function () awful.util.spawn_with_shell(editor) end),
     awful.key({ modkey,         },"m", function () awful.util.spawn_with_shell(email) end),
+    awful.key({ modkey,         },"a", function () awful.util.spawn_with_shell(feed) end),
     awful.key({ modkey,         },"s", function () awful.util.spawn_with_shell(pad) end),
     awful.key({ modkey,         },"n", function () awful.util.spawn_with_shell(note) end),
     awful.key({ modkey,         },"g", function () awful.util.spawn_with_shell(jabber) end),
     awful.key({ modkey,         },"i", function () awful.util.spawn_with_shell(irc) end),
-    awful.key({ modkey,         },"t", function () awful.util.spawn_with_shell(task) end)
+    awful.key({ modkey,         },"v", function () awful.util.spawn_with_shell(vm) end),
+    awful.key({ modkey,         },"t", function () awful.util.spawn_with_shell(task) end),
+    awful.key({ modkey,         },"u", function () awful.util.spawn_with_shell(password) end)
 )
 
 clientkeys = awful.util.table.join(
@@ -590,7 +597,6 @@ awful.rules.rules = {
        properties = { tag = tags[1][1], switchtotag = true } },
 
       -- 2:util Utils
-
      { rule = { name = "Thunar" },
        properties = { tag = tags[1][2], switchtotag = true } },
 
@@ -598,6 +604,12 @@ awful.rules.rules = {
        properties = { tag = tags[1][2], switchtotag = true } },
 
      { rule = { class = "Lxtask" },
+       properties = { tag = tags[1][2], switchtotag = true } },
+
+     { rule = { class = "Wicd-client.py" },
+       properties = { tag = tags[1][2], switchtotag = true } },
+
+     { rule = { class = "Pwsafe" },
        properties = { tag = tags[1][2], switchtotag = true } },
 
      -- 3:web Web
@@ -612,7 +624,6 @@ awful.rules.rules = {
        properties = { tag = tags[1][4], switchtotag = true } },
 
      -- 5:mail - Mail
-
      { rule = { instance = "mutt" },
        properties = { tag = tags[1][5], switchtotag = true } },
 
@@ -643,8 +654,8 @@ awful.rules.rules = {
 
      -- 7:com - Communication
      { rule = { class = "Gajim", role = "roster" },
-       properties = { tag = tags[1][7], switchtotag = true, floating = true } ,
-       
+       properties = { tag = tags[1][7], switchtotag = true, floating = true },
+
        callback = function( c )
         local w_area = screen[ c.screen ].workarea
         local strutwidth = 200
@@ -666,6 +677,12 @@ awful.rules.rules = {
 
      { rule = { class = "Sonata" },
        properties = { tag = tags[1][8], switchtotag = true } },
+
+    -- 9:vm Virtual Machines
+
+     { rule = { class = "Virt-manager" },
+       properties = { tag = tags[1][9], switchtotag = true } },
+
 }
 
 
