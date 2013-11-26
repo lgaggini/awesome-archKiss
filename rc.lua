@@ -680,6 +680,9 @@ awful.rules.rules = {
 
     -- 9:vm Virtual Machines
 
+     { rule = { class = "VirtualBox" },
+       properties = { tag = tags[1][9], switchtotag = true } },
+
      { rule = { class = "Virt-manager" },
        properties = { tag = tags[1][9], switchtotag = true } },
 
