@@ -189,10 +189,10 @@ vicious.register(oswidget, vicious.widgets.os, "$1-$2")
 upicon = wibox.widget.imagebox()
 upicon:set_image(beautiful.uptime)
 upwidget =  wibox.widget.textbox()
-vicious.register(upwidget, vicious.widgets.uptime, 
-    function (widget, args)
-      return string.format("%02d:%02d", args[2], args[3])
-    end, 61)
+vicious.register(upwidget, vicious.widgets.uptime,
+    function(widget, args)
+        return string.format("%02d:%02d ", args[2], args[3])
+    end)
 
 -- Create a cpu widget
 cpuicon = wibox.widget.imagebox()
@@ -254,42 +254,42 @@ vicious.register(netwidget, vicious.widgets.net,
 mpdicon = wibox.widget.imagebox()
 mpdicon:set_image(beautiful.music)
 mpdwidget = wibox.widget.textbox()
-vicious.register(mpdwidget, vicious.widgets.mpd, 
-    function (widget, args)
-      if args["{state}"] == "Stop" then
-        mpdicon.visible = false
-        return ""
-      elseif args["{state}"] == "Play" then
-        mpdicon.visible = true
-        return  args["{Artist}"] .. " - " .. args["{Title}"]
-      elseif args["{state}"] == "Pause" then
-        mpdicon.visible = true
-        return "paused"
-      end
-    end)
+-- vicious.register(mpdwidget, vicious.widgets.mpd,
+--    function (widget, args)
+--      if args["{state}"] == "Stop" then
+--        mpdicon.visible = false
+--        return ""
+--      elseif args["{state}"] == "Play" then
+--        mpdicon.visible = true
+--        return  args["{Artist}"] .. " - " .. args["{Title}"]
+--      elseif args["{state}"] == "Pause" then
+--        mpdicon.visible = true
+--        return "paused"
+--      end
+--    end)
 
 -- Create a mpd button
 mpdbuttons = awful.util.table.join(
   awful.button({ }, 1, function () awful.util.spawn(music_cmd) end)
 )
 mpdicon:buttons(mpdbuttons)
-mpdwidget:buttons(mpdbuttons)
+-- mpdwidget:buttons(mpdbuttons)
 
 -- Create a maildir widget
-mdiricon = wibox.widget.imagebox()
-mdiricon:set_image(beautiful.mail)
-mdirwidget = wibox.widget.textbox()
-vicious.register(mdirwidget, vicious.widgets.mdir, 
-    function (widget, args)
-       return string.format("%02d", args[1]+args[2]) 
-    end, 600,  {'~/mail/'})
+-- mdiricon = wibox.widget.imagebox()
+-- mdiricon:set_image(beautiful.mail)
+-- mdirwidget = wibox.widget.textbox()
+-- vicious.register(mdirwidget, vicious.widgets.mdir, 
+--    function (widget, args)
+--       return string.format("%02d", args[1]+args[2]) 
+--    end, 600,  {'~/mail/'})
 
 -- Create a maildir button
-mdirbuttons = awful.util.table.join(
-        awful.button({ }, 1, function () awful.util.spawn(email) end)
-)
-mdiricon:buttons(mdirbuttons)
-mdirwidget:buttons(mdirbuttons)
+-- mdirbuttons = awful.util.table.join(
+--         awful.button({ }, 1, function () awful.util.spawn(email) end)
+-- )
+-- mdiricon:buttons(mdirbuttons)
+-- mdirwidget:buttons(mdirbuttons)
 
 -- Create a calendar widget
 calicon = wibox.widget.imagebox()
@@ -381,7 +381,7 @@ for s = 1, screen.count() do
     right_layout:add(osicon)
     right_layout:add(oswidget)
     right_layout:add(mpdicon)
-    right_layout:add(mpdwidget)
+    -- right_layout:add(mpdwidget)
     right_layout:add(upicon)
     right_layout:add(upwidget)
     right_layout:add(cpuicon)
@@ -397,7 +397,7 @@ for s = 1, screen.count() do
     right_layout:add(batteryicon)
     right_layout:add(batterywidget)
     right_layout:add(calicon)
-    -- right_layout:add(mytextday)
+    right_layout:add(mytextday)
     if s == 2 then right_layout:add(calwidget) else right_layout:add(mytextnumber) end
     right_layout:add(mytextclock)
     -- right_layout:add(mdiricon)
@@ -614,6 +614,9 @@ awful.rules.rules = {
 
      -- 3:web Web
      { rule = { class = "Chromium" },
+       properties = { tag = tags[1][3], switchtotag = true, floating = false } },
+
+     { rule = { class = "Firefox" },
        properties = { tag = tags[1][3], switchtotag = true, floating = false } },
 
      { rule = { instance = "newsbeuter" },
