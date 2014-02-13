@@ -381,7 +381,7 @@ for s = 1, screen.count() do
     local right_layout = wibox.layout.fixed.horizontal()
     right_layout:add(osicon)
     right_layout:add(oswidget)
-    right_layout:add(mpdicon)
+    -- right_layout:add(mpdicon)
     -- right_layout:add(mpdwidget)
     right_layout:add(upicon)
     right_layout:add(upwidget)
