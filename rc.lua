@@ -13,6 +13,7 @@ require("awful.autofocus")
 local wibox = require("wibox")
 -- Sysmon widget library
 local vicious = require("vicious")
+local lain = require("lain")
 -- Theme handling library
 local beautiful = require("beautiful")
 -- Notification library
