@@ -84,6 +84,7 @@ onelinecal = [[ cal | tail -n +3 | sed -e "s/\<$(date +%-d)\>/\<span color=\"]] 
 -- I suggest you to remap Mod4 to another key using xmodmap or other tools.
 -- However, you can use another modifier like Mod1, but it may interact with others.
 modkey = "Mod4"
+altkey = "Mod1"
 
 -- Table of layouts to cover with awful.layout.inc, order matters.
 local layouts =
@@ -427,16 +428,16 @@ root.buttons(awful.util.table.join(
 
 -- {{{ Key bindings
 globalkeys = awful.util.table.join(
-    awful.key({ modkey,           }, "h", awful.tag.viewprev       ),
-    awful.key({ modkey,           }, "l", awful.tag.viewnext       ),
-    awful.key({ modkey,           }, "Escape", awful.tag.history.restore),
+    awful.key({ altkey,           }, "h", awful.tag.viewprev       ),
+    awful.key({ altkey,           }, "l", awful.tag.viewnext       ),
+    awful.key({ altkey,           }, "Escape", awful.tag.history.restore),
 
-    awful.key({ modkey,           }, "j",
+    awful.key({ altkey,           }, "j",
         function ()
             awful.client.focus.byidx( 1)
             if client.focus then client.focus:raise() end
         end),
-    awful.key({ modkey,           }, "k",
+    awful.key({ altkey,           }, "k",
         function ()
             awful.client.focus.byidx(-1)
             if client.focus then client.focus:raise() end
@@ -444,12 +445,11 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey,           }, "w", function () mymainmenu:show() end),
 
     -- Layout manipulation
-    awful.key({ modkey, "Shift"   }, "j", function () awful.client.swap.byidx(  1)    end),
-    awful.key({ modkey, "Shift"   }, "k", function () awful.client.swap.byidx( -1)    end),
-    awful.key({ modkey,           }, "h", function () awful.screen.focus_relative( 1) end),
-    awful.key({ modkey,           }, "l", function () awful.screen.focus_relative(-1) end),
-    awful.key({ modkey,           }, "u", awful.client.urgent.jumpto),
-    awful.key({ modkey,           }, "Tab",
+    awful.key({ altkey, "Shift"   }, "j", function () awful.client.swap.byidx(  1)    end),
+    awful.key({ altkey, "Shift"   }, "k", function () awful.client.swap.byidx( -1)    end),
+    awful.key({ altkey,           }, "s", function () awful.screen.focus_relative( 1) end),
+    awful.key({ altkey,           }, "u", awful.client.urgent.jumpto),
+    awful.key({ altkey,           }, "Tab",
         function ()
             awful.client.focus.history.previous()
             if client.focus then
@@ -466,16 +466,14 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey, "Control" }, "r", awesome.restart),
     awful.key({ modkey, "Shift"   }, "q", awesome.quit),
 
-    awful.key({ modkey,           }, "+",     function () awful.tag.incmwfact( 0.05)    end),
-    awful.key({ modkey,           }, "-",     function () awful.tag.incmwfact(-0.05)    end),
-    awful.key({ modkey, "Shift"   }, "+",     function () awful.tag.incnmaster( 1)      end),
-    awful.key({ modkey, "Shift"   }, "-",     function () awful.tag.incnmaster(-1)      end),
-    awful.key({ modkey, "Control" }, "+",     function () awful.tag.incncol( 1)         end),
-    awful.key({ modkey, "Control" }, "-",     function () awful.tag.incncol(-1)         end),
-    awful.key({ modkey,           }, "space", function () awful.layout.inc(layouts,  1) end),
-    awful.key({ modkey, "Shift"   }, "space", function () awful.layout.inc(layouts, -1) end),
+    awful.key({ altkey,           }, "+",     function () awful.tag.incmwfact( 0.05)    end),
+    awful.key({ altkey,           }, "-",     function () awful.tag.incmwfact(-0.05)    end),
+    awful.key({ altkey, "Shift"   }, "+",     function () awful.tag.incncol( 1)         end),
+    awful.key({ altkey, "Shift"   }, "-",     function () awful.tag.incncol(-1)         end),
+    awful.key({ altkey,           }, "space", function () awful.layout.inc(layouts,  1) end),
+    awful.key({ altkey, "Shift"   }, "space", function () awful.layout.inc(layouts, -1) end),
 
-    awful.key({ modkey, "Control" }, "n", awful.client.restore),
+    awful.key({ altkey, "Control" }, "r", awful.client.restore),
 
     -- Prompt
     awful.key({ modkey },            "r",     function () mypromptbox[mouse.screen]:run() end),
@@ -506,19 +504,20 @@ globalkeys = awful.util.table.join(
 )
 
 clientkeys = awful.util.table.join(
-    awful.key({ modkey,           }, "f",      function (c) c.fullscreen = not c.fullscreen  end),
-    awful.key({ modkey, "Shift"   }, "c",      function (c) c:kill()                         end),
-    awful.key({ modkey, "Control" }, "space",  awful.client.floating.toggle                     ),
-    awful.key({ modkey, "Control" }, "Return", function (c) c:swap(awful.client.getmaster()) end),
-    awful.key({ modkey,           }, "o",      awful.client.movetoscreen                        ),
-    awful.key({ modkey,           }, "t",      function (c) c.ontop = not c.ontop            end),
-    awful.key({ modkey,           }, "n",
+    awful.key({ altkey,           }, "f",       function (c) c.fullscreen = not c.fullscreen end),
+    awful.key({ altkey,           }, "c",       function (c) c:kill()                        end),
+    awful.key({ altkey,           }, "space",   awful.client.floating.toggle                    ),
+    awful.key({ altkey,           }, "Return",  function (c) c:swap(awful.client.getmaster())end),
+    awful.key({ altkey, "Shift"   }, "m",       lain.util.magnify_client                        ),
+    awful.key({ altkey,           }, "o",       awful.client.movetoscreen                       ),
+    awful.key({ altkey,           }, "t",       function (c) c.ontop = not c.ontop           end),
+    awful.key({ altkey,           }, "n",
         function (c)
             -- The client currently has the input focus, so it cannot be
             -- minimized, since minimized clients can't have the focus.
             c.minimized = true
         end),
-    awful.key({ modkey,           }, "m",
+    awful.key({ altkey,           }, "m",
         function (c)
             c.maximized_horizontal = not c.maximized_horizontal
             c.maximized_vertical   = not c.maximized_vertical
