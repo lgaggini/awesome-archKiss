@@ -457,6 +457,13 @@ globalkeys = awful.util.table.join(
             end
         end),
 
+    awful.key({ altkey, "Shift"   }, "Tab",
+        function()
+            awful.menu.menu_keys.down = { "Down", "Alt_L", "Tab", "j" }
+            awful.menu.menu_keys.up = { "Up", "k" }
+            lain.util.menu_clients_current_tags({ width = 350 }, { keygrabber = true })
+        end),
+
     -- Standard program
     awful.key({ modkey,           }, "Return", function () awful.util.spawn(terminal) end),
     awful.key({ modkey,           }, "F1",     function () awful.screen.focus(1) end),
