@@ -468,6 +468,8 @@ globalkeys = awful.util.table.join(
 
     -- Standard program
     awful.key({ modkey,           }, "Return", function () awful.util.spawn(terminal) end),
+    -- Dropdown terminal
+    awful.key({ modkey,           }, "z",      function () drop(terminal) end),
     awful.key({ modkey,           }, "F1",     function () awful.screen.focus(1) end),
     awful.key({ modkey,           }, "F2",     function () awful.screen.focus(2) end),
     awful.key({                   }, "XF86MonBrightnessDown", function () awful.util.spawn_with_shell(bright_down) end),
