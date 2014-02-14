@@ -6,6 +6,7 @@
 This is my theme and configuration file for Awesome 3.x WM inspired by Archlinux dark colors and KISS (Keep it simple stupid) philosophy. 
 It uses icons from other [great awesome themes](https://github.com/mikar/awesome-themes) (see credits for details).
 I using it with GTK [elementaryDark](http://satya164.deviantart.com/art/elementary-Dark-GTK3-Theme-244257862?) theme available for GTK 3 and GTK 2.
+Recently introcuded some great ideas from [awesome-copycats](https://github.com/copycat-killer/awesome-copycats).
 
 ## LICENSE
 Feel free to use, fork, modify and share it as you want.
