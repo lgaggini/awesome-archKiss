@@ -9,11 +9,13 @@ local gears = require("gears")
 local awful = require("awful")
 awful.rules = require("awful.rules")
 require("awful.autofocus")
+require("eminent")
 -- Widget and layout library
 local wibox = require("wibox")
 -- Sysmon widget library
 local vicious = require("vicious")
 local lain = require("lain")
+local drop = require("scratchdrop")
 -- Theme handling library
 local beautiful = require("beautiful")
 -- Notification library
