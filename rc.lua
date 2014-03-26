@@ -518,7 +518,7 @@ clientkeys = awful.util.table.join(
     awful.key({ altkey,           }, "f",       function (c) c.fullscreen = not c.fullscreen end),
     awful.key({ altkey,           }, "c",       function (c) c:kill()                        end),
     awful.key({ altkey,           }, "space",   awful.client.floating.toggle                    ),
-    awful.key({ altkey,           }, "Return",  function (c) c:swap(awful.client.getmaster())end),
+    awful.key({ altkey, "Shift"   }, "Return",  function (c) c:swap(awful.client.getmaster())end),
     awful.key({ altkey, "Shift"   }, "m",       lain.util.magnify_client                        ),
     awful.key({ altkey,           }, "o",       awful.client.movetoscreen                       ),
     awful.key({ altkey,           }, "t",       function (c) c.ontop = not c.ontop           end),
@@ -567,6 +567,40 @@ for i = 1, keynumber do
                       end
                   end),
         awful.key({ altkey, "Control", "Shift" }, "#" .. i + 9,
+                  function ()
+                      if client.focus and tags[client.focus.screen][i] then
+                          awful.client.toggletag(tags[client.focus.screen][i])
+                      end
+                  end))
+              end
+
+-- Bind custom keys to tags.
+-- Keys to tags association are defined in the tag_keys tables.
+--- Main (terms), [w]indows (tools), [b]rowser, [e]ditor, [p]ost (mail), [d]oc, [i]m, a[udio] ,[v]irtual
+tag_keys = {"Return","w","b","e","p","d","i","a","v"}
+for i = 1, keynumber do
+    globalkeys = awful.util.table.join(globalkeys,
+        awful.key({ altkey }, tag_keys[i],
+                  function ()
+                        local screen = mouse.screen
+                        if tags[screen][i] then
+                            awful.tag.viewonly(tags[screen][i])
+                        end
+                  end),
+        awful.key({ altkey, "Control" }, tag_keys[i],
+                  function ()
+                      local screen = mouse.screen
+                      if tags[screen][i] then
+                          awful.tag.viewtoggle(tags[screen][i])
+                      end
+                  end),
+        awful.key({ altkey, "Shift" }, tag_keys[i],
+                  function ()
+                      if client.focus and tags[client.focus.screen][i] then
+                          awful.client.movetotag(tags[client.focus.screen][i])
+                      end
+                  end),
+        awful.key({ altkey, "Control", "Shift" }, tag_keys[i],
                   function ()
                       if client.focus and tags[client.focus.screen][i] then
                           awful.client.toggletag(tags[client.focus.screen][i])
