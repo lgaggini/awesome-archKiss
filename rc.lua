@@ -637,6 +637,9 @@ awful.rules.rules = {
      { rule = { class = "Gvim" },
        properties = { tag = tags[1][4], switchtotag = true } },
 
+     { rule = { class = "Eclipse" },
+       properties = { tag = tags[1][4], switchtotag = true } },
+
      -- 5:mail - Mail
      { rule = { instance = "mutt" },
        properties = { tag = tags[1][5], switchtotag = true } },
