@@ -645,6 +645,9 @@ awful.rules.rules = {
      { rule = { name = "Thunar" },
        properties = { tag = tags[1][2], switchtotag = true } },
 
+     { rule = { class = "Filezilla" },
+       properties = { tag = tags[1][2], switchtotag = true } },
+
      { rule = { class = "File-roller" },
        properties = { tag = tags[1][2], switchtotag = true } },
 
