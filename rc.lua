@@ -68,6 +68,7 @@ note = "zim"
 task = "lxtask"
 jabber = "gajim"
 irc = "hexchat"
+slack = "chromium --app=https://libersoft.slack.com/messages/general/team/lgaggini/"
 music = "sonata"
 media = "smplayer"
 password="pwsafe"
@@ -158,7 +159,7 @@ mymainmenu = awful.menu({ items = { { "applications", menu_items },
                                     { "pad", pad },
                                     { "note", note },
                                     { "jabber", jabber },
-                                    { "irc", irc },
+                                    { "irc", slack },
                                     { "music", music },
                                     { "media", media },
                                     { "vm", vm },
@@ -508,7 +509,7 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey,         },"s", function () awful.util.spawn_with_shell(pad) end),
     awful.key({ modkey,         },"n", function () awful.util.spawn_with_shell(note) end),
     awful.key({ modkey,         },"g", function () awful.util.spawn_with_shell(jabber) end),
-    awful.key({ modkey,         },"i", function () awful.util.spawn_with_shell(irc) end),
+    awful.key({ modkey,         },"i", function () awful.util.spawn_with_shell(slack) end),
     awful.key({ modkey,         },"v", function () awful.util.spawn_with_shell(vm) end),
     awful.key({ modkey,         },"t", function () awful.util.spawn_with_shell(task) end),
     awful.key({ modkey,         },"u", function () awful.util.spawn_with_shell(password) end)
@@ -722,6 +723,9 @@ awful.rules.rules = {
       properties = { tag = tags[1][7], switchtotag = true, floating = true } },
      
      { rule = { class = "Hexchat" },
+       properties = { tag = tags[1][7], switchtotag = true } },
+
+     { rule = { name = "LiberSoft Slack" },
        properties = { tag = tags[1][7], switchtotag = true } },
 
      -- 8:ent Entertainment
