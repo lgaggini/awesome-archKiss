@@ -707,6 +707,12 @@ awful.rules.rules = {
      { rule = { class = "Ristretto" },
        properties = { tag = tags[1][6], switchtotag = true } },
 
+     { rule = { class = "Gimp" },
+       properties = { tag = tags[1][6], switchtotag = true } },
+
+     { rule = { class = "Xournal" },
+       properties = { tag = tags[1][6], switchtotag = true } },
+
      -- 7:com - Communication
      { rule = { class = "Gajim", role = "roster" },
        properties = { tag = tags[1][7], switchtotag = true, floating = true },
