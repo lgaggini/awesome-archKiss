@@ -678,7 +678,10 @@ awful.rules.rules = {
      { rule = { class = "Eclipse" },
        properties = { tag = tags[1][4], switchtotag = true } },
 
-     -- 5:mail - Mail
+     { rule = { class = "Gitg" },
+       properties = { tag = tags[1][4], switchtotag = true } },
+
+    -- 5:mail - Mail
      { rule = { instance = "mutt" },
        properties = { tag = tags[1][5], switchtotag = true } },
 
