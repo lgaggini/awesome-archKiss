@@ -661,6 +661,9 @@ awful.rules.rules = {
      { rule = { class = "Pwsafe" },
        properties = { tag = tags[1][2], switchtotag = true } },
 
+     { rule = { class = "Seafile-applet" },
+       properties = { tag = tags[1][2], switchtotag = true } },
+
      -- 3:web Web
      { rule = { class = "Chromium" },
        properties = { tag = tags[1][3], switchtotag = true, floating = false } },
