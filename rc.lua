@@ -748,6 +748,9 @@ awful.rules.rules = {
      { rule = { class = "Sonata" },
        properties = { tag = tags[1][8], switchtotag = true } },
 
+       { rule = { class = "Deadbeef" },
+       properties = { floating = true } },
+
     -- 9:vm Virtual Machines
 
      { rule = { class = "VirtualBox" },
