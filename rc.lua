@@ -66,7 +66,7 @@ feed = terminal .. " -name " .. feed_term .. " -e " .. feed_term
 pad = "beaver"
 note = "zim"
 task = "lxtask"
-jabber = "gajim"
+jabber = "pidgin"
 irc = "hexchat"
 slack = "chromium --app=https://libersoft.slack.com/messages/general/team/lgaggini/"
 music = "sonata"
@@ -720,7 +720,7 @@ awful.rules.rules = {
        properties = { tag = tags[1][6], switchtotag = true } },
 
      -- 7:com - Communication
-     { rule = { class = "Gajim", role = "roster" },
+     { rule = { class = "Pidgin", role = "buddy_list" },
        properties = { tag = tags[1][7], switchtotag = true, floating = true },
 
        callback = function( c )
@@ -728,16 +728,16 @@ awful.rules.rules = {
         local strutwidth = 200
         c:struts( { right = strutwidth } )
         c:geometry( { x = w_area.width, width = strutwidth, y = w_area.y, height = w_area.height - 20 } )
-      end
+    end
      },
      
-     { rule = { class = "Gajim" },
+     { rule = { class = "Pidgin" },
       properties = { tag = tags[1][7], switchtotag = true, floating = true } },
      
      { rule = { class = "Hexchat" },
        properties = { tag = tags[1][7], switchtotag = true } },
 
-     { rule = { name = "LiberSoft Slack" },
+     { rule = { name  = "LiberSoft Slack" },
        properties = { tag = tags[1][7], switchtotag = true } },
 
      -- 8:ent Entertainment
