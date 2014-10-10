@@ -747,10 +747,10 @@ awful.rules.rules = {
      -- 8:ent Entertainment
 
      { rule = { class = "Smplayer" },
-       properties = { tag = tags[1][8], switchtotag = true } },
+       properties = { tag = tags[screens][8], switchtotag = true } },
 
      { rule = { class = "Sonata" },
-       properties = { tag = tags[1][8], switchtotag = true } },
+       properties = { tag = tags[screens][8], switchtotag = true } },
 
        { rule = { class = "Deadbeef" },
        properties = { floating = true } },
