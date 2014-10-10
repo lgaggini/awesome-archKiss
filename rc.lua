@@ -451,7 +451,6 @@ globalkeys = awful.util.table.join(
     -- Layout manipulation
     awful.key({ altkey, "Shift"   }, "j", function () awful.client.swap.byidx(  1)    end),
     awful.key({ altkey, "Shift"   }, "k", function () awful.client.swap.byidx( -1)    end),
-    awful.key({ altkey,           }, "s", function () awful.screen.focus_relative( 1) end),
     awful.key({ altkey,           }, "u", awful.client.urgent.jumpto),
     awful.key({ altkey,           }, "Tab",
         function ()
@@ -533,6 +532,7 @@ clientkeys = awful.util.table.join(
         end),
     awful.key({ altkey, "Shift"   }, "m",       lain.util.magnify_client                        ),
     -- Multiscreen facilities
+    awful.key({ altkey,           }, "s",       function () awful.screen.focus_relative( 1) end),
     awful.key({ altkey,           }, "F1",      function () awful.screen.focus(1) end),
     awful.key({ altkey,           }, "F2",      function () awful.screen.focus(2) end),
     awful.key({ altkey, "Shift"   }, "F1",      function () awful.client.movetoscreen(c,1) end),
