@@ -132,7 +132,8 @@ os.execute("find " .. beautiful.wallpaper_dir .. " -type f -print0 | shuf -n1 -z
 -- {{{ Tags
 -- Define a tag table which hold all screen tags.
 tags = {}
-for s = 1, screen.count() do
+screens = screen.count()
+for s = 1, screens do
     -- Each screen has its own tag table.
     tags[s] = awful.tag({ "♕", "⚒", "ℹ", "✎", "✉", "✍", "✆", "♫","☢"}, s, layouts[6])
 end
@@ -471,8 +472,6 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey,           }, "Return", function () awful.util.spawn(terminal) end),
     -- Dropdown terminal
     awful.key({ modkey,           }, "z",      function () drop(terminal) end),
-    awful.key({ modkey,           }, "F1",     function () awful.screen.focus(1) end),
-    awful.key({ modkey,           }, "F2",     function () awful.screen.focus(2) end),
     awful.key({                   }, "XF86MonBrightnessDown", function () awful.util.spawn_with_shell(bright_down) end),
     awful.key({                   }, "XF86MonBrightnessUp",   function () awful.util.spawn_with_shell(bright_up) end),
     awful.key({ modkey, "Control" }, "r", awesome.restart),
@@ -520,8 +519,6 @@ clientkeys = awful.util.table.join(
     awful.key({ altkey,           }, "c",       function (c) c:kill()                        end),
     awful.key({ altkey,           }, "space",   awful.client.floating.toggle                    ),
     awful.key({ altkey, "Shift"   }, "Return",  function (c) c:swap(awful.client.getmaster())end),
-    awful.key({ altkey, "Shift"   }, "m",       lain.util.magnify_client                        ),
-    awful.key({ altkey,           }, "o",       awful.client.movetoscreen                       ),
     awful.key({ altkey,           }, "t",       function (c) c.ontop = not c.ontop           end),
     awful.key({ altkey,           }, "n",
         function (c)
@@ -533,7 +530,14 @@ clientkeys = awful.util.table.join(
         function (c)
             c.maximized_horizontal = not c.maximized_horizontal
             c.maximized_vertical   = not c.maximized_vertical
-        end)
+        end),
+    awful.key({ altkey, "Shift"   }, "m",       lain.util.magnify_client                        ),
+    -- Multiscreen facilities
+    awful.key({ altkey,           }, "F1",      function () awful.screen.focus(1) end),
+    awful.key({ altkey,           }, "F2",      function () awful.screen.focus(2) end),
+    awful.key({ altkey, "Shift"   }, "F1",      function () awful.client.movetoscreen(c,1) end),
+    awful.key({ altkey, "Shift"   }, "F2",      function () awful.client.movetoscreen(c,2) end),
+    awful.key({ altkey,           }, "o",       awful.client.movetoscreen                       )
 )
 
 -- Compute the maximum number of digit we need, limited to 9
@@ -644,35 +648,35 @@ awful.rules.rules = {
 
       -- 2:util Utils
      { rule = { name = "Thunar" },
-       properties = { tag = tags[1][2], switchtotag = true } },
+       properties = { tag = tags[screens][2], switchtotag = true } },
 
      { rule = { class = "Filezilla" },
-       properties = { tag = tags[1][2], switchtotag = true } },
+       properties = { tag = tags[screens][2], switchtotag = true } },
 
      { rule = { class = "File-roller" },
-       properties = { tag = tags[1][2], switchtotag = true } },
+       properties = { tag = tags[screens][2], switchtotag = true } },
 
      { rule = { class = "Lxtask" },
-       properties = { tag = tags[1][2], switchtotag = true } },
+       properties = { tag = tags[screens][2], switchtotag = true } },
 
      { rule = { class = "Wicd-client.py" },
-       properties = { tag = tags[1][2], switchtotag = true } },
+       properties = { tag = tags[screens][2], switchtotag = true } },
 
      { rule = { class = "Pwsafe" },
-       properties = { tag = tags[1][2], switchtotag = true } },
+       properties = { tag = tags[screens][2], switchtotag = true } },
 
      { rule = { class = "Seafile-applet" },
-       properties = { tag = tags[1][2], switchtotag = true } },
+       properties = { tag = tags[screens][2], switchtotag = true } },
 
      -- 3:web Web
      { rule = { class = "Chromium" },
-       properties = { tag = tags[1][3], switchtotag = true, floating = false } },
+       properties = { tag = tags[screens][3], switchtotag = true, floating = false } },
 
      { rule = { class = "Firefox" },
-       properties = { tag = tags[1][3], switchtotag = true, floating = false } },
+       properties = { tag = tags[screens][3], switchtotag = true, floating = false } },
 
      { rule = { instance = "newsbeuter" },
-       properties = { tag = tags[1][3], switchtotag = true } },
+       properties = { tag = tags[screens][3], switchtotag = true } },
 
      -- 4:dev - Development
      { rule = { class = "Gvim" },
@@ -682,46 +686,46 @@ awful.rules.rules = {
        properties = { tag = tags[1][4], switchtotag = true } },
 
      { rule = { class = "Gitg" },
-       properties = { tag = tags[1][4], switchtotag = true } },
+       properties = { tag = tags[screens][4], switchtotag = true } },
 
     -- 5:mail - Mail
      { rule = { instance = "mutt" },
-       properties = { tag = tags[1][5], switchtotag = true } },
+       properties = { tag = tags[screens][5], switchtotag = true } },
 
      -- 6:doc - Documentation
      { rule = { name = "LibreOffice" },
-       properties = { tag = tags[1][6], switchtotag = true } },
+       properties = { tag = tags[screens][6], switchtotag = true } },
 
      { rule = { name = "* - LibreOffice Writer" },
-       properties = { tag = tags[1][6], switchtotag = true, floating = false } },
+       properties = { tag = tags[screens][6], switchtotag = true, floating = false } },
 
      { rule = { name = "* - LibreOffice Calc" },
-       properties = { tag = tags[1][6], switchtotag = true, floating = false } },
+       properties = { tag = tags[screens][6], switchtotag = true, floating = false } },
 
      { rule = { name = "* - LibreOffice Impress" },
-       properties = { tag = tags[1][6], switchtotag = true, floating = false } },
+       properties = { tag = tags[screens][6], switchtotag = true, floating = false } },
 
      { rule = { class = "Zathura" },
-       properties = { tag = tags[1][6], switchtotag = true } },
+       properties = { tag = tags[screens][6], switchtotag = true } },
 
      { rule = { class = "Beaver" },
-       properties = { tag = tags[1][6], switchtotag = true } },
+       properties = { tag = tags[screens][6], switchtotag = true } },
 
      { rule = { class = "Zim" },
-       properties = { tag = tags[1][6], switchtotag = true } },
+       properties = { tag = tags[screens][6], switchtotag = true } },
 
      { rule = { class = "Ristretto" },
-       properties = { tag = tags[1][6], switchtotag = true } },
+       properties = { tag = tags[screens][6], switchtotag = true } },
 
      { rule = { class = "Gimp" },
-       properties = { tag = tags[1][6], switchtotag = true } },
+       properties = { tag = tags[screens][6], switchtotag = true } },
 
      { rule = { class = "Xournal" },
-       properties = { tag = tags[1][6], switchtotag = true } },
+       properties = { tag = tags[screens][6], switchtotag = true } },
 
      -- 7:com - Communication
      { rule = { class = "Pidgin", role = "buddy_list" },
-       properties = { tag = tags[1][7], switchtotag = true, floating = true },
+       properties = { tag = tags[screens][7], switchtotag = true, floating = true },
 
        callback = function( c )
         local w_area = screen[ c.screen ].workarea
@@ -732,13 +736,13 @@ awful.rules.rules = {
      },
      
      { rule = { class = "Pidgin" },
-      properties = { tag = tags[1][7], switchtotag = true, floating = true } },
+      properties = { tag = tags[screens][7], switchtotag = true, floating = true } },
      
      { rule = { class = "Hexchat" },
-       properties = { tag = tags[1][7], switchtotag = true } },
+       properties = { tag = tags[screens][7], switchtotag = true } },
 
      { rule = { name  = "LiberSoft Slack" },
-       properties = { tag = tags[1][7], switchtotag = true } },
+       properties = { tag = tags[screens][7], switchtotag = true } },
 
      -- 8:ent Entertainment
 
@@ -754,10 +758,10 @@ awful.rules.rules = {
     -- 9:vm Virtual Machines
 
      { rule = { class = "VirtualBox" },
-       properties = { tag = tags[1][9], switchtotag = true } },
+       properties = { tag = tags[screens][9], switchtotag = true } },
 
      { rule = { class = "Virt-manager" },
-       properties = { tag = tags[1][9], switchtotag = true } },
+       properties = { tag = tags[screens][9], switchtotag = true } },
 
 }
 
