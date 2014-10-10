@@ -696,13 +696,13 @@ awful.rules.rules = {
      { rule = { name = "LibreOffice" },
        properties = { tag = tags[screens][6], switchtotag = true } },
 
-     { rule = { name = "* - LibreOffice Writer" },
+     { rule = { class = "libreoffice-writer" },
        properties = { tag = tags[screens][6], switchtotag = true, floating = false } },
 
-     { rule = { name = "* - LibreOffice Calc" },
+     { rule = { class = "libreoffice-calc" },
        properties = { tag = tags[screens][6], switchtotag = true, floating = false } },
 
-     { rule = { name = "* - LibreOffice Impress" },
+     { rule = { class = "libreoffice-impress" },
        properties = { tag = tags[screens][6], switchtotag = true, floating = false } },
 
      { rule = { class = "Zathura" },
