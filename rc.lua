@@ -668,6 +668,9 @@ awful.rules.rules = {
      { rule = { class = "Seafile-applet" },
        properties = { tag = tags[screens][2], switchtotag = true } },
 
+     { rule = { class = "Xfburn" },
+       properties = { tag = tags[screens][2], switchtotag = true } },
+
      -- 3:web Web
      { rule = { class = "Chromium" },
        properties = { tag = tags[screens][3], switchtotag = true, floating = false } },
