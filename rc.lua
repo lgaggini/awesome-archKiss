@@ -57,7 +57,7 @@ beautiful.init("/home/lg/.config/awesome/themes/kiss/theme_default.lua")
 -- This is used later as the default applications to run.
 terminal = "urxvt"
 browser = "chromium"
-filemanager = "thunar"
+filemanager = "pcmanfm"
 editor = "gvim"
 email_term= "mutt"
 email = terminal .. " -name " .. email_term .. " -e " .. email_term
@@ -647,8 +647,8 @@ awful.rules.rules = {
        properties = { tag = tags[1][1], switchtotag = true } },
 
       -- 2:util Utils
-     { rule = { name = "Thunar" },
-       properties = { tag = tags[screens][2], switchtotag = true } },
+     { rule = { class = "Pcmanfm" },
+       properties = { tag = tags[1][2], switchtotag = true } },
 
      { rule = { class = "Filezilla" },
        properties = { tag = tags[screens][2], switchtotag = true } },
