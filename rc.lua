@@ -63,7 +63,7 @@ email_term= "mutt"
 email = terminal .. " -name " .. email_term .. " -e " .. email_term
 feed_term = "newsbeuter"
 feed = terminal .. " -name " .. feed_term .. " -e " .. feed_term
-pad = "beaver"
+pad = "geany"
 note = "zim"
 task = "lxtask"
 jabber = "pidgin"
@@ -711,7 +711,7 @@ awful.rules.rules = {
      { rule = { class = "Zathura" },
        properties = { tag = tags[screens][6], switchtotag = true } },
 
-     { rule = { class = "Beaver" },
+     { rule = { class = "Geany" },
        properties = { tag = tags[screens][6], switchtotag = true } },
 
      { rule = { class = "Zim" },
