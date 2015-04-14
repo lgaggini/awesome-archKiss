@@ -57,22 +57,21 @@ beautiful.init("/home/lg/.config/awesome/themes/kiss/theme_default.lua")
 -- This is used later as the default applications to run.
 terminal = "urxvt"
 browser = "chromium"
-filemanager = "pcmanfm"
+filemanager = "thunar"
 editor = "gvim"
-email_term= "mutt"
-email = terminal .. " -name " .. email_term .. " -e " .. email_term
-feed_term = "newsbeuter"
-feed = terminal .. " -name " .. feed_term .. " -e " .. feed_term
-pad = "geany"
+email = "thunderbird"
+pad = "mousepad"
 note = "zim"
 task = "lxtask"
 jabber = "pidgin"
 irc = "hexchat"
+skype = "skype"
 slack = "chromium --app=https://libersoft.slack.com/messages/general/team/lgaggini/"
 music = "sonata"
 media = "smplayer"
 password="pwsafe"
-vm = "virt-manager"
+vm = "virtualbox"
+remote = "remmina"
 bright_down = "xbacklight -dec 10"
 bright_up = "xbacklight -inc 10"
 poweroff = "sudo poweroff"
@@ -156,14 +155,12 @@ mymainmenu = awful.menu({ items = { { "applications", menu_items },
                                     { "file manager", filemanager },
                                     { "editor", editor },
                                     { "email", email },
-                                    { "feed", feed },
                                     { "pad", pad },
                                     { "note", note },
-                                    { "jabber", jabber },
-                                    { "irc", slack },
+                                    { "skype", skype },
                                     { "music", music },
-                                    { "media", media },
                                     { "vm", vm },
+                                    { "remote", vm },
                                     { "tasks", task },
                                     { "passwords", password },
                                     { "awesome", myawesomemenu },
@@ -503,12 +500,11 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey,         },"f", function () awful.util.spawn_with_shell(filemanager) end),
     awful.key({ modkey,         },"e", function () awful.util.spawn_with_shell(editor) end),
     awful.key({ modkey,         },"m", function () awful.util.spawn_with_shell(email) end),
-    awful.key({ modkey,         },"a", function () awful.util.spawn_with_shell(feed) end),
     awful.key({ modkey,         },"s", function () awful.util.spawn_with_shell(pad) end),
     awful.key({ modkey,         },"n", function () awful.util.spawn_with_shell(note) end),
-    awful.key({ modkey,         },"g", function () awful.util.spawn_with_shell(jabber) end),
+    awful.key({ modkey,         },"g", function () awful.util.spawn_with_shell(skype) end),
     awful.key({ modkey,         },"i", function () awful.util.spawn_with_shell(slack) end),
-    awful.key({ modkey,         },"v", function () awful.util.spawn_with_shell(vm) end),
+    awful.key({ modkey,         },"v", function () awful.util.spawn_with_shell(remote) end),
     awful.key({ modkey,         },"t", function () awful.util.spawn_with_shell(task) end),
     awful.key({ modkey,         },"u", function () awful.util.spawn_with_shell(password) end)
 )
@@ -644,32 +640,29 @@ awful.rules.rules = {
 
       -- 1:adm Admin
      { rule = { class = "URxvt" },
-       properties = { tag = tags[1][1], switchtotag = true } },
+       properties = { tag = tags[screens][1], switchtotag = true } },
 
       -- 2:util Utils
-     { rule = { class = "Pcmanfm" },
+     { rule = { class = "Thunar" },
+       properties = { tag = tags[1][2], switchtotag = true } },
+
+     { rule = { class = "Arandr" },
        properties = { tag = tags[1][2], switchtotag = true } },
 
      { rule = { class = "Filezilla" },
-       properties = { tag = tags[screens][2], switchtotag = true } },
+       properties = { tag = tags[1][2], switchtotag = true } },
 
      { rule = { class = "Xarchiver" },
        properties = { tag = tags[1][2], switchtotag = true } },
 
      { rule = { class = "Lxtask" },
-       properties = { tag = tags[screens][2], switchtotag = true } },
+       properties = { tag = tags[1][2], switchtotag = true } },
 
      { rule = { class = "Wicd-client.py" },
-       properties = { tag = tags[screens][2], switchtotag = true } },
+       properties = { tag = tags[1][2], switchtotag = true } },
 
      { rule = { class = "Pwsafe" },
-       properties = { tag = tags[screens][2], switchtotag = true } },
-
-     { rule = { class = "Seafile-applet" },
-       properties = { tag = tags[screens][2], switchtotag = true } },
-
-     { rule = { class = "Xfburn" },
-       properties = { tag = tags[screens][2], switchtotag = true } },
+       properties = { tag = tags[1][2], switchtotag = true } },
 
      -- 3:web Web
      { rule = { class = "Chromium" },
@@ -678,57 +671,50 @@ awful.rules.rules = {
      { rule = { class = "Firefox" },
        properties = { tag = tags[screens][3], switchtotag = true, floating = false } },
 
-     { rule = { instance = "newsbeuter" },
-       properties = { tag = tags[screens][3], switchtotag = true } },
-
      -- 4:dev - Development
      { rule = { class = "Gvim" },
-       properties = { tag = tags[1][4], switchtotag = true } },
-
-     { rule = { class = "Eclipse" },
-       properties = { tag = tags[1][4], switchtotag = true } },
-
-     { rule = { class = "Gitg" },
        properties = { tag = tags[screens][4], switchtotag = true } },
 
+     { rule = { class = "Gitg" },
+       properties = { tag = tags[1][4], switchtotag = true } },
+
     -- 5:mail - Mail
-     { rule = { instance = "mutt" },
-       properties = { tag = tags[screens][5], switchtotag = true } },
+     { rule = { class = "Thunderbird" },
+        properties = { tag = tags[1][5], switchtotag = true } },
+
+     { rule = { class = "Thunderbird", role = "Msgcompose" },
+        properties = { tag = tags[1][4], switchtotag = true } },
 
      -- 6:doc - Documentation
      { rule = { name = "LibreOffice" },
-       properties = { tag = tags[screens][6], switchtotag = true } },
+       properties = { tag = tags[1][6], switchtotag = true } },
 
      { rule = { class = "libreoffice-writer" },
-       properties = { tag = tags[screens][6], switchtotag = true, floating = false } },
+       properties = { tag = tags[1][6], switchtotag = true, floating = false } },
 
      { rule = { class = "libreoffice-calc" },
-       properties = { tag = tags[screens][6], switchtotag = true, floating = false } },
+       properties = { tag = tags[1][6], switchtotag = true, floating = false } },
 
      { rule = { class = "libreoffice-impress" },
-       properties = { tag = tags[screens][6], switchtotag = true, floating = false } },
+       properties = { tag = tags[1][6], switchtotag = true, floating = false } },
 
      { rule = { class = "Zathura" },
-       properties = { tag = tags[screens][6], switchtotag = true } },
+       properties = { tag = tags[1][6], switchtotag = true } },
 
-     { rule = { class = "Geany" },
-       properties = { tag = tags[screens][6], switchtotag = true } },
+     { rule = { class = "Mousepad" },
+       properties = { floating = true } },
 
      { rule = { class = "Zim" },
-       properties = { tag = tags[screens][6], switchtotag = true } },
+       properties = { tag = tags[1][6], switchtotag = true } },
 
      { rule = { class = "Ristretto" },
-       properties = { tag = tags[screens][6], switchtotag = true } },
 
-     { rule = { class = "Gimp" },
-       properties = { tag = tags[screens][6], switchtotag = true } },
 
-     { rule = { class = "Xournal" },
-       properties = { tag = tags[screens][6], switchtotag = true } },
+       properties = { tag = tags[1][6], switchtotag = true } },
 
      -- 7:com - Communication
      { rule = { class = "Pidgin", role = "buddy_list" },
-       properties = { tag = tags[screens][7], switchtotag = true, floating = true },
+       properties = { tag = tags[1][7], switchtotag = true, floating = true },
 
        callback = function( c )
         local w_area = screen[ c.screen ].workarea
@@ -737,23 +723,26 @@ awful.rules.rules = {
         c:geometry( { x = w_area.width, width = strutwidth, y = w_area.y, height = w_area.height - 20 } )
     end
      },
-     
+
      { rule = { class = "Pidgin" },
-      properties = { tag = tags[screens][7], switchtotag = true, floating = true } },
-     
+      properties = { tag = tags[1][7], switchtotag = true, floating = true } },
+
      { rule = { class = "Hexchat" },
-       properties = { tag = tags[screens][7], switchtotag = true } },
+       properties = { tag = tags[1][7], switchtotag = true } },
+
+     { rule = { class = "Skype" },
+       properties = { tag = tags[1][7], switchtotag = true } },
 
      { rule = { name  = "LiberSoft Slack" },
-       properties = { tag = tags[screens][7], switchtotag = true } },
+       properties = { tag = tags[1][7], switchtotag = true } },
 
      -- 8:ent Entertainment
 
      { rule = { class = "Smplayer" },
-       properties = { tag = tags[screens][8], switchtotag = true } },
+       properties = { tag = tags[1][8], switchtotag = true } },
 
      { rule = { class = "Sonata" },
-       properties = { tag = tags[screens][8], switchtotag = true } },
+       properties = { tag = tags[1][8], switchtotag = true } },
 
        { rule = { class = "Deadbeef" },
        properties = { floating = true } },
@@ -763,9 +752,8 @@ awful.rules.rules = {
      { rule = { class = "VirtualBox" },
        properties = { tag = tags[screens][9], switchtotag = true } },
 
-     { rule = { class = "Virt-manager" },
+     { rule = { class = "Remmina" },
        properties = { tag = tags[screens][9], switchtotag = true } },
-
 }
 
 
