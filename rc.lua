@@ -837,3 +837,7 @@ caltimer:start()
 client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus end)
 client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
 -- }}}
+
+-- Skype Layout
+awful.layout.set(layouts[2], tags[1][7])
+awful.tag.incmwfact(0.30, tags[1][7])
