@@ -703,7 +703,7 @@ awful.rules.rules = {
        properties = { tag = tags[1][6], switchtotag = true } },
 
      { rule = { class = "Mousepad" },
-       properties = { floating = true } },
+       properties = { floating = true, sticky = true, ontop = true } },
 
      { rule = { class = "Zim" },
        properties = { tag = tags[1][6], switchtotag = true } },
