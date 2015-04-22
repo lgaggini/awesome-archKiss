@@ -74,6 +74,7 @@ vm = "virtualbox"
 remote = "remmina"
 bright_down = "xbacklight -dec 10"
 bright_up = "xbacklight -inc 10"
+lock = "xflock4"
 poweroff = "sudo poweroff"
 reboot = "sudo reboot"
 
@@ -164,6 +165,7 @@ mymainmenu = awful.menu({ items = { { "applications", menu_items },
                                     { "tasks", task },
                                     { "passwords", password },
                                     { "awesome", myawesomemenu },
+                                    { "lock", lock },
                                     { "reboot", reboot },
                                     { "poweroff", poweroff }
                                     }
