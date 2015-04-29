@@ -580,8 +580,8 @@ for i = 1, keynumber do
 
 -- Bind custom keys to tags.
 -- Keys to tags association are defined in the tag_keys tables.
---- Main (terms), [w]indows (tools), [b]rowser, [e]ditor, [p]ost (mail), [d]oc, [i]m, a[udio] ,[v]irtual
-tag_keys = {"Return","w","b","e","p","d","i","a","v"}
+--- Main (terms), [w]indows (tools), [b]rowser, [e]ditor, [p]ost (mail), [r]eaders (doc), [i]m, a[udio] ,[v]irtual
+tag_keys = {"Return","w","b","e","p","r","i","a","v"}
 for i = 1, keynumber do
     globalkeys = awful.util.table.join(globalkeys,
         awful.key({ altkey }, tag_keys[i],
