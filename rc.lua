@@ -245,12 +245,12 @@ neticon:set_image(beautiful.net)
 netwidget = wibox.widget.textbox()
 vicious.register(netwidget, vicious.widgets.net,
     function(widget, args)
-        if args["{enp12s0 carrier}"] == 1
+        if args["{enp0s25 carrier}"] == 1
             then
-                return args["{enp12s0 up_kb}"] .. "kb/" .. args["{enp12s0 down_kb}"] .. "kb"
-        elseif args["{wlp2s0 carrier}"] == 1
+                return args["{enp0s25 up_kb}"] .. "kb/" .. args["{enp0s25 down_kb}"] .. "kb"
+        elseif args["{wlo1 carrier}"] == 1
             then
-                return args["{wlp2s0 up_kb}"] .. "kb/" .. args["{wlp2s0 down_kb}"] ..  "kb"
+                return args["{wlo1 up_kb}"] .. "kb/" .. args["{wlo1 down_kb}"] ..  "kb"
         else
             return "no network"
         end
