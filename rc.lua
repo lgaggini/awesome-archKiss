@@ -159,6 +159,7 @@ mymainmenu = awful.menu({ items = { { "applications", menu_items },
                                     { "pad", pad },
                                     { "note", note },
                                     { "skype", skype },
+                                    { "irc", irc },
                                     { "music", music },
                                     { "vm", vm },
                                     { "remote", vm },
@@ -506,7 +507,7 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey,         },"s", function () awful.util.spawn_with_shell(pad) end),
     awful.key({ modkey,         },"n", function () awful.util.spawn_with_shell(note) end),
     awful.key({ modkey,         },"i", function () awful.util.spawn_with_shell(skype) end),
-    awful.key({ modkey,         },"c", function () awful.util.spawn_with_shell(slack) end),
+    awful.key({ modkey,         },"c", function () awful.util.spawn_with_shell(irc) end),
     awful.key({ modkey,         },"v", function () awful.util.spawn_with_shell(remote) end),
     awful.key({ modkey,         },"t", function () awful.util.spawn_with_shell(task) end),
     awful.key({ modkey,         },"u", function () awful.util.spawn_with_shell(password) end)
@@ -711,8 +712,6 @@ awful.rules.rules = {
        properties = { tag = tags[1][6], switchtotag = true } },
 
      { rule = { class = "Ristretto" },
-
-
        properties = { tag = tags[1][6], switchtotag = true } },
 
      -- 7:com - Communication
@@ -731,7 +730,7 @@ awful.rules.rules = {
       properties = { tag = tags[1][7], switchtotag = true, floating = true } },
 
      { rule = { class = "Hexchat" },
-       properties = { tag = tags[1][7], switchtotag = true } },
+       properties = { tag = tags[1][8], switchtotag = true } },
 
      { rule = { class = "Skype" },
        properties = { tag = tags[1][7], switchtotag = true } },
@@ -747,7 +746,7 @@ awful.rules.rules = {
      { rule = { class = "Sonata" },
        properties = { tag = tags[1][8], switchtotag = true } },
 
-       { rule = { class = "Deadbeef" },
+     { rule = { class = "Deadbeef" },
        properties = { floating = true } },
 
     -- 9:vm Virtual Machines
