@@ -66,7 +66,6 @@ task = "lxtask"
 jabber = "pidgin"
 irc = "hexchat"
 skype = "skype"
-slack = "chromium --app=https://libersoft.slack.com/messages/general/team/lgaggini/"
 music = "sonata"
 media = "smplayer"
 password="pwsafe"
@@ -735,8 +734,6 @@ awful.rules.rules = {
      { rule = { class = "Skype" },
        properties = { tag = tags[1][7], switchtotag = true } },
 
-     { rule = { name  = "LiberSoft Slack" },
-       properties = { tag = tags[1][7], switchtotag = true } },
 
      -- 8:ent Entertainment
 
