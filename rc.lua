@@ -66,6 +66,7 @@ task = "lxtask"
 jabber = "pidgin"
 irc = "hexchat"
 skype = "skype"
+voip = "ekiga"
 music = "sonata"
 media = "smplayer"
 password="pwsafe"
@@ -158,6 +159,7 @@ mymainmenu = awful.menu({ items = { { "applications", menu_items },
                                     { "pad", pad },
                                     { "note", note },
                                     { "skype", skype },
+                                    { "voip", voip },
                                     { "irc", irc },
                                     { "music", music },
                                     { "vm", vm },
@@ -734,6 +736,8 @@ awful.rules.rules = {
      { rule = { class = "Skype" },
        properties = { tag = tags[1][7], switchtotag = true } },
 
+     { rule = { class = "Ekiga" },
+       properties = { tag = tags[screens][7], switchtotag = true } },
 
      -- 8:ent Entertainment
 
