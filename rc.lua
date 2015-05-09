@@ -507,8 +507,9 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey,         },"m", function () awful.util.spawn_with_shell(email) end),
     awful.key({ modkey,         },"s", function () awful.util.spawn_with_shell(pad) end),
     awful.key({ modkey,         },"n", function () awful.util.spawn_with_shell(note) end),
-    awful.key({ modkey,         },"i", function () awful.util.spawn_with_shell(skype) end),
-    awful.key({ modkey,         },"c", function () awful.util.spawn_with_shell(irc) end),
+    awful.key({ modkey,         },"c", function () awful.util.spawn_with_shell(skype) end),
+    awful.key({ modkey,         },"g", function () awful.util.spawn_with_shell(voip) end),
+    awful.key({ modkey,         },"i", function () awful.util.spawn_with_shell(irc) end),
     awful.key({ modkey,         },"v", function () awful.util.spawn_with_shell(remote) end),
     awful.key({ modkey,         },"t", function () awful.util.spawn_with_shell(task) end),
     awful.key({ modkey,         },"u", function () awful.util.spawn_with_shell(password) end)
