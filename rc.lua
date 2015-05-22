@@ -66,7 +66,7 @@ task = "lxtask"
 jabber = "pidgin"
 irc = "hexchat"
 skype = "skype"
-voip = "ekiga"
+voip = "jitsi"
 music = "sonata"
 media = "smplayer"
 password="pwsafe"
@@ -727,18 +727,21 @@ awful.rules.rules = {
         c:geometry( { x = w_area.width, width = strutwidth, y = w_area.y, height = w_area.height - 20 } )
     end
      },
-
+     
      { rule = { class = "Pidgin" },
       properties = { tag = tags[1][7], switchtotag = true, floating = true } },
-
+     
      { rule = { class = "Hexchat" },
        properties = { tag = tags[1][8], switchtotag = true } },
 
      { rule = { class = "Skype" },
        properties = { tag = tags[1][7], switchtotag = true } },
 
-     { rule = { class = "Ekiga" },
+     { rule = { name = "Jitsi" },
        properties = { tag = tags[screens][7], switchtotag = true } },
+
+     { rule = { name = "Java" },
+       properties = { tag = tags[screens][7], switchtotag = true, floating = true } },
 
      -- 8:ent Entertainment
 
