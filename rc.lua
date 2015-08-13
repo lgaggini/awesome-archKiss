@@ -67,7 +67,7 @@ jabber = "pidgin"
 irc = "hexchat"
 skype = "skype"
 voip = "jitsi"
-music = "sonata"
+music = "spotify"
 media = "smplayer"
 password="pwsafe"
 vm = "virtualbox"
@@ -749,6 +749,9 @@ awful.rules.rules = {
        properties = { tag = tags[1][8], switchtotag = true } },
 
      { rule = { class = "Sonata" },
+       properties = { tag = tags[1][8], switchtotag = true } },
+
+     { rule = { class = "Spotify" },
        properties = { tag = tags[1][8], switchtotag = true } },
 
      { rule = { class = "Deadbeef" },
