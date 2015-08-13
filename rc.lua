@@ -56,7 +56,7 @@ beautiful.init("/home/lg/.config/awesome/themes/kiss/theme_default.lua")
 
 -- This is used later as the default applications to run.
 terminal = "urxvt"
-browser = "chromium"
+browser = "chromium --password-store=gnome"
 filemanager = "thunar"
 editor = "gvim"
 email = "thunderbird"
