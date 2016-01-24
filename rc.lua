@@ -60,7 +60,7 @@ browser = "chromium --password-store=gnome"
 filemanager = "pcmanfm"
 editor = "gvim"
 email = "thunderbird"
-pad = "mousepad"
+pad = "leafpad"
 note = "zim"
 task = "lxtask"
 jabber = "pidgin"
@@ -707,7 +707,7 @@ awful.rules.rules = {
      { rule = { class = "Zathura" },
        properties = { tag = tags[1][6], switchtotag = true } },
 
-     { rule = { class = "Mousepad" },
+     { rule = { class = "Leafpad" },
        properties = { floating = true, sticky = true, ontop = true } },
 
      { rule = { class = "Zim" },
