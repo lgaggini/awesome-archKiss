@@ -682,7 +682,7 @@ awful.rules.rules = {
        properties = { tag = tags[screens][4], switchtotag = true } },
 
      { rule = { class = "Gitg" },
-       properties = { tag = tags[1][4], switchtotag = true } },
+       properties = { tag = tags[1][9], switchtotag = true } },
 
     -- 5:mail - Mail
      { rule = { class = "Thunderbird" },
