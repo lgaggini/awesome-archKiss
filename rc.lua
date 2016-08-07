@@ -490,7 +490,7 @@ globalkeys = awful.util.table.join(
     -- Prompt
     awful.key({ modkey },            "r",     function () mypromptbox[mouse.screen]:run() end),
 
-    awful.key({ modkey }, "x",
+    awful.key({ modkey }, "l",
               function ()
                   awful.prompt.run({ prompt = "Run Lua code: " },
                   mypromptbox[mouse.screen].widget,
@@ -498,7 +498,7 @@ globalkeys = awful.util.table.join(
                   awful.util.getdir("cache") .. "/history_eval")
               end),
     -- Menubar
-    awful.key({ modkey }, "p", function() menubar.show() end),
+    awful.key({ modkey }, "x", function() menubar.show() end),
 
     -- Application launcher common
     awful.key({ modkey,         },"b", function () awful.util.spawn_with_shell(browser) end),
@@ -512,7 +512,7 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey,         },"i", function () awful.util.spawn_with_shell(irc) end),
     awful.key({ modkey,         },"v", function () awful.util.spawn_with_shell(remote) end),
     awful.key({ modkey,         },"t", function () awful.util.spawn_with_shell(task) end),
-    awful.key({ modkey,         },"u", function () awful.util.spawn_with_shell(password) end)
+    awful.key({ modkey,         },"p", function () awful.util.spawn_with_shell(password) end)
 )
 
 clientkeys = awful.util.table.join(
