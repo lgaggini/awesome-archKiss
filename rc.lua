@@ -513,7 +513,8 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey,         },"i", function () awful.util.spawn_with_shell(irc) end),
     awful.key({ modkey,         },"v", function () awful.util.spawn_with_shell(remote) end),
     awful.key({ modkey,         },"t", function () awful.util.spawn_with_shell(task) end),
-    awful.key({ modkey,         },"p", function () awful.util.spawn_with_shell(password) end)
+    awful.key({ modkey,         },"p", function () awful.util.spawn_with_shell(password) end),
+    awful.key({ modkey, "Shift" },"l", function () awful.util.spawn_with_shell(lock) end)
 )
 
 clientkeys = awful.util.table.join(
