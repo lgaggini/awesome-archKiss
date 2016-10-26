@@ -673,7 +673,7 @@ awful.rules.rules = {
        properties = { tag = tags[1][2], switchtotag = true } },
 
      -- 3:web Web
-     { rule = { class = "chromium" },
+     { rule = { class = "Chromium" },
        properties = { tag = tags[screens][3], switchtotag = true, floating = false } },
 
      { rule = { class = "Firefox" },
