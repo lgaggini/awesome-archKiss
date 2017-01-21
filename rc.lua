@@ -447,7 +447,7 @@ awful.screen.connect_for_each_screen(function(s)
             mytextclock,
             -- mdiricon,
             -- mdirwidget,
-            wibox.widget.systray(),
+            s.index == 2 and wibox.widget.systray(),
             s.mylayoutbox,
         },
     }
@@ -522,7 +522,7 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey },            "r",     function () awful.screen.focused().mypromptbox:run() end,
               {description = "run prompt", group = "launcher"}),
 
-    awful.key({ modkey }, "x",
+    awful.key({ modkey }, "l",
               function ()
                   awful.prompt.run {
                     prompt       = "Run Lua code: ",
