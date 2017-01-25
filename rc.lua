@@ -384,12 +384,23 @@ end
 -- Re-set wallpaper when a screen's geometry changes (e.g. different resolution)
 screen.connect_signal("property::geometry", set_wallpaper)
 
+-- Screens number
+screens=0
+
 awful.screen.connect_for_each_screen(function(s)
+
+    -- Increment screens number
+    screens=screens+1
+
     -- Wallpaper
     set_wallpaper(s)
 
     -- Each screen has its own tag table.
     awful.tag(tags_name, s, layouts[6])
+
+    -- Skype Layout
+    awful.layout.set(layouts[2], awful.tag.find_by_name(s, tags_name[7]))
+    awful.tag.incmwfact(0.30, awful.tag.find_by_name(s, tags_name[7]))
 
     -- Create a promptbox for each screen
     s.mypromptbox = awful.widget.prompt()
@@ -409,6 +420,9 @@ awful.screen.connect_for_each_screen(function(s)
 
     -- Create the wibox
     s.mywibox = awful.wibar({ position = "top", screen = s })
+
+    -- Create the systary
+    mysystray = wibox.widget.systray()
 
     -- Add widgets to the wibox
     s.mywibox:setup {
@@ -447,7 +461,8 @@ awful.screen.connect_for_each_screen(function(s)
             mytextclock,
             -- mdiricon,
             -- mdirwidget,
-            s.index == 2 and wibox.widget.systray(),
+            screens = 2 and s.index == 2 and mysystray:set_screen(s),
+            mysystray,
             s.mylayoutbox,
         },
     }
@@ -742,7 +757,7 @@ awful.rules.rules = {
 
     -- 1:adm Admin
      { rule = { class = "URxvt" },
-       properties = { screen = 2, tag = tags_name[1], switchtotag = true } },
+       properties = { screen = screens, tag = tags_name[1], switchtotag = true } },
 
       -- 2:util Utils
      { rule = { class = "Pcmanfm" },
@@ -768,14 +783,14 @@ awful.rules.rules = {
 
      -- 3:web Web
      { rule = { class = "Chromium" },
-       properties = { screen = 2, tag = tags_name[3], switchtotag = true, floating = false } },
+       properties = { screen = screens, tag = tags_name[3], switchtotag = true, floating = false } },
 
      { rule = { class = "Firefox" },
-       properties = { screen = 2, tag = tags_name[3], switchtotag = true, floating = false } },
+       properties = { screen = screens, tag = tags_name[3], switchtotag = true, floating = false } },
 
      -- 4:dev - Development
      { rule = { class = "Gvim" },
-       properties = { screen = 2, tag = tags_name[4], switchtotag = true } },
+       properties = { screen = screens, tag = tags_name[4], switchtotag = true } },
 
      { rule = { class = "Gitg" },
        properties = { screen = 1, tag = tags_name[9], switchtotag = true } },
@@ -850,10 +865,10 @@ awful.rules.rules = {
     -- 9:vm Virtual Machines
 
      { rule = { class = "VirtualBox" },
-       properties = { screen = 2, tag = tags_name[9], switchtotag = true } },
+       properties = { screen = screens, tag = tags_name[9], switchtotag = true } },
 
      { rule = { class = "Remmina" },
-       properties = { screen = 2, tag = tags_name[9], switchtotag = true } },
+       properties = { screen = screens, tag = tags_name[9], switchtotag = true } },
 }
 
 
@@ -939,7 +954,3 @@ caltimer:start()
 client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus end)
 client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
 -- }}}
-
--- Skype Layout
-awful.layout.set(layouts[2], awful.tag.find_by_name(tags_name[7]))
-awful.tag.incmwfact(0.30, awful.tag.find_by_name(tags_name[7]))
