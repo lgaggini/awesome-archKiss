@@ -142,7 +142,7 @@ function cal()
     local fd = io.popen(onelinecal, "r")
     local cal = fd:read()
     io.close(fd)
-    return cal
+    return cal:gsub("^%s*(.-)%s*$", "%1") .. " "
 end
 -- }}}
 
@@ -199,9 +199,10 @@ menubar.utils.terminal = terminal -- Set the terminal for applications that requ
 
 -- {{{ Wibox
 -- Create a textclock widget
-mytextclock = awful.widget.textclock("%m/%y %H:%M ")
+mytextclock = awful.widget.textclock("%H:%M ")
+mytextmonthandyear = awful.widget.textclock("%B %Y ")
 mytextday = awful.widget.textclock("%A ")
-mytextnumber = awful.widget.textclock("%d/")
+mytextdaynumber = awful.widget.textclock("%d ")
 
 -- Create an os widget
 osicon = wibox.widget.imagebox()
@@ -456,13 +457,14 @@ awful.screen.connect_for_each_screen(function(s)
             batterywidget,
             calicon,
             mytextday,
-            s.index == 1 and mytextnumber,
             s.index == 2 and calwidget,
-            mytextclock,
+            s.index == 1 and mytextdaynumber,
+            mytextmonthandyear,
             -- mdiricon,
             -- mdirwidget,
             screens = 2 and s.index == 2 and mysystray:set_screen(s),
             mysystray,
+            mytextclock,
             s.mylayoutbox,
         },
     }
