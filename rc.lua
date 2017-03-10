@@ -132,7 +132,7 @@ end
 -- {{{ Function definitions
 -- Custom widget for sys temp
 function systemp()
-    local fd = io.popen("sensors|grep 'Physical id 0'|tail -1|gawk '{print $4'}", "r")
+    local fd = io.popen("sensors|grep 'Package id 0'|tail -1|gawk '{print $4'}", "r")
     local temp = fd:read()
     io.close(fd)
     return temp
