@@ -759,7 +759,7 @@ awful.rules.rules = {
 
     -- 1:adm Admin
      { rule = { class = "URxvt" },
-       properties = { screen = screens, tag = tags_name[1], switchtotag = true } },
+       properties = { screen = screens, tag = tags_name[1], switchtotag = true, maximized_vertical = true, maximized_horizontal = true } },
 
       -- 2:util Utils
      { rule = { class = "Pcmanfm" },
@@ -858,7 +858,7 @@ awful.rules.rules = {
      { rule = { class = "Sonata" },
        properties = { screen = 1, tag = tags_name[8], switchtotag = true } },
 
-     { rule = { class = "Spotify" },
+     { rule = { class = "spotify" },
        properties = { screen = 1, tag = tags_name[8], switchtotag = true } },
 
      { rule = { class = "Deadbeef" },
@@ -870,7 +870,7 @@ awful.rules.rules = {
        properties = { screen = screens, tag = tags_name[9], switchtotag = true } },
 
      { rule = { class = "Remmina" },
-       properties = { screen = screens, tag = tags_name[9], switchtotag = true } },
+       properties = { screen = screens, tag = tags_name[9], switchtotag = true, maximized_vertical = true, maximized_horizontal = true } },
 }
 
 
