@@ -67,7 +67,7 @@ note = "zim"
 task = "lxtask"
 jabber = "pidgin"
 irc = "hexchat"
-skype = "skype"
+skype = "skypeforlinux"
 music = "spotify"
 media = "smplayer"
 -- password="pwsafe"
@@ -398,10 +398,6 @@ awful.screen.connect_for_each_screen(function(s)
 
     -- Each screen has its own tag table.
     awful.tag(tags_name, s, layouts[6])
-
-    -- Skype Layout
-    awful.layout.set(layouts[2], awful.tag.find_by_name(s, tags_name[7]))
-    awful.tag.incmwfact(0.30, awful.tag.find_by_name(s, tags_name[7]))
 
     -- Create a promptbox for each screen
     s.mypromptbox = awful.widget.prompt()
@@ -840,14 +836,14 @@ awful.rules.rules = {
         c:geometry( { x = w_area.width, width = strutwidth, y = w_area.y, height = w_area.height - 20 } )
     end
      },
-     
+
      { rule = { class = "Pidgin" },
       properties = { screen = 1, tag = tags_name[7], switchtotag = true, floating = true } },
-     
+
      { rule = { class = "Hexchat" },
        properties = { screen = 1, tag = tags_name[8], switchtotag = true } },
 
-     { rule = { class = "Skype" },
+    { rule = { class = "skypeforlinux" },
        properties = { screen = 1, tag = tags_name[7], switchtotag = true } },
 
      -- 8:ent Entertainment
