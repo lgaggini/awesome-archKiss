@@ -836,10 +836,10 @@ awful.rules.rules = {
         c:geometry( { x = w_area.width, width = strutwidth, y = w_area.y, height = w_area.height - 20 } )
     end
      },
-
+     
      { rule = { class = "Pidgin" },
       properties = { screen = 1, tag = tags_name[7], switchtotag = true, floating = true } },
-
+     
      { rule = { class = "Hexchat" },
        properties = { screen = 1, tag = tags_name[8], switchtotag = true } },
 
@@ -867,6 +867,9 @@ awful.rules.rules = {
 
      { rule = { class = "Remmina" },
        properties = { screen = screens, tag = tags_name[9], switchtotag = true, maximized_vertical = true, maximized_horizontal = true } },
+
+     { rule = { class = "sun-applet-PluginMain" },
+       properties = { screen = 1, tag = tags_name[9], switchtotag = true } },
 }
 
 
