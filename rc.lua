@@ -852,7 +852,7 @@ awful.rules.rules = {
      { rule = { class = "Sonata" },
        properties = { screen = 1, tag = tags_name[8], switchtotag = true } },
 
-     { rule = { class = "spotify" },
+     { rule = { class = "Spotify" },
        properties = { screen = 1, tag = tags_name[8], switchtotag = true } },
 
      { rule = { class = "Deadbeef" },
