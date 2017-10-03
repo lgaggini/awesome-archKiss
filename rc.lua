@@ -841,7 +841,7 @@ awful.rules.rules = {
      { rule = { class = "Hexchat" },
        properties = { screen = 1, tag = tags_name[8], switchtotag = true } },
 
-    { rule = { class = "Skype Preview" },
+    { rule = { class = "Skype" },
        properties = { screen = 1, tag = tags_name[7], switchtotag = true } },
 
      -- 8:ent Entertainment
