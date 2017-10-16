@@ -70,8 +70,8 @@ irc = "hexchat"
 skype = "skypeforlinux"
 music = "spotify"
 media = "smplayer"
--- password="pwsafe"
-password="tail -1 /home/lg/doc/dada/pass/newpass | xclip"
+password_man = "qtpass"
+password = "tail -1 /home/lg/doc/dada/pass/newpass | xclip"
 vm = "virtualbox"
 remote = "remmina"
 bright_down = "xbacklight -dec 10"
@@ -181,7 +181,7 @@ mymainmenu = awful.menu({ items = { { "applications", menu_items },
                                     { "vm", vm },
                                     { "remote", vm },
                                     { "tasks", task },
-                                    { "passwords", password },
+                                    { "passwords", password_man },
                                     { "awesome", myawesomemenu },
                                     { "lock", lock },
                                     { "reboot", reboot },
@@ -561,6 +561,7 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey,         },"v", function () awful.util.spawn_with_shell(remote) end),
     awful.key({ modkey,         },"t", function () awful.util.spawn_with_shell(task) end),
     awful.key({ modkey,         },"p", function () awful.util.spawn_with_shell(password) end),
+    awful.key({ modkey,         },"q", function () awful.util.spawn_with_shell(password_man) end),
     awful.key({ modkey, "Shift" },"l", function () awful.util.spawn_with_shell(lock) end)
 )
 
@@ -776,6 +777,9 @@ awful.rules.rules = {
 
      { rule = { class = "Pwsafe" },
        properties = { screen = 1, tag = tags_name[2], switchtotag = true } },
+
+     { rule = { class = "QtPass" },
+       properties = { floating = true, sticky = true, ontop = true } },
 
      -- 3:web Web
      { rule = { class = "Chromium" },
