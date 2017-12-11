@@ -782,7 +782,7 @@ awful.rules.rules = {
        properties = { floating = true, sticky = true, ontop = true } },
 
      -- 3:web Web
-     { rule = { class = "Chromium" },
+     { rule = { instance = "chromium" },
        properties = { screen = screens, tag = tags_name[3], switchtotag = true, floating = false } },
 
      { rule = { class = "Firefox" },
@@ -855,6 +855,9 @@ awful.rules.rules = {
 
      { rule = { class = "Sonata" },
        properties = { screen = 1, tag = tags_name[8], switchtotag = true } },
+
+     { rule = { instance = "crx_njhbiogfhgocofgjnhiodbjahepbfebl" },
+       properties = { screen = 1, tag = tags_name[8], switchtotag = true, floating=false } },
 
      { rule = { class = "Spotify" },
        properties = { screen = 1, tag = tags_name[8], switchtotag = true } },
