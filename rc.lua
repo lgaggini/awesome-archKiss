@@ -856,7 +856,7 @@ awful.rules.rules = {
      { rule = { class = "Sonata" },
        properties = { screen = 1, tag = tags_name[8], switchtotag = true } },
 
-     { rule = { instance = "crx_njhbiogfhgocofgjnhiodbjahepbfebl" },
+     { rule = { instance = "crx_pfohnoakpeoeabclnomoejgnhakdkjbk" },
        properties = { screen = 1, tag = tags_name[8], switchtotag = true, floating=false } },
 
      { rule = { class = "Spotify" },
