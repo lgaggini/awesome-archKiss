@@ -15,7 +15,6 @@ local wibox = require("wibox")
 -- Sysmon widget library
 local vicious = require("vicious")
 local lain = require("lain")
-local drop = require("scratchdrop")
 -- Theme handling library
 local beautiful = require("beautiful")
 -- Notification library
@@ -514,8 +513,6 @@ globalkeys = awful.util.table.join(
 
     -- Standard program
     awful.key({ modkey,           }, "Return", function () awful.util.spawn(terminal) end),
-    -- Dropdown terminal
-    awful.key({ modkey,           }, "z",      function () drop(terminal) end),
     awful.key({                   }, "XF86MonBrightnessDown", function () awful.util.spawn_with_shell(bright_down) end),
     awful.key({                   }, "XF86MonBrightnessUp",   function () awful.util.spawn_with_shell(bright_up) end),
     awful.key({ modkey, "Control" }, "r", awesome.restart),
