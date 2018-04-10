@@ -21,8 +21,7 @@ local beautiful = require("beautiful")
 local naughty = require("naughty")
 local menubar = require("menubar")
 -- Application menu
-require('freedesktop.utils')
-require('freedesktop.menu')
+local freedesktop = require('freedesktop')
 -- Hotkeys popup
 local hotkeys_popup = require("awful.hotkeys_popup").widget
 
@@ -164,29 +163,19 @@ myawesomemenu = {
    { "quit", function() awesome.quit() end}
 }
 
-menu_items = freedesktop.menu.new()
+menu_items = { { "terminal", terminal },
+          { "browser", browser },
+          { "file manager", filemanager },
+          { "editor", editor },
+          { "awesome", myawesomemenu },
+          { "lock", lock },
+          { "reboot", reboot },
+          { "poweroff", poweroff }
+        }
 
-mymainmenu = awful.menu({ items = { { "applications", menu_items },
-                                    { "terminal", terminal },
-                                    { "browser", browser },
-                                    { "file manager", filemanager },
-                                    { "editor", editor },
-                                    { "email", email },
-                                    { "pad", pad },
-                                    { "note", note },
-                                    { "skype", skype },
-                                    { "irc", irc },
-                                    { "music", music },
-                                    { "vm", vm },
-                                    { "remote", vm },
-                                    { "tasks", task },
-                                    { "passwords", password_man },
-                                    { "awesome", myawesomemenu },
-                                    { "lock", lock },
-                                    { "reboot", reboot },
-                                    { "poweroff", poweroff }
-                                    }
-                        })
+mymainmenu = freedesktop.menu.build({
+    after = menu_items
+})
 
 mylauncher = awful.widget.launcher({ image = beautiful.awesome_icon,
                                      menu = mymainmenu })
