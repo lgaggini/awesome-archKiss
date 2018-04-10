@@ -231,7 +231,7 @@ vicious.register(ramwidget, vicious.widgets.mem, "$1%")
 
 -- Create an htop button
 htopbuttons = awful.util.table.join(
-        awful.button({ }, 1, function () awful.util.spawn(task_cmd) end)
+        awful.button({ }, 1, function () awful.util.spawn(task) end)
 )
 cpuicon:buttons(htopbuttons)
 cpuwidget:buttons(htopbuttons)
