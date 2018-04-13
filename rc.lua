@@ -55,6 +55,9 @@ do
 beautiful.init("/home/lg/.config/awesome/themes/kiss/theme_default.lua")
 
 
+-- Kernel version monitoring
+kernel_mon = true
+
 -- Uptime
 uptime = false
 
@@ -211,10 +214,12 @@ mytextday = awful.widget.textclock("%A ")
 mytextdaynumber = awful.widget.textclock("%d ")
 
 -- Create an os widget
-osicon = wibox.widget.imagebox()
-osicon:set_image(beautiful.os)
-oswidget = wibox.widget.textbox()
-vicious.register(oswidget, vicious.widgets.os, "$1-$2")
+if kernel_mon then
+    osicon = wibox.widget.imagebox()
+    osicon:set_image(beautiful.os)
+    oswidget = wibox.widget.textbox()
+    vicious.register(oswidget, vicious.widgets.os, "$1-$2")
+end
 
 -- Create an uptime widget
 if uptime then
