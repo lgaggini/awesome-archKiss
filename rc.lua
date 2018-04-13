@@ -63,6 +63,9 @@ hwmonitor = true
 -- Switch to enable battery monitoring
 laptop = true
 
+-- Mountpoint(s) to monitor
+mounts = " /: ${/ used_p}% ~: ${/home used_p}%"
+
 -- This is used later as the default applications to run.
 terminal = "urxvt"
 browser = "chromium --password-store=gnome"
@@ -247,7 +250,7 @@ end
 fsicon = wibox.widget.imagebox()
 fsicon:set_image(beautiful.fs)
 fswidget = wibox.widget.textbox()
-vicious.register(fswidget, vicious.widgets.fs, " /: ${/ used_p}% ~: ${/home used_p}%")
+vicious.register(fswidget, vicious.widgets.fs, mounts)
 
 -- Create a fs button
 fsbuttons = awful.util.table.join(
