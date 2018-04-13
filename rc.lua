@@ -54,6 +54,10 @@ do
 -- Themes define colours, icons, and wallpapers
 beautiful.init("/home/lg/.config/awesome/themes/kiss/theme_default.lua")
 
+
+-- Switch for Hardware
+hardware = true
+
 -- This is used later as the default applications to run.
 terminal = "urxvt"
 browser = "chromium --password-store=gnome"
@@ -932,12 +936,15 @@ client.connect_signal("request::titlebars", function(c)
 end)
 
 -- Timer for custom widget
-tempwidget:set_text(systemp())
-calwidget:set_markup(cal())
 
-temptimer = timer({ timeout = 300 })
-temptimer:connect_signal("timeout", function() tempwidget:set_text(systemp()) end)
-temptimer:start()
+if hardware then
+    tempwidget:set_text(systemp())
+    temptimer = timer({ timeout = 300 })
+    temptimer:connect_signal("timeout", function() tempwidget:set_text(systemp()) end)
+    temptimer:start()
+end
+
+calwidget:set_markup(cal())
 
 caltimer = timer({ timeout =  300 })
 caltimer:connect_signal("timeout", function() calwidget:set_markup(cal()) end)
