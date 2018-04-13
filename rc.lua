@@ -54,6 +54,8 @@ do
 -- Themes define colours, icons, and wallpapers
 beautiful.init("/home/lg/.config/awesome/themes/kiss/theme_default.lua")
 
+-- Nic interfaces to monitor, fifo
+nics = {"enp0s25", "wlo1"}
 
 -- Switch to enable hwmonitor
 hwmonitor = true
@@ -257,15 +259,16 @@ neticon:set_image(beautiful.net)
 netwidget = wibox.widget.textbox()
 vicious.register(netwidget, vicious.widgets.net,
     function(widget, args)
-        if args["{enp0s25 carrier}"] == 1
-            then
-                return args["{enp0s25 up_kb}"] .. "kb/" .. args["{enp0s25 down_kb}"] .. "kb"
-        elseif args["{wlo1 carrier}"] == 1
-            then
-                return args["{wlo1 up_kb}"] .. "kb/" .. args["{wlo1 down_kb}"] ..  "kb"
-        else
-            return "no network"
+        for i, nic in ipairs(nics) do
+            carrier_index = "{" .. nic .. " carrier}"
+            if args[carrier_index] == 1
+                then
+                    upload_index = "{" .. nic .. " up_kb}"
+                    download_index = "{" .. nic .. " down_kb}"
+                    return args[upload_index] .. "kb/" .. args[download_index] .. "kb"
+            end
         end
+        return "no network"
     end,1)
 
 -- Create a mpd widget
