@@ -60,6 +60,9 @@ nics = {"enp0s25", "wlo1"}
 -- Switch to enable hwmonitor
 hwmonitor = true
 
+-- Switch to enable battery monitoring
+laptop = true
+
 -- This is used later as the default applications to run.
 terminal = "urxvt"
 browser = "chromium --password-store=gnome"
@@ -318,10 +321,12 @@ calicon:set_image(beautiful.cal)
 calwidget = wibox.widget.textbox()
 
 -- Create a battery widget
-batteryicon = wibox.widget.imagebox()
-batteryicon:set_image(beautiful.bat)
-batterywidget = wibox.widget.textbox()
-vicious.register(batterywidget, vicious.widgets.bat, "$2 $1", 61, "BAT0")
+if laptop then
+    batteryicon = wibox.widget.imagebox()
+    batteryicon:set_image(beautiful.bat)
+    batterywidget = wibox.widget.textbox()
+    vicious.register(batterywidget, vicious.widgets.bat, "$2 $1", 61, "BAT0")
+end
 
 -- Create a wibox for each screen and add it
 local taglist_buttons = awful.util.table.join(
