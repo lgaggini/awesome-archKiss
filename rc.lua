@@ -55,8 +55,8 @@ do
 beautiful.init("/home/lg/.config/awesome/themes/kiss/theme_default.lua")
 
 
--- Switch for Hardware
-hardware = true
+-- Switch to enable hwmonitor
+hwmonitor = true
 
 -- This is used later as the default applications to run.
 terminal = "urxvt"
@@ -232,9 +232,11 @@ ramicon:buttons(htopbuttons)
 ramwidget:buttons(htopbuttons)
 
 -- Create a temp widget
-tempicon = wibox.widget.imagebox()
-tempicon:set_image(beautiful.temp)
-tempwidget = wibox.widget.textbox()
+if hwmonitor then
+    tempicon = wibox.widget.imagebox()
+    tempicon:set_image(beautiful.temp)
+    tempwidget = wibox.widget.textbox()
+end
 
 -- Create a fs widget
 fsicon = wibox.widget.imagebox()
@@ -937,7 +939,7 @@ end)
 
 -- Timer for custom widget
 
-if hardware then
+if hwmonitor then
     tempwidget:set_text(systemp())
     temptimer = timer({ timeout = 300 })
     temptimer:connect_signal("timeout", function() tempwidget:set_text(systemp()) end)
