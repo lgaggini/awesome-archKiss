@@ -66,6 +66,9 @@ uptime = false
 -- Nic interfaces to monitor, fifo
 nics = {"enp0s25", "wlo1"}
 
+-- Maildir monitor, false or maildir location
+mail_mon = false
+
 -- Switch to enable hwmonitor
 hwmonitor = true
 
@@ -320,27 +323,27 @@ mpdwidget = wibox.widget.textbox()
 --    end)
 
 -- Create a mpd button
-mpdbuttons = awful.util.table.join(
-  awful.button({ }, 1, function () awful.util.spawn(music_cmd) end)
 )
 mpdicon:buttons(mpdbuttons)
 -- mpdwidget:buttons(mpdbuttons)
 
 -- Create a maildir widget
--- mdiricon = wibox.widget.imagebox()
--- mdiricon:set_image(beautiful.mail)
--- mdirwidget = wibox.widget.textbox()
--- vicious.register(mdirwidget, vicious.widgets.mdir, 
---    function (widget, args)
---       return string.format("%02d", args[1]+args[2]) 
---    end, 600,  {'~/mail/'})
+if mail_mon then
+    mdiricon = wibox.widget.imagebox()
+    mdiricon:set_image(beautiful.mail)
+    mdirwidget = wibox.widget.textbox()
+    vicious.register(mdirwidget, vicious.widgets.mdir, 
+        function (widget, args)
+            return string.format("%02d", args[1]+args[2]) 
+        end, 600,  {mail_mon})
 
--- Create a maildir button
--- mdirbuttons = awful.util.table.join(
---         awful.button({ }, 1, function () awful.util.spawn(email) end)
--- )
--- mdiricon:buttons(mdirbuttons)
--- mdirwidget:buttons(mdirbuttons)
+    -- Create a maildir button
+    mdirbuttons = awful.util.table.join(
+        awful.button({ }, 1, function () awful.util.spawn(email) end)
+    )
+    mdiricon:buttons(mdirbuttons)
+    mdirwidget:buttons(mdirbuttons)
+end
 
 -- Create a calendar widget
 calicon = wibox.widget.imagebox()
@@ -487,8 +490,8 @@ awful.screen.connect_for_each_screen(function(s)
             s.index == 2 and not full_cal and mytextdaynumber,
             s.index == 1 and mytextdaynumber,
             mytextmonthandyear,
-            -- mdiricon,
-            -- mdirwidget,
+            mdiricon,
+            mdirwidget,
             screens = 2 and s.index == 2 and mysystray:set_screen(s),
             mysystray,
             mytextclock,
