@@ -81,6 +81,9 @@ mounts = " /: ${/ used_p}% ~: ${/home used_p}%"
 -- Enable full calendar on 2nd monitor
 full_cal = true
 
+-- Enable mpd bar
+mpd = true
+
 -- This is used later as the default applications to run.
 terminal = "urxvt"
 browser = "chromium --password-store=gnome"
@@ -305,27 +308,31 @@ vicious.register(netwidget, vicious.widgets.net,
     end,1)
 
 -- Create a mpd widget
-mpdicon = wibox.widget.imagebox()
-mpdicon:set_image(beautiful.music)
-mpdwidget = wibox.widget.textbox()
--- vicious.register(mpdwidget, vicious.widgets.mpd,
---    function (widget, args)
---      if args["{state}"] == "Stop" then
---        mpdicon.visible = false
---        return ""
---      elseif args["{state}"] == "Play" then
---        mpdicon.visible = true
---        return  args["{Artist}"] .. " - " .. args["{Title}"]
---      elseif args["{state}"] == "Pause" then
---        mpdicon.visible = true
---        return "paused"
---      end
---    end)
+if mpd then
+    mpdicon = wibox.widget.imagebox()
+    mpdicon:set_image(beautiful.music)
+    mpdwidget = wibox.widget.textbox()
+    vicious.register(mpdwidget, vicious.widgets.mpd,
+        function (widget, args)
+        if args["{state}"] == "Stop" then
+            mpdicon.visible = false
+            return ""
+        elseif args["{state}"] == "Play" then
+            mpdicon.visible = true
+            return  args["{Artist}"] .. " - " .. args["{Title}"]
+        elseif args["{state}"] == "Pause" then
+            mpdicon.visible = true
+            return "paused"
+        end
+        end)
 
--- Create a mpd button
-)
-mpdicon:buttons(mpdbuttons)
--- mpdwidget:buttons(mpdbuttons)
+    -- Create a mpd button
+    mpdbuttons = awful.util.table.join(
+    awful.button({ }, 1, function () awful.util.spawn(music_cmd) end)
+    )
+    mpdicon:buttons(mpdbuttons)
+    mpdwidget:buttons(mpdbuttons)
+end
 
 -- Create a maildir widget
 if mail_mon then
@@ -468,8 +475,8 @@ awful.screen.connect_for_each_screen(function(s)
             hostwidget,
             osicon,
             oswidget,
-            -- mpdicon,
-            -- mpdwidget,
+            mpdicon,
+            mpdwidget,
             upicon,
             upwidget,
             cpuicon,
