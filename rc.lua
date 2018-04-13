@@ -54,6 +54,10 @@ do
 -- Themes define colours, icons, and wallpapers
 beautiful.init("/home/lg/.config/awesome/themes/kiss/theme_default.lua")
 
+
+-- Uptime
+uptime = false
+
 -- Nic interfaces to monitor, fifo
 nics = {"enp0s25", "wlo1"}
 
@@ -213,13 +217,15 @@ oswidget = wibox.widget.textbox()
 vicious.register(oswidget, vicious.widgets.os, "$1-$2")
 
 -- Create an uptime widget
-upicon = wibox.widget.imagebox()
-upicon:set_image(beautiful.uptime)
-upwidget =  wibox.widget.textbox()
-vicious.register(upwidget, vicious.widgets.uptime,
-    function(widget, args)
-        return string.format("%02d:%02d ", args[2], args[3])
-    end)
+if uptime then
+    upicon = wibox.widget.imagebox()
+    upicon:set_image(beautiful.uptime)
+    upwidget =  wibox.widget.textbox()
+    vicious.register(upwidget, vicious.widgets.uptime,
+        function(widget, args)
+            return string.format("%02d:%02d ", args[2], args[3])
+        end)
+end
 
 -- Create a cpu widget
 cpuicon = wibox.widget.imagebox()
