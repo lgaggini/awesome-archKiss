@@ -54,6 +54,8 @@ do
 -- Themes define colours, icons, and wallpapers
 beautiful.init("/home/lg/.config/awesome/themes/kiss/theme_default.lua")
 
+-- User / hostname info
+user_hostname = false
 
 -- Kernel version monitoring
 kernel_mon = true
@@ -212,6 +214,14 @@ mytextclock = awful.widget.textclock("%H:%M ")
 mytextmonthandyear = awful.widget.textclock("%B %Y ")
 mytextday = awful.widget.textclock("%A ")
 mytextdaynumber = awful.widget.textclock("%d ")
+
+-- Create an user/hostname widget
+if user_hostname then
+    hosticon = wibox.widget.imagebox()
+    hosticon:set_image(beautiful.os)
+    hostwidget = wibox.widget.textbox()
+    vicious.register(hostwidget, vicious.widgets.os, "$3 on $4")
+end
 
 -- Create an os widget
 if kernel_mon then
@@ -451,6 +461,8 @@ awful.screen.connect_for_each_screen(function(s)
         s.mytasklist, -- Middle widget
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
+            hosticon,
+            hostwidget,
             osicon,
             oswidget,
             -- mpdicon,
