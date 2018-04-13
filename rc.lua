@@ -66,6 +66,9 @@ laptop = true
 -- Mountpoint(s) to monitor
 mounts = " /: ${/ used_p}% ~: ${/home used_p}%"
 
+-- Enable full calendar on 2nd monitor
+full_cal = true
+
 -- This is used later as the default applications to run.
 terminal = "urxvt"
 browser = "chromium --password-store=gnome"
@@ -457,7 +460,8 @@ awful.screen.connect_for_each_screen(function(s)
             batterywidget,
             calicon,
             mytextday,
-            s.index == 2 and calwidget,
+            s.index == 2 and full_cal and calwidget,
+            s.index == 2 and not full_cal and mytextdaynumber,
             s.index == 1 and mytextdaynumber,
             mytextmonthandyear,
             -- mdiricon,
