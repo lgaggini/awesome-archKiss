@@ -1,11 +1,11 @@
-# Awesome 3.x archKiss
+# Awesome 4.x archKiss
 ### by lgaggini
 
 
 ## README
-This is my theme and configuration file for Awesome 3.x WM inspired by Archlinux dark colors and KISS (Keep it simple stupid) philosophy. 
+This is my theme and configuration file for Awesome 4.x WM inspired by Archlinux dark colors and KISS (Keep it simple stupid) philosophy. 
 It uses icons from other [great awesome themes](https://github.com/mikar/awesome-themes) (see credits for details).
-I using it with GTK [elementaryDark](http://satya164.deviantart.com/art/elementary-Dark-GTK3-Theme-244257862?) theme available for GTK 3 and GTK 2.
+I using it with GTK [vertex-theme dark](https://github.com/horst3180/vertex-theme) theme available for GTK 3 and GTK 2.
 Recently introcuded some great ideas from [awesome-copycats](https://github.com/copycat-killer/awesome-copycats).
 
 ## CONFIGURATION
@@ -13,6 +13,9 @@ Recently introcuded some great ideas from [awesome-copycats](https://github.com/
 I have some variable to control what to show in the panel bar on top, you can customize as you wish.
 I have also some variable to control what default applications to use. In the configuratio the default applications labels are used instead of program name,
 e.g. browser instead of Chromium, so it remains quite solid.
+By beautiful you can choose between two themes:
+* theme_default.lua: heavily based on default colors
+* theme.lua: extends the default colors
 
 ```lua
 -- {{{ Variable definitions
@@ -84,4 +87,4 @@ https://creativecommons.org/licenses/by-sa/3.0/
 * Titlebar icons: zenburn awesome theme by Adrian C. (anrxc)
 * Layout icons: grey-new awesome theme by Andreas Persson (greyscale, grey)
 * Widget icons: sunjack awesome theme by ?
-* Screenshoot wallpaper: [V by 'GeorgeHarrison](http://georgeharrison.deviantart.com/art/V-171222165)
+* Screenshoot wallpaper: [Arch Linux by mokkujin](https://mokkujin.deviantart.com/art/Arch-Linux-Wallpaper-213394680)
