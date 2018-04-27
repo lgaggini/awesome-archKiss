@@ -18,7 +18,6 @@ By beautiful you can choose between two themes:
 * theme.lua: extends the default colors
 
 ```lua
--- {{{ Variable definitions
 -- Themes define colours, icons, and wallpapers
 beautiful.init("/home/lg/.config/awesome/themes/kiss/theme_default.lua")
 
