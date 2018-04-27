@@ -20,7 +20,7 @@ layoutdir     = themedir .. "/layouts"
 icondir       = themedir .. "/icons"
 
 -- Fonts
-theme.font          = "sans 8"
+theme.font          = "sans 9"
 theme.taglist_font = "sans 12"
 
 -- Main colors
