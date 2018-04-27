@@ -82,7 +82,7 @@ mounts = " /: ${/ used_p}% ~: ${/home used_p}%"
 full_cal = true
 
 -- Enable mpd bar
-mpd = true
+mpd = false
 
 -- This is used later as the default applications to run.
 terminal = "urxvt"
@@ -806,8 +806,8 @@ awful.rules.rules = {
      { rule = { class = "Filezilla" },
        properties = { screen = 1, tag = tags_name[2], switchtotag = true } },
 
-     { rule = { class = "Xarchiver" },
-       properties = { screen = 1, tag = tags_name[2], switchtotag = true } },
+     { rule = { class = "File-roller" },
+       properties = { floating = true, tag = tags_name[2]} },
 
      { rule = { class = "Lxtask" },
        properties = { screen = 1, tag = tags_name[2], switchtotag = true } },
