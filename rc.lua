@@ -89,7 +89,8 @@ terminal = "urxvt"
 browser = "chromium --password-store=gnome"
 filemanager = "pcmanfm"
 editor = "gvim"
-email = "thunderbird"
+email = "urxvt -e neomutt"
+email_gui = "thunderbird"
 pad = "leafpad"
 note = "zim"
 task = "lxtask"
@@ -841,6 +842,9 @@ awful.rules.rules = {
 
      { rule = { class = "Thunderbird", role = "Msgcompose" },
         properties = { screen = 1, tag = tags_name[4], switchtotag = true } },
+
+     { rule = { name = "neomutt" },
+        properties = { screen = 1, tag = tags_name[5], switchtotag = true } },
 
      -- 6:doc - Documentation
      { rule = { name = "LibreOffice" },
