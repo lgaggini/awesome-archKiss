@@ -89,15 +89,17 @@ terminal = "urxvt"
 browser = "chromium --password-store=gnome"
 filemanager = "pcmanfm"
 editor = "gvim"
-email = "urxvt -e neomutt"
+email = terminal .. " -e neomutt"
 email_gui = "thunderbird"
 pad = "leafpad"
 note = "zim"
 task = "lxtask"
-jabber = "pidgin"
+im = "pidgin"
 irc = "hexchat"
 skype = "skypeforlinux"
-music = "spotify"
+music = terminal .. " -e ncmpc"
+music_gui = "sonata"
+music_stream = "spotify"
 media = "smplayer"
 password_man = "qtpass"
 password = "tail -1 /home/lg/doc/dada/pass/newpass | xclip"
@@ -904,6 +906,9 @@ awful.rules.rules = {
        properties = { screen = 1, tag = tags_name[8], switchtotag = true, floating=false } },
 
      { rule = { class = "Spotify" },
+       properties = { screen = 1, tag = tags_name[8], switchtotag = true } },
+
+     { rule = { name = "ncmpc" },
        properties = { screen = 1, tag = tags_name[8], switchtotag = true } },
 
      { rule = { class = "Deadbeef" },
