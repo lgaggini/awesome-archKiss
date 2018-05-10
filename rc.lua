@@ -593,19 +593,20 @@ globalkeys = awful.util.table.join(
               {description = "show the menubar", group = "launcher"}),
 
     -- Application launcher common
-    awful.key({ modkey,         },"b", function () awful.util.spawn_with_shell(browser) end),
-    awful.key({ modkey,         },"f", function () awful.util.spawn_with_shell(filemanager) end),
-    awful.key({ modkey,         },"e", function () awful.util.spawn_with_shell(editor) end),
-    awful.key({ modkey,         },"m", function () awful.util.spawn_with_shell(email) end),
-    awful.key({ modkey,         },"s", function () awful.util.spawn_with_shell(pad) end),
-    awful.key({ modkey,         },"n", function () awful.util.spawn_with_shell(note) end),
-    awful.key({ modkey,         },"c", function () awful.util.spawn_with_shell(skype) end),
-    awful.key({ modkey,         },"i", function () awful.util.spawn_with_shell(irc) end),
-    awful.key({ modkey,         },"v", function () awful.util.spawn_with_shell(remote) end),
-    awful.key({ modkey,         },"t", function () awful.util.spawn_with_shell(task) end),
-    awful.key({ modkey,         },"p", function () awful.util.spawn_with_shell(password) end),
-    awful.key({ modkey,         },"q", function () awful.util.spawn_with_shell(password_man) end),
-    awful.key({ modkey, "Shift" },"l", function () awful.util.spawn_with_shell(lock) end)
+    awful.key({ modkey,         },"b", function () awful.util.spawn_with_shell(browser) end), -- [b]rowser
+    awful.key({ modkey,         },"f", function () awful.util.spawn_with_shell(filemanager) end), -- [f]ilemanager
+    awful.key({ modkey,         },"e", function () awful.util.spawn_with_shell(editor) end), -- [e]ditor 
+    awful.key({ modkey,         },"m", function () awful.util.spawn_with_shell(email) end), -- e[mail]
+    awful.key({ modkey,         },"s", function () awful.util.spawn_with_shell(pad) end), -- [s]cratch pad
+    awful.key({ modkey,         },"n", function () awful.util.spawn_with_shell(note) end), -- [n]ote
+    awful.key({ modkey,         },"c", function () awful.util.spawn_with_shell(skype) end), -- [c]hat
+    awful.key({ modkey,         },"i", function () awful.util.spawn_with_shell(irc) end), -- [i]rc
+    awful.key({ modkey,         },"v", function () awful.util.spawn_with_shell(remote) end), -- [v]irtual / rdp
+    awful.key({ modkey,         },"t", function () awful.util.spawn_with_shell(task) end), -- [t]ask manager
+    awful.key({ modkey,         },"p", function () awful.util.spawn_with_shell(password) end), -- [p]assword
+    awful.key({ modkey,         },"q", function () awful.util.spawn_with_shell(password_man) end), -- [q]t-pass 
+    awful.key({ modkey,         },"a", function () awful.util.spawn_with_shell(music) end), -- [a]udio
+    awful.key({ modkey, "Shift" },"l", function () awful.util.spawn_with_shell(lock) end) -- [l]ock
 )
 
 clientkeys = awful.util.table.join(
