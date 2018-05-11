@@ -610,7 +610,7 @@ globalkeys = awful.util.table.join(
 )
 
 clientkeys = awful.util.table.join(
-    awful.key({ altkey,           }, "f",       function (c) c.fullscreen = not c.fullscreen end),
+    awful.key({ altkey, "Shift"   }, "f",       function (c) c.fullscreen = not c.fullscreen end),
     awful.key({ altkey,           }, "c",       function (c) c:kill()                        end),
     awful.key({ altkey,           }, "z",       awful.client.floating.toggle                    ),
     awful.key({ altkey, "Shift"   }, "Return",  function (c) c:swap(awful.client.getmaster())end),
@@ -688,8 +688,8 @@ end
 
 -- Bind custom keys to tags.
 -- Keys to tags association are defined in the tag_keys tables.
---- Main (terms), [w]indows (tools), [b]rowser, [e]ditor, [p]ost (mail), [r]eaders (doc), [i]m, a[udio] ,[v]irtual
-tag_keys = {"Return","w","b","e","p","r","i","a","v"}
+--- Main (terms), [d]evices (tools), [w]eb browser, [e]ditor, [p]ost (mail), [r]eaders (doc), [i]m, a[udio] ,[v]irtual
+tag_keys = {"Return","d","w","e","p","r","i","a","v"}
 for i = 1, 9 do
     globalkeys = awful.util.table.join(globalkeys,
         -- View tag only.
