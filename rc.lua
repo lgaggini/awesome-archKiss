@@ -688,8 +688,8 @@ end
 
 -- Bind custom keys to tags.
 -- Keys to tags association are defined in the tag_keys tables.
---- Main (terms), [d]evices (tools), [w]eb browser, [e]ditor, [p]ost (mail), [r]eaders (doc), [i]m, a[udio] ,[v]irtual
-tag_keys = {"Return","d","w","e","p","r","i","a","v"}
+--- Main (terms), [x]tools, [w]eb browser, [e]ditor, [p]ost (mail), [r]eaders (doc), [i]m, a[udio] ,[v]irtual
+tag_keys = {"Return","x","w","e","p","r","i","a","v"}
 for i = 1, 9 do
     globalkeys = awful.util.table.join(globalkeys,
         -- View tag only.
