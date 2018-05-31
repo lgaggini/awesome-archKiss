@@ -93,6 +93,7 @@ email = terminal .. " -e neomutt"
 email_gui = "thunderbird"
 pad = "leafpad"
 note = "zim"
+pim = terminal .. " -title pim -e tmuxp load pim"
 task = "lxtask"
 im = "pidgin"
 irc = "hexchat"
@@ -600,7 +601,7 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey,         },"s", function () awful.util.spawn_with_shell(pad) end), -- [s]cratch pad
     awful.key({ modkey,         },"n", function () awful.util.spawn_with_shell(note) end), -- [n]ote
     awful.key({ modkey,         },"c", function () awful.util.spawn_with_shell(skype) end), -- [c]hat
-    awful.key({ modkey,         },"i", function () awful.util.spawn_with_shell(irc) end), -- [i]rc
+    awful.key({ modkey,         },"i", function () awful.util.spawn_with_shell(pim) end), -- p[i]m
     awful.key({ modkey,         },"v", function () awful.util.spawn_with_shell(remote) end), -- [v]irtual / rdp
     awful.key({ modkey,         },"t", function () awful.util.spawn_with_shell(task) end), -- [t]ask manager
     awful.key({ modkey,         },"p", function () awful.util.spawn_with_shell(password) end), -- [p]assword
@@ -872,6 +873,9 @@ awful.rules.rules = {
        properties = { screen = 1, tag = tags_name[6], switchtotag = true } },
 
      { rule = { class = "Ristretto" },
+       properties = { screen = 1, tag = tags_name[6], switchtotag = true } },
+
+     { rule = { name = "pim" },
        properties = { screen = 1, tag = tags_name[6], switchtotag = true } },
 
      -- 7:com - Communication
