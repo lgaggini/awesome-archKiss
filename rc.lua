@@ -102,7 +102,7 @@ music_gui = "sonata"
 music_stream = "spotify"
 media = "smplayer"
 password_man = "qtpass"
-password = "tail -1 /home/lg/doc/dada/pass/newpass | xclip"
+password = "pass -c master"
 vm = "virtualbox"
 remote = "remmina"
 bright_down = "xbacklight -dec 10"
@@ -823,7 +823,7 @@ awful.rules.rules = {
        properties = { screen = 1, tag = tags_name[2], switchtotag = true } },
 
      { rule = { class = "QtPass" },
-       properties = { floating = true, sticky = true, ontop = true } },
+       properties = { floating = true, ontop = true } },
 
      -- 3:web Web
      { rule = { instance = "chromium" },
