@@ -94,6 +94,8 @@ email_gui = "thunderbird"
 pad = "leafpad"
 note = "zim"
 pim = terminal .. " -title pim -e tmuxp load pim"
+news = terminal .. " -title news -e tmuxp load news"
+note = terminal .. " -title note -e tmuxp load note"
 task = "lxtask"
 im = "pidgin"
 irc = "hexchat"
@@ -597,11 +599,12 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey,         },"b", function () awful.util.spawn_with_shell(browser) end), -- [b]rowser
     awful.key({ modkey,         },"f", function () awful.util.spawn_with_shell(filemanager) end), -- [f]ilemanager
     awful.key({ modkey,         },"e", function () awful.util.spawn_with_shell(editor) end), -- [e]ditor 
-    awful.key({ modkey,         },"m", function () awful.util.spawn_with_shell(email) end), -- e[mail]
+    awful.key({ modkey,         },"m", function () awful.util.spawn_with_shell(email) end), -- e[m]ail
     awful.key({ modkey,         },"s", function () awful.util.spawn_with_shell(pad) end), -- [s]cratch pad
     awful.key({ modkey,         },"n", function () awful.util.spawn_with_shell(note) end), -- [n]ote
     awful.key({ modkey,         },"c", function () awful.util.spawn_with_shell(skype) end), -- [c]hat
     awful.key({ modkey,         },"i", function () awful.util.spawn_with_shell(pim) end), -- p[i]m
+    awful.key({ modkey,         },"d", function () awful.util.spawn_with_shell(news) end), -- fee[d]
     awful.key({ modkey,         },"v", function () awful.util.spawn_with_shell(remote) end), -- [v]irtual / rdp
     awful.key({ modkey,         },"t", function () awful.util.spawn_with_shell(task) end), -- [t]ask manager
     awful.key({ modkey,         },"p", function () awful.util.spawn_with_shell(password) end), -- [p]assword
@@ -840,6 +843,9 @@ awful.rules.rules = {
      { rule = { class = "Gitg" },
        properties = { screen = 1, tag = tags_name[9], switchtotag = true } },
 
+     { rule = { name = "note" },
+       properties = { screen = 1, tag = tags_name[6], switchtotag = true } },
+
     -- 5:mail - Mail
      { rule = { class = "Thunderbird" },
         properties = { screen = 1, tag = tags_name[5], switchtotag = true } },
@@ -878,6 +884,9 @@ awful.rules.rules = {
      { rule = { name = "pim" },
        properties = { screen = 1, tag = tags_name[6], switchtotag = true } },
 
+     { rule = { name = "news" },
+       properties = { screen = screens, tag = tags_name[6], switchtotag = true } },
+
      -- 7:com - Communication
      { rule = { class = "Pidgin", role = "buddy_list" },
        properties = { screen = 1, tag = tags_name[7], switchtotag = true, floating = true },
@@ -900,7 +909,6 @@ awful.rules.rules = {
        properties = { screen = 1, tag = tags_name[7], switchtotag = true } },
 
      -- 8:ent Entertainment
-
      { rule = { class = "Smplayer" },
        properties = { screen = 1, tag = tags_name[8], switchtotag = true } },
 
@@ -920,7 +928,6 @@ awful.rules.rules = {
        properties = { screen = 1, floating = true } },
 
     -- 9:vm Virtual Machines
-
      { rule = { class = "VirtualBox" },
        properties = { screen = screens, tag = tags_name[9], switchtotag = true } },
 
