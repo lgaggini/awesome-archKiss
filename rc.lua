@@ -798,33 +798,33 @@ awful.rules.rules = {
 
     -- Set Firefox to always map on the tag named "2" on screen 1.
     -- { rule = { class = "Firefox" },
-    --   properties = { screen = 1, tag = "2" } },
+    --   properties = { screen = screens, tag = "2" } },
 
     -- 1:adm Admin
      { rule = { class = "URxvt" },
-       properties = { screen = screens, tag = tags_name[1], switchtotag = true, maximized_vertical = true, maximized_horizontal = true } },
+       properties = { screen = 1, tag = tags_name[1], switchtotag = true, maximized_vertical = true, maximized_horizontal = true } },
 
       -- 2:util Utils
      { rule = { class = "Pcmanfm" },
-       properties = { screen = 1, tag = tags_name[2], switchtotag = true } },
+       properties = { screen = screens, tag = tags_name[2], switchtotag = true } },
 
      { rule = { class = "Arandr" },
-       properties = { screen = 1, tag = tags_name[2], switchtotag = true } },
+       properties = { screen = screens, tag = tags_name[2], switchtotag = true } },
 
      { rule = { class = "Filezilla" },
-       properties = { screen = 1, tag = tags_name[2], switchtotag = true } },
+       properties = { screen = screens, tag = tags_name[2], switchtotag = true } },
 
      { rule = { class = "File-roller" },
        properties = { floating = true, tag = tags_name[2]} },
 
      { rule = { class = "Lxtask" },
-       properties = { screen = 1, tag = tags_name[2], switchtotag = true } },
+       properties = { screen = screens, tag = tags_name[2], switchtotag = true } },
 
      { rule = { class = "Wicd-client.py" },
-       properties = { screen = 1, tag = tags_name[2], switchtotag = true } },
+       properties = { screen = screens, tag = tags_name[2], switchtotag = true } },
 
      { rule = { class = "Pwsafe" },
-       properties = { screen = 1, tag = tags_name[2], switchtotag = true } },
+       properties = { screen = screens, tag = tags_name[2], switchtotag = true } },
 
      { rule = { class = "QtPass" },
        properties = { floating = true, ontop = true } },
@@ -838,58 +838,55 @@ awful.rules.rules = {
 
      -- 4:dev - Development
      { rule = { class = "Gvim" },
-       properties = { screen = screens, tag = tags_name[4], switchtotag = true } },
+       properties = { screen = 1, tag = tags_name[4], switchtotag = true } },
 
      { rule = { class = "Gitg" },
-       properties = { screen = 1, tag = tags_name[9], switchtotag = true } },
+       properties = { screen = screens, tag = tags_name[9], switchtotag = true } },
 
      { rule = { name = "note" },
-       properties = { screen = 1, tag = tags_name[6], switchtotag = true } },
+       properties = { screen = screens, tag = tags_name[6], switchtotag = true } },
 
     -- 5:mail - Mail
      { rule = { class = "Thunderbird" },
-        properties = { screen = 1, tag = tags_name[5], switchtotag = true } },
+        properties = { screen = screens, tag = tags_name[5], switchtotag = true } },
 
      { rule = { class = "Thunderbird", role = "Msgcompose" },
-        properties = { screen = 1, tag = tags_name[4], switchtotag = true } },
+        properties = { screen = screens, tag = tags_name[4], switchtotag = true } },
 
      { rule = { name = "neomutt" },
-        properties = { screen = 1, tag = tags_name[5], switchtotag = true } },
+        properties = { screen = screens, tag = tags_name[5], switchtotag = true } },
+
+     { rule = { name = "pim" },
+       properties = { screen = screens, tag = tags_name[5], switchtotag = true } },
 
      -- 6:doc - Documentation
      { rule = { name = "LibreOffice" },
-       properties = { screen = 1, tag = tags_name[6], switchtotag = true } },
+       properties = { screen = screens, tag = tags_name[6], switchtotag = true } },
 
      { rule = { class = "libreoffice-writer" },
-       properties = { screen = 1, tag = tags_name[6], switchtotag = true, floating = false } },
+       properties = { screen = screens, tag = tags_name[6], switchtotag = true, floating = false } },
 
      { rule = { class = "libreoffice-calc" },
-       properties = { screen = 1, tag = tags_name[6], switchtotag = true, floating = false } },
+       properties = { screen = screens, tag = tags_name[6], switchtotag = true, floating = false } },
 
      { rule = { class = "libreoffice-impress" },
-       properties = { screen = 1, tag = tags_name[6], switchtotag = true, floating = false } },
+       properties = { screen = screens, tag = tags_name[6], switchtotag = true, floating = false } },
 
      { rule = { class = "Zathura" },
-       properties = { screen = 1, tag = tags_name[6], switchtotag = true } },
+       properties = { screen = screens, tag = tags_name[6], switchtotag = true } },
 
      { rule = { class = "Leafpad" },
        properties = { floating = true, sticky = true, ontop = true } },
 
-     { rule = { class = "Zim" },
-       properties = { screen = 1, tag = tags_name[6], switchtotag = true } },
-
      { rule = { class = "Ristretto" },
-       properties = { screen = 1, tag = tags_name[6], switchtotag = true } },
-
-     { rule = { name = "pim" },
-       properties = { screen = 1, tag = tags_name[6], switchtotag = true } },
+       properties = { screen = screens, tag = tags_name[6], switchtotag = true } },
 
      { rule = { name = "news" },
        properties = { screen = screens, tag = tags_name[6], switchtotag = true } },
 
      -- 7:com - Communication
      { rule = { class = "Pidgin", role = "buddy_list" },
-       properties = { screen = 1, tag = tags_name[7], switchtotag = true, floating = true },
+       properties = { screen = screens, tag = tags_name[7], switchtotag = true, floating = true },
 
        callback = function( c )
         local w_area = screen[ c.screen ].workarea
@@ -900,32 +897,32 @@ awful.rules.rules = {
      },
      
      { rule = { class = "Pidgin" },
-      properties = { screen = 1, tag = tags_name[7], switchtotag = true, floating = true } },
+      properties = { screen = screens, tag = tags_name[7], switchtotag = true, floating = true } },
      
      { rule = { class = "Hexchat" },
-       properties = { screen = 1, tag = tags_name[8], switchtotag = true } },
+       properties = { screen = screens, tag = tags_name[8], switchtotag = true } },
 
     { rule = { class = "Skype" },
-       properties = { screen = 1, tag = tags_name[7], switchtotag = true } },
+       properties = { screen = screens, tag = tags_name[7], switchtotag = true } },
 
      -- 8:ent Entertainment
      { rule = { class = "Smplayer" },
-       properties = { screen = 1, tag = tags_name[8], switchtotag = true } },
+       properties = { screen = screens, tag = tags_name[8], switchtotag = true } },
 
      { rule = { class = "Sonata" },
-       properties = { screen = 1, tag = tags_name[8], switchtotag = true } },
+       properties = { screen = screens, tag = tags_name[8], switchtotag = true } },
 
      { rule = { instance = "crx_pfohnoakpeoeabclnomoejgnhakdkjbk" },
-       properties = { screen = 1, tag = tags_name[8], switchtotag = true, floating=false } },
+       properties = { screen = screens, tag = tags_name[8], switchtotag = true, floating=false } },
 
      { rule = { class = "Spotify" },
-       properties = { screen = 1, tag = tags_name[8], switchtotag = true } },
+       properties = { screen = screens, tag = tags_name[8], switchtotag = true } },
 
      { rule = { name = "ncmpc" },
-       properties = { screen = 1, tag = tags_name[8], switchtotag = true } },
+       properties = { screen = screens, tag = tags_name[8], switchtotag = true } },
 
      { rule = { class = "Deadbeef" },
-       properties = { screen = 1, floating = true } },
+       properties = { screen = screens, floating = true } },
 
     -- 9:vm Virtual Machines
      { rule = { class = "VirtualBox" },
@@ -935,7 +932,7 @@ awful.rules.rules = {
        properties = { screen = screens, tag = tags_name[9], switchtotag = true, maximized_vertical = true, maximized_horizontal = true } },
 
      { rule = { class = "sun-applet-PluginMain" },
-       properties = { screen = 1, tag = tags_name[9], switchtotag = true } },
+       properties = { screen = screens, tag = tags_name[9], switchtotag = true } },
 }
 
 
