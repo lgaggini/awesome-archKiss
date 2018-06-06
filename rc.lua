@@ -55,13 +55,13 @@ do
 beautiful.init("/home/lg/.config/awesome/themes/kiss/theme_default.lua")
 
 -- User / hostname info
-user_hostname = false
+user_hostname = true
 
 -- Kernel version monitoring
 kernel_mon = true
 
 -- Uptime
-uptime = false
+uptime = true
 
 -- Nic interfaces to monitor, fifo
 nics = {"enp0s25", "wlo1"}
@@ -82,7 +82,7 @@ mounts = " /: ${/ used_p}% ~: ${/home used_p}%"
 full_cal = true
 
 -- Enable mpd bar
-mpd = false
+mpd = true
 
 -- This is used later as the default applications to run.
 terminal = "urxvt"
@@ -430,12 +430,9 @@ end
 screen.connect_signal("property::geometry", set_wallpaper)
 
 -- Screens number
-screens=0
+screens=screen:count()
 
 awful.screen.connect_for_each_screen(function(s)
-
-    -- Increment screens number
-    screens=screens+1
 
     -- Wallpaper
     set_wallpaper(s)
@@ -477,14 +474,12 @@ awful.screen.connect_for_each_screen(function(s)
         s.mytasklist, -- Middle widget
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
-            hosticon,
-            hostwidget,
-            osicon,
-            oswidget,
-            mpdicon,
-            mpdwidget,
-            upicon,
-            upwidget,
+            screens == 2 and s.index == 1 and user_hostname and hosticon,
+            screens == 2 and s.index == 1 and user_hostname and hostwidget,
+            s.index == 1 and osicon,
+            s.index == 1 and oswidget,
+            screens == 2 and s.index == 1 and uptime and upicon,
+            screens == 2 and s.index == 1 and uptime and upwidget,
             cpuicon,
             cpuwidget,
             ramicon,
@@ -497,17 +492,23 @@ awful.screen.connect_for_each_screen(function(s)
             netwidget,
             batteryicon,
             batterywidget,
-            calicon,
-            mytextday,
+            screens == 1 and calicon,
+            screens == 2 and s.index == 2 and calicon,
+            screens == 1 and mytextday,
+            screens == 2 and s.index == 2 and mytextday,
             s.index == 2 and full_cal and calwidget,
             s.index == 2 and not full_cal and mytextdaynumber,
-            s.index == 1 and mytextdaynumber,
-            mytextmonthandyear,
+            screens == 1 and mytextdaynumber,
+            screens == 1 and mytextmonthandyear,
+            screens == 2 and s.index == 2 and mytextmonthandyear,
             mdiricon,
             mdirwidget,
-            screens = 2 and s.index == 2 and mysystray:set_screen(s),
+            screens == 2 and s.index == 1 and mpd and mpdicon,
+            screens == 2 and s.index == 1 and mpd and mpdwidget,
+            screens == 2 and s.index == 2 and mysystray:set_screen(s),
             mysystray,
-            mytextclock,
+            screens == 1 and mytextclock,
+            screens == 2 and s.index == 2 and mytextclock,
             s.mylayoutbox,
         },
     }
