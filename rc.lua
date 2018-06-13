@@ -110,6 +110,7 @@ vm = "virtualbox"
 remote = "remmina"
 bright_down = "xbacklight -dec 10"
 bright_up = "xbacklight -inc 10"
+audio_toggle = "mpc toggle"
 lock = "xflock4"
 poweroff = "sudo poweroff"
 reboot = "sudo reboot"
@@ -565,6 +566,7 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey,           }, "Return", function () awful.util.spawn(terminal) end),
     awful.key({                   }, "XF86MonBrightnessDown", function () awful.util.spawn_with_shell(bright_down) end),
     awful.key({                   }, "XF86MonBrightnessUp",   function () awful.util.spawn_with_shell(bright_up) end),
+    awful.key({ modkey, "Shift"   }, "p", function () awful.util.spawn_with_shell(audio_toggle) end),
     awful.key({ modkey, "Control" }, "r", awesome.restart),
     awful.key({ modkey, "Shift"   }, "q", awesome.quit),
 
