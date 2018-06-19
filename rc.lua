@@ -87,7 +87,6 @@ mpd = true
 -- This is used later as the default applications to run.
 terminal = "urxvt"
 browser = "chromium --password-store=gnome"
-filemanager = "pcmanfm"
 editor = "gvim"
 email = terminal .. " -e neomutt"
 email_gui = "thunderbird"
@@ -95,6 +94,7 @@ pad = "leafpad"
 pim = terminal .. " -title pim -e tmuxp load pim"
 news = terminal .. " -title news -e tmuxp load news"
 note = terminal .. " -title note -e tmuxp load note"
+filemanager = terminal .. " -e ranger"
 task = "lxtask"
 im = "pidgin"
 irc = "hexchat"
@@ -807,6 +807,9 @@ awful.rules.rules = {
 
       -- 2:util Utils
      { rule = { class = "Pcmanfm" },
+       properties = { screen = screens, tag = tags_name[2], switchtotag = true } },
+
+     { rule = { name = "ranger" },
        properties = { screen = screens, tag = tags_name[2], switchtotag = true } },
 
      { rule = { class = "Arandr" },
