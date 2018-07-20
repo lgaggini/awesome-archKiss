@@ -97,7 +97,7 @@ note = terminal .. " -title note -e tmuxp load note"
 filemanager = terminal .. " -e ranger"
 task = "lxtask"
 im = "pidgin"
-irc = "hexchat"
+irc = terminal .. " -title irc -e weechat"
 skype = "skypeforlinux"
 music = terminal .. " -e ncmpc"
 music_stream = "spotify"
@@ -604,6 +604,7 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey,         },"s", function () awful.util.spawn_with_shell(pad) end), -- [s]cratch pad
     awful.key({ modkey,         },"n", function () awful.util.spawn_with_shell(note) end), -- [n]ote
     awful.key({ modkey,         },"c", function () awful.util.spawn_with_shell(skype) end), -- [c]hat
+    awful.key({ modkey,         },"k", function () awful.util.spawn_with_shell(irc) end), -- ir[k]
     awful.key({ modkey,         },"i", function () awful.util.spawn_with_shell(pim) end), -- p[i]m
     awful.key({ modkey,         },"d", function () awful.util.spawn_with_shell(news) end), -- fee[d]
     awful.key({ modkey,         },"v", function () awful.util.spawn_with_shell(remote) end), -- [v]irtual / rdp
@@ -903,8 +904,8 @@ awful.rules.rules = {
      { rule = { class = "Pidgin" },
       properties = { screen = screens, tag = tags_name[7], switchtotag = true, floating = true } },
      
-     { rule = { class = "Hexchat" },
-       properties = { screen = screens, tag = tags_name[8], switchtotag = true } },
+     { rule = { name = "irc" },
+       properties = { screen = screens, tag = tags_name[7], switchtotag = true } },
 
     { rule = { class = "Skype" },
        properties = { screen = screens, tag = tags_name[7], switchtotag = true } },
