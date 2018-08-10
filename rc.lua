@@ -806,7 +806,7 @@ awful.rules.rules = {
      { rule = { class = "URxvt" },
        properties = { screen = 1, tag = tags_name[1], switchtotag = true, maximized_vertical = true, maximized_horizontal = true } },
 
-     { rule = { class = "Wireshark-gtk" },
+     { rule = { class = "Wireshark" },
        properties = { screen = screens, tag = tags_name[1], switchtotag = true, maximized_vertical = true, maximized_horizontal = true } },
 
       -- 2:util Utils
