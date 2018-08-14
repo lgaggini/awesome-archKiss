@@ -603,7 +603,7 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey,         },"m", function () awful.util.spawn_with_shell(email) end), -- e[m]ail
     awful.key({ modkey,         },"s", function () awful.util.spawn_with_shell(pad) end), -- [s]cratch pad
     awful.key({ modkey,         },"n", function () awful.util.spawn_with_shell(note) end), -- [n]ote
-    awful.key({ modkey,         },"c", function () awful.util.spawn_with_shell(skype) end), -- [c]hat
+    awful.key({ modkey,         },"c", function () awful.util.spawn_with_shell(im) end), -- [c]hat
     awful.key({ modkey,         },"k", function () awful.util.spawn_with_shell(irc) end), -- ir[k]
     awful.key({ modkey,         },"i", function () awful.util.spawn_with_shell(pim) end), -- p[i]m
     awful.key({ modkey,         },"d", function () awful.util.spawn_with_shell(news) end), -- fee[d]
@@ -894,18 +894,23 @@ awful.rules.rules = {
 
      -- 7:com - Communication
      { rule = { class = "Pidgin", role = "buddy_list" },
-       properties = { screen = screens, tag = tags_name[7], switchtotag = true, floating = true },
+       properties = { screen = screens, tag = tags_name[7], switchtotag = true, floating = true, maximized_vertical = truee },
 
        callback = function( c )
-        local w_area = screen[ c.screen ].workarea
         local strutwidth = 200
-        c:struts( { right = strutwidth } )
-        c:geometry( { x = w_area.width, width = strutwidth, y = w_area.y, height = w_area.height - 20 } )
+        local w_area = screen[ c.screen ].workarea
+        local cl_strut = c:struts()
+        if c:isvisible() and cl_strut ~= nil and cl_strut.left > 0 then 
+            c:geometry( { x= w_area.x - cl_strut.left, y = w_area.y, width=cl_strut.left } )
+        else
+            c:struts( { left = strutwidth, right=0 } )
+            c:geometry({x = w_area.x, y = w_area.y, width = strutwidth})
+        end
     end
      },
      
      { rule = { class = "Pidgin" },
-      properties = { screen = screens, tag = tags_name[7], switchtotag = true, floating = true } },
+      properties = { screen = screens, tag = tags_name[7], switchtotag = true, floating = true} },
      
      { rule = { name = "irc" },
        properties = { screen = screens, tag = tags_name[7], switchtotag = true } },
