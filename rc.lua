@@ -894,7 +894,7 @@ awful.rules.rules = {
 
      -- 7:com - Communication
      { rule = { class = "Pidgin", role = "buddy_list" },
-       properties = { screen = screens, tag = tags_name[7], switchtotag = true, floating = true, maximized_vertical = truee },
+       properties = { screen = screens, tag = tags_name[7], switchtotag = true, floating = true, maximized = false },
 
        callback = function( c )
         local strutwidth = 200
@@ -906,11 +906,11 @@ awful.rules.rules = {
             c:struts( { left = strutwidth, right=0 } )
             c:geometry({x = w_area.x, y = w_area.y, width = strutwidth})
         end
-    end
+       end
      },
      
-     { rule = { class = "Pidgin" },
-      properties = { screen = screens, tag = tags_name[7], switchtotag = true, floating = true} },
+     { rule = { class = "Pidgin", role = "conversation" },
+      properties = { screen = screens, tag = tags_name[7], switchtotag = true, floating = true, maximized = true } },
      
      { rule = { name = "irc" },
        properties = { screen = screens, tag = tags_name[7], switchtotag = true } },
