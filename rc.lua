@@ -324,7 +324,7 @@ if mpd then
             return ""
         elseif args["{state}"] == "Play" then
             mpdicon.visible = true
-            return  args["{Artist}"] .. " - " .. args["{Title}"] .. " "
+            return  args["{Artist}"] .. " - " .. args["{Title}"] .. " " .. args["{Progress}"]
         elseif args["{state}"] == "Pause" then
             mpdicon.visible = true
             return "paused "
