@@ -100,6 +100,7 @@ im = "pidgin"
 irc = terminal .. " -title irc -e weechat"
 skype = "skypeforlinux"
 music = terminal .. " -e ncmpc"
+music_toggle = "mpc toggle"
 music_stream = "spotify"
 media = "smplayer"
 password_man = "qtpass"
@@ -333,7 +334,7 @@ if mpd then
 
     -- Create a mpd button
     mpdbuttons = awful.util.table.join(
-    awful.button({ }, 1, function () awful.util.spawn(music_cmd) end)
+    awful.button({ }, 1, function () awful.util.spawn_with_shell(music_toggle) end)
     )
     mpdicon:buttons(mpdbuttons)
     mpdwidget:buttons(mpdbuttons)
