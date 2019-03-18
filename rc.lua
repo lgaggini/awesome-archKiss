@@ -918,6 +918,9 @@ awful.rules.rules = {
     { rule = { class = "Skype" },
        properties = { screen = screens, tag = tags_name[7], switchtotag = true } },
 
+    { rule = { instance = "crx_oliclofkahmgfbchdnaelnmcohjmceic" },
+       properties = { screen = screens, tag = tags_name[7], switchtotag = true, floating=false } },
+
      -- 8:ent Entertainment
      { rule = { class = "Smplayer" },
        properties = { screen = screens, tag = tags_name[8], switchtotag = true } },
