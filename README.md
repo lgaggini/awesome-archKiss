@@ -97,4 +97,4 @@ https://creativecommons.org/licenses/by-sa/3.0/
 * Titlebar icons: zenburn awesome theme by Adrian C. (anrxc)
 * Layout icons: grey-new awesome theme by Andreas Persson (greyscale, grey)
 * Widget icons: sunjack awesome theme by ?
-* Screenshoot wallpaper: [Arch Linux by mokkujin](https://mokkujin.deviantart.com/art/Arch-Linux-Wallpaper-213394680)
+* Screenshoot wallpaper: [Canada dark road](https://wallhere.com/en/wallpaper/684823)
