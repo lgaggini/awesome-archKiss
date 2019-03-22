@@ -5,7 +5,7 @@
 ## README
 This is my theme and configuration file for Awesome 4.x WM inspired by Archlinux dark colors and KISS (Keep it simple stupid) philosophy. 
 It uses icons from other [great awesome themes](https://github.com/mikar/awesome-themes) (see credits for details).
-I using it with GTK [vertex-theme dark](https://github.com/horst3180/vertex-theme) theme available for GTK 3 and GTK 2.
+I using it with GTK adawaita dark theme available for GTK 3 and GTK 2 (and now included in default GTK).
 Recently introcuded some great ideas from [awesome-copycats](https://github.com/copycat-killer/awesome-copycats).
 
 ## CONFIGURATION
@@ -51,26 +51,37 @@ full_cal = true
 -- Enable mpd bar
 mpd = true
 
+-- Enable spotify bar
+spotify = true
+
 -- This is used later as the default applications to run.
 terminal = "urxvt"
 browser = "chromium --password-store=gnome"
-filemanager = "pcmanfm"
 editor = "gvim"
-email = "thunderbird"
+email = terminal .. " -e neomutt"
+email_gui = "thunderbird"
 pad = "leafpad"
-note = "zim"
+pim = terminal .. " -title pim -e tmuxp load pim"
+news = terminal .. " -title news -e tmuxp load news"
+note = terminal .. " -title note -e tmuxp load note"
+filemanager = terminal .. " -e ranger"
 task = "lxtask"
-jabber = "pidgin"
-irc = "hexchat"
+im = "pidgin"
+irc = terminal .. " -title irc -e weechat"
 skype = "skypeforlinux"
-music = "spotify"
+music = terminal .. " -e ncmpc"
+music_toggle = "mpc toggle"
+music_stream = "spotify"
+music_stream_toggle = "sp play"
+music_stream_data = "sp current-oneline"
 media = "smplayer"
 password_man = "qtpass"
-password = "tail -1 /home/lg/doc/dada/pass/newpass | xclip"
+password = "pass -c master"
 vm = "virtualbox"
 remote = "remmina"
 bright_down = "xbacklight -dec 10"
 bright_up = "xbacklight -inc 10"
+audio_toggle = "mpc toggle"
 lock = "xflock4"
 poweroff = "sudo poweroff"
 reboot = "sudo reboot"

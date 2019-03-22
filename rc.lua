@@ -84,6 +84,9 @@ full_cal = true
 -- Enable mpd bar
 mpd = true
 
+-- Enable spotify bar
+spotify = true
+
 -- This is used later as the default applications to run.
 terminal = "urxvt"
 browser = "chromium --password-store=gnome"
@@ -102,6 +105,8 @@ skype = "skypeforlinux"
 music = terminal .. " -e ncmpc"
 music_toggle = "mpc toggle"
 music_stream = "spotify"
+music_stream_toggle = "sp play"
+music_stream_data = "sp current-oneline"
 media = "smplayer"
 password_man = "qtpass"
 password = "pass -c master"
@@ -342,6 +347,43 @@ if mpd then
     mpdwidget:buttons(mpdbuttons)
 end
 
+
+-- Create a spotify widget (https://github.com/streetturtle/awesome-wm-widgets/tree/master/spotify-widget)
+if spotify then
+    spotifyicon = wibox.widget.imagebox()
+    spotifyicon:set_image(beautiful.music)
+    spotifywidget = awful.widget.watch(music_stream_data, 5,
+        function(widget, stdout)
+            if string.find(stdout, "Error: Spotify is not running.") ~= nil then
+                spotifyicon:set_visible(false)
+                widget:set_visible(false)
+            else
+                spotifyicon:set_visible(true)
+                widget:set_visible(true)
+                split = {}
+                for substr in string.gmatch(stdout, "[^|]*") do
+                    if substr ~= nil and string.len(substr) > 0 then
+                        table.insert(split,substr)
+                    end
+                end
+                if  split[1] == "Paused" then
+                    spotifyicon:set_image(beautiful.music_pause)
+                elseif split[1] == "Playing" then
+                    spotifyicon:set_image(beautiful.music)
+                end
+                widget:set_text(split[2])
+            end
+        end)
+
+    -- Create a spotify button
+    spotifybuttons = awful.util.table.join(
+    awful.button({ }, 1, function () awful.util.spawn_with_shell(music_stream_toggle) end)
+    )
+    spotifyicon:buttons(spotifybuttons)
+    spotifywidget:buttons(spotifybuttons)
+end
+
+
 -- Create a maildir widget
 if mail_mon then
     mdiricon = wibox.widget.imagebox()
@@ -507,6 +549,8 @@ awful.screen.connect_for_each_screen(function(s)
             mdirwidget,
             (screens == 1 or screens == 2) and s.index == 1 and s.geometry.width >= 1920 and mpd and mpdicon,
             (screens == 1 or screens == 2) and s.index == 1 and s.geometry.width >= 1920 and mpd and mpdwidget,
+            (screens == 1 or screens == 2) and s.index == 1 and s.geometry.width >= 1920 and spotify and spotifyicon,
+            (screens == 1 or screens == 2) and s.index == 1 and s.geometry.width >= 1920 and spotify and spotifywidget,
             screens == 2 and s.index == 2 and mysystray:set_screen(s),
             mysystray,
             screens == 1 and mytextclock,
