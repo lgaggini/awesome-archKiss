@@ -122,6 +122,7 @@ theme.layout_dwindle = layoutdir .. "/dwindle.png"
 -- Widget icons
 theme.os = icondir  .. "/os.png"
 theme.music = icondir .. "/music.png"
+theme.music_pause = icondir .. "/music_pause.png"
 theme.mail = icondir .. "/mail.png"
 theme.bat = icondir .. "/bat.png"
 theme.uptime = icondir  .. "/uptime.png"
