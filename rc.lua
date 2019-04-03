@@ -331,11 +331,11 @@ if mpd then
         elseif args["{state}"] == "Play" then
             mpdicon.visible = true
             mpdicon:set_image(beautiful.music)
-            return  args["{Artist}"] .. " - " .. args["{Title}"] .. " " .. args["{Progress}"]
+            return args["{Artist}"] .. " - " .. args["{Title}"] .. " " .. args["{Elapsed}"] .. " " .. args["{Progress}"]
         elseif args["{state}"] == "Pause" then
             mpdicon.visible = true
             mpdicon:set_image(beautiful.music_pause)
-            return  args["{Artist}"] .. " - " .. args["{Title}"] .. " " .. args["{Progress}"]
+            return args["{Artist}"] .. " - " .. args["{Title}"] .. " " .. args["{Elapsed}"] .. " " .. args["{Progress}"]
         end
         end)
 
