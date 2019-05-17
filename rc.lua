@@ -102,6 +102,7 @@ task = "lxtask"
 im = "pidgin"
 irc = terminal .. " -title irc -e weechat"
 skype = "skypeforlinux"
+teams = "teams"
 music = terminal .. " -e ncmpc"
 music_toggle = "mpc toggle"
 music_stream = "spotify"
@@ -650,7 +651,7 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey,         },"m", function () awful.util.spawn_with_shell(email) end), -- e[m]ail
     awful.key({ modkey,         },"s", function () awful.util.spawn_with_shell(pad) end), -- [s]cratch pad
     awful.key({ modkey,         },"n", function () awful.util.spawn_with_shell(note) end), -- [n]ote
-    awful.key({ modkey,         },"c", function () awful.util.spawn_with_shell(im) end), -- [c]hat
+    awful.key({ modkey,         },"c", function () awful.util.spawn_with_shell(teams) end), -- [c]hat
     awful.key({ modkey,         },"k", function () awful.util.spawn_with_shell(irc) end), -- ir[k]
     awful.key({ modkey,         },"i", function () awful.util.spawn_with_shell(pim) end), -- p[i]m
     awful.key({ modkey,         },"d", function () awful.util.spawn_with_shell(news) end), -- fee[d]
