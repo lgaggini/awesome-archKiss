@@ -87,11 +87,6 @@ poweroff = "sudo poweroff"
 reboot = "sudo reboot"
 ```
 
-## LICENSE
-Feel free to use, fork, modify and share it as you want.
-Creative Commons Attribution-ShareAlike 3.0 Unported (CC BY-SA 3.0)
-https://creativecommons.org/licenses/by-sa/3.0/
-
 ## CREDITS
 * Taglists squares: dust awesome theme by tdy
 * Titlebar icons: zenburn awesome theme by Adrian C. (anrxc)
