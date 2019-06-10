@@ -101,7 +101,6 @@ filemanager = terminal .. " -e ranger"
 task = "lxtask"
 im = "pidgin"
 irc = terminal .. " -title irc -e weechat"
-skype = "skypeforlinux"
 teams = "teams"
 music = terminal .. " -e ncmpc"
 music_toggle = "mpc toggle"
@@ -961,9 +960,6 @@ awful.rules.rules = {
       properties = { screen = screens, tag = tags_name[7], switchtotag = true, floating = true, maximized = true } },
      
      { rule = { name = "irc" },
-       properties = { screen = screens, tag = tags_name[7], switchtotag = true } },
-
-    { rule = { class = "Skype" },
        properties = { screen = screens, tag = tags_name[7], switchtotag = true } },
 
     { rule = { instance = "crx_oliclofkahmgfbchdnaelnmcohjmceic" },
