@@ -228,7 +228,7 @@ menubar.utils.terminal = terminal -- Set the terminal for applications that requ
 -- {{{ Wibox
 -- Create a textclock widget
 mytextclock = awful.widget.textclock("%H:%M ")
-mytextmonthandyear = awful.widget.textclock("%B %Y ")
+mytextmonthandyear = awful.widget.textclock("%B %Y")
 mytextday = awful.widget.textclock("%A ")
 mytextdaynumber = awful.widget.textclock("%d ")
 
@@ -534,8 +534,6 @@ awful.screen.connect_for_each_screen(function(s)
             fswidget,
             neticon,
             netwidget,
-            batteryicon,
-            batterywidget,
             screens == 1 and calicon,
             screens == 2 and s.index == 2 and calicon,
             screens == 1 and mytextday,
@@ -551,6 +549,8 @@ awful.screen.connect_for_each_screen(function(s)
             (screens == 1 or screens == 2) and s.index == 1 and s.geometry.width >= 1920 and mpd and mpdwidget,
             (screens == 1 or screens == 2) and s.index == 1 and s.geometry.width >= 1920 and spotify and spotifyicon,
             (screens == 1 or screens == 2) and s.index == 1 and s.geometry.width >= 1920 and spotify and spotifywidget,
+            batteryicon,
+            batterywidget,
             screens == 2 and s.index == 2 and mysystray:set_screen(s),
             mysystray,
             screens == 1 and mytextclock,
