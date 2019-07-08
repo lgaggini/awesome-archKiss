@@ -192,7 +192,7 @@ os.execute("find " .. beautiful.wallpaper_dir .. " -type f -print0 | shuf -n1 -z
 
 -- {{{ Tags
 -- Define a tag table which hold all screen tags.
-tags_name = { "♕", "⚒", "ℹ", "✎", "✉", "✍", "✆", "♫","☢"}
+tags_name = { "", "", "", "", "", "", "", "",""}
 
 -- {{{ Menu
 -- Create a laucher widget and a main menu
