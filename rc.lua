@@ -312,7 +312,7 @@ vicious.register(netwidget, vicious.widgets.net,
                 then
                     upload_index = "{" .. nic .. " up_kb}"
                     download_index = "{" .. nic .. " down_kb}"
-                    return args[upload_index] .. "kb/" .. args[download_index] .. "kb"
+                    return args[upload_index] .. "kb/" .. args[download_index] .. "kb "
             end
         end
         return "no network"
