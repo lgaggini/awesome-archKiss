@@ -115,7 +115,7 @@ remote = "remmina"
 bright_down = "xbacklight -dec 10"
 bright_up = "xbacklight -inc 10"
 audio_toggle = "mpc toggle"
-lock = "xflock4"
+lock = "i3lock-fancy"
 poweroff = "sudo poweroff"
 reboot = "sudo reboot"
 
