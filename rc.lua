@@ -107,7 +107,7 @@ music_toggle = "mpc toggle"
 music_stream = "spotify"
 music_stream_toggle = "sp play"
 music_stream_data = "sp current-oneline"
-media = "smplayer"
+media = "mpv"
 password_man = "qtpass"
 password = "pass -c master"
 vm = "virtualbox"
@@ -846,10 +846,6 @@ awful.rules.rules = {
         }
       }, properties = { floating = true }},
 
-    -- Set Firefox to always map on the tag named "2" on screen 1.
-    -- { rule = { class = "Firefox" },
-    --   properties = { screen = screens, tag = "2" } },
-
     -- 1:adm Admin
      { rule = { class = "URxvt" },
        properties = { screen = 1, tag = tags_name[1], switchtotag = true, maximized_vertical = true, maximized_horizontal = true } },
@@ -879,16 +875,10 @@ awful.rules.rules = {
      { rule = { class = "Wicd-client.py" },
        properties = { screen = screens, tag = tags_name[2], switchtotag = true } },
 
-     { rule = { class = "Pwsafe" },
-       properties = { screen = screens, tag = tags_name[2], switchtotag = true } },
-
      { rule = { class = "QtPass" },
        properties = { floating = true, ontop = true } },
 
      -- 3:web Web
-     { rule = { instance = "chromium" },
-       properties = { screen = screens, tag = tags_name[3], switchtotag = true, floating = false } },
-
      { rule = { class = "Firefox" },
        properties = { screen = screens, tag = tags_name[3], switchtotag = true, floating = false } },
 
@@ -963,27 +953,15 @@ awful.rules.rules = {
      { rule = { name = "irc" },
        properties = { screen = screens, tag = tags_name[7], switchtotag = true } },
 
-    { rule = { instance = "crx_oliclofkahmgfbchdnaelnmcohjmceic" },
-       properties = { screen = screens, tag = tags_name[7], switchtotag = true, floating=false } },
-
      -- 8:ent Entertainment
-     { rule = { class = "Smplayer" },
+     { rule = { class = "mpv" },
        properties = { screen = screens, tag = tags_name[8], switchtotag = true } },
-
-     { rule = { class = "Sonata" },
-       properties = { screen = screens, tag = tags_name[8], switchtotag = true } },
-
-     { rule = { instance = "crx_pfohnoakpeoeabclnomoejgnhakdkjbk" },
-       properties = { screen = screens, tag = tags_name[8], switchtotag = true, floating=false } },
 
      { rule = { class = "Spotify" },
        properties = { screen = screens, tag = tags_name[8], switchtotag = true } },
 
      { rule = { name = "ncmpc" },
        properties = { screen = screens, tag = tags_name[8], switchtotag = true } },
-
-     { rule = { class = "Deadbeef" },
-       properties = { screen = screens, floating = true } },
 
     -- 9:vm Virtual Machines
      { rule = { class = "VirtualBox" },
