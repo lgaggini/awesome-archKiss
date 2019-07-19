@@ -64,7 +64,7 @@ kernel_mon = true
 uptime = true
 
 -- Nic interfaces to monitor, fifo
-nics = {"enp0s25", "wlo1"}
+nics = {"enp0s31f6", "wlp1s0"}
 
 -- Maildir monitor, false or maildir location
 mail_mon = false
