@@ -76,7 +76,7 @@ hwmonitor = true
 laptop = true
 
 -- Mountpoint(s) to monitor
-mounts = " /: ${/ used_p}% ~: ${/home used_p}%"
+mounts = " /: ${/ used_p}%"
 
 -- Enable full calendar on 2nd monitor
 full_cal = true
