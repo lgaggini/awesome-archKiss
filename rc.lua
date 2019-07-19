@@ -108,10 +108,12 @@ music_stream = "spotify"
 music_stream_toggle = "sp play"
 music_stream_data = "sp current-oneline"
 media = "mpv"
-password_man = "qtpass"
-password = "pass -c master"
+--password = "pass -c master"
+password = "rofi-pass"
 vm = "virtualbox"
 remote = "remmina"
+runner = "rofi -show run"
+wswitcher = "rofi -show window"
 bright_down = "xbacklight -dec 10"
 bright_up = "xbacklight -inc 10"
 audio_toggle = "mpc toggle"
@@ -593,13 +595,14 @@ globalkeys = awful.util.table.join(
     awful.key({ altkey, "Shift"   }, "j", function () awful.client.swap.byidx(  1)    end),
     awful.key({ altkey, "Shift"   }, "k", function () awful.client.swap.byidx( -1)    end),
     awful.key({ altkey,           }, "u", awful.client.urgent.jumpto),
-    awful.key({ altkey,           }, "Tab",
-        function ()
-            awful.client.focus.history.previous()
-            if client.focus then
-                client.focus:raise()
-            end
-        end),
+    --awful.key({ altkey,           }, "Tab",
+        --function ()
+            --awful.client.focus.history.previous()
+            --if client.focus then
+                --client.focus:raise()
+            --end
+        --end),
+    awful.key({ altkey,           }, "Tab", function () awful.util.spawn_with_shell(wswitcher) end),
 
     awful.key({ altkey, "Shift"   }, "Tab",
         function()
@@ -626,8 +629,8 @@ globalkeys = awful.util.table.join(
     awful.key({ altkey, "Control" }, "r", awful.client.restore),
 
     -- Prompt
-    awful.key({ modkey },            "r",     function () awful.screen.focused().mypromptbox:run() end,
-              {description = "run prompt", group = "launcher"}),
+    --awful.key({ modkey },            "r",     function () awful.screen.focused().mypromptbox:run() end,
+              --{description = "run prompt", group = "launcher"}),
 
     awful.key({ modkey }, "l",
               function ()
@@ -658,8 +661,8 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey,         },"v", function () awful.util.spawn_with_shell(remote) end), -- [v]irtual / rdp
     awful.key({ modkey,         },"t", function () awful.util.spawn_with_shell(task) end), -- [t]ask manager
     awful.key({ modkey,         },"p", function () awful.util.spawn_with_shell(password) end), -- [p]assword
-    awful.key({ modkey,         },"q", function () awful.util.spawn_with_shell(password_man) end), -- [q]t-pass 
     awful.key({ modkey,         },"a", function () awful.util.spawn_with_shell(music) end), -- [a]udio
+    awful.key({ modkey,         },"r", function () awful.util.spawn_with_shell(runner) end), -- [r]unner
     awful.key({ modkey, "Shift" },"l", function () awful.util.spawn_with_shell(lock) end) -- [l]ock
 )
 
