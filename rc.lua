@@ -89,7 +89,7 @@ spotify = true
 
 -- This is used later as the default applications to run.
 terminal = "urxvt"
-browser = "chromium --password-store=gnome"
+browser = "firefox"
 editor = "gvim"
 email = terminal .. " -e neomutt"
 email_gui = "thunderbird"
@@ -192,7 +192,7 @@ os.execute("find " .. beautiful.wallpaper_dir .. " -type f -print0 | shuf -n1 -z
 
 -- {{{ Tags
 -- Define a tag table which hold all screen tags.
-tags_name = { "", "", "", "", "", "", "", "🎶",""}
+tags_name = { "", "", "", "", "", "", "", "🎶",""}
 
 -- {{{ Menu
 -- Create a laucher widget and a main menu
