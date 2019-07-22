@@ -102,7 +102,7 @@ task = "lxtask"
 im = "pidgin"
 irc = terminal .. " -title irc -e weechat"
 teams = "teams"
-music = terminal .. " -e ncmpc"
+music = terminal .. " -e ncmpcpp"
 music_toggle = "mpc toggle"
 music_stream = "spotify"
 music_stream_toggle = "sp play"
@@ -963,7 +963,7 @@ awful.rules.rules = {
      { rule = { class = "Spotify" },
        properties = { screen = screens, tag = tags_name[8], switchtotag = true } },
 
-     { rule = { name = "ncmpc" },
+     { rule = { name = "ncmpcpp" },
        properties = { screen = screens, tag = tags_name[8], switchtotag = true } },
 
     -- 9:vm Virtual Machines
