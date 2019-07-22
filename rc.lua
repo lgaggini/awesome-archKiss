@@ -882,7 +882,7 @@ awful.rules.rules = {
        properties = { floating = true, ontop = true } },
 
      -- 3:web Web
-     { rule = { class = "Firefox" },
+     { rule = { class = "firefox" },
        properties = { screen = screens, tag = tags_name[3], switchtotag = true, floating = false } },
 
      -- 4:dev - Development
