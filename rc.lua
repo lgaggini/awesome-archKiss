@@ -881,6 +881,9 @@ awful.rules.rules = {
      { rule = { class = "QtPass" },
        properties = { floating = true, ontop = true } },
 
+     { rule = { class = "System-config-printer.py" },
+       properties = { screen = screens, tag = tags_name[2], switchtotag = true } },
+
      -- 3:web Web
      { rule = { class = "firefox" },
        properties = { screen = screens, tag = tags_name[3], switchtotag = true, floating = false } },
