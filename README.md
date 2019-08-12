@@ -89,4 +89,4 @@ reboot = "sudo reboot"
 * Titlebar icons: zenburn awesome theme by Adrian C. (anrxc)
 * Layout icons: grey-new awesome theme by Andreas Persson (greyscale, grey)
 * Widget icons: sunjack awesome theme by ?
-* Screenshoot wallpaper: [Canada dark road](https://wallhere.com/en/wallpaper/684823)
+* Screenshoot wallpaper: [Archlinux wallpaper by giancarlo64](https://www.deviantart.com/giancarlo64/art/ArchLinux-Wallpaper-360078960)
