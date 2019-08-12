@@ -5,7 +5,7 @@ It uses icons from other [great awesome themes](https://github.com/mikar/awesome
 I using it with GTK adawaita dark theme available for GTK 3 and GTK 2 (and now included in default GTK).
 Recently introcuded some great ideas from [awesome-copycats](https://github.com/copycat-killer/awesome-copycats).
 
-## CONFIGURATION
+## Configuration
 
 I have some variable to control what to show in the panel bar on top, you can customize as you wish.
 I have also some variable to control what default applications to use. In the configuratio the default applications labels are used instead of program name,
@@ -84,7 +84,11 @@ poweroff = "sudo poweroff"
 reboot = "sudo reboot"
 ```
 
-## CREDITS
+# Screenshoot
+
+![archKiss](archKiss.png)
+
+## Credits
 * Taglists squares: dust awesome theme by tdy
 * Titlebar icons: zenburn awesome theme by Adrian C. (anrxc)
 * Layout icons: grey-new awesome theme by Andreas Persson (greyscale, grey)
