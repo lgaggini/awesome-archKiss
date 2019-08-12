@@ -84,7 +84,7 @@ poweroff = "sudo poweroff"
 reboot = "sudo reboot"
 ```
 
-# Screenshoot
+## Screenshoot
 
 ![archKiss](archKiss.png)
 
