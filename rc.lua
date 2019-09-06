@@ -110,6 +110,7 @@ music_stream_data = "sp current-oneline"
 media = "mpv"
 --password = "pass -c master"
 password = "rofi-pass"
+clipboard = "rofi -modi \"clipboard:greenclip print\" -show clipboard -run-command '{cmd}'; xdotool type --clearmodifiers $(xclip -o -selection clipboard)"
 vm = "virtualbox"
 remote = "remmina"
 runner = "rofi -show run"
@@ -661,6 +662,7 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey,         },"v", function () awful.util.spawn_with_shell(remote) end), -- [v]irtual / rdp
     awful.key({ modkey,         },"t", function () awful.util.spawn_with_shell(task) end), -- [t]ask manager
     awful.key({ modkey,         },"p", function () awful.util.spawn_with_shell(password) end), -- [p]assword
+    awful.key({ modkey,         },"h", function () awful.util.spawn_with_shell(clipboard) end), -- clipboard [h]istory
     awful.key({ modkey,         },"a", function () awful.util.spawn_with_shell(music) end), -- [a]udio
     awful.key({ modkey,         },"r", function () awful.util.spawn_with_shell(runner) end), -- [r]unner
     awful.key({ modkey, "Shift" },"l", function () awful.util.spawn_with_shell(lock) end) -- [l]ock
