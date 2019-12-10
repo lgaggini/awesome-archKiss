@@ -8,7 +8,7 @@ Recently introcuded some great ideas from [awesome-copycats](https://github.com/
 ## Configuration
 
 I have some variable to control what to show in the panel bar on top, you can customize as you wish.
-I have also some variable to control what default applications to use. In the configuratio the default applications labels are used instead of program name,
+I have also some variable to control what default applications to use. In the configuration the default applications labels are used instead of program name,
 e.g. browser instead of Chromium, so it remains quite solid.
 By beautiful you can choose between two themes:
 * theme_default.lua: heavily based on default colors
