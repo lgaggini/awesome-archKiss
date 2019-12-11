@@ -960,6 +960,9 @@ awful.rules.rules = {
      { rule = { name = "irc" },
        properties = { screen = screens, tag = tags_name[7], switchtotag = true } },
 
+     { rule = { class = "Microsoft Teams - Preview" },
+      properties = { screen = screens, tag = tags_name[7], switchtotag = true } },
+
      -- 8:ent Entertainment
      { rule = { class = "mpv" },
        properties = { screen = screens, tag = tags_name[8], switchtotag = true } },
