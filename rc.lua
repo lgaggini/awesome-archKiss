@@ -886,6 +886,9 @@ awful.rules.rules = {
      { rule = { class = "System-config-printer.py" },
        properties = { screen = screens, tag = tags_name[2], switchtotag = true } },
 
+     { rule = { class = "Forticlientsslvpn" },
+       properties = { screen = screens, tag = tags_name[2], switchtotag = true, floating = true } },
+
      -- 3:web Web
      { rule = { class = "firefox" },
        properties = { screen = screens, tag = tags_name[3], switchtotag = true, floating = false } },
