@@ -878,9 +878,6 @@ awful.rules.rules = {
      { rule = { class = "Lxtask" },
        properties = { screen = screens, tag = tags_name[2], switchtotag = true } },
 
-     { rule = { class = "Wicd-client.py" },
-       properties = { screen = screens, tag = tags_name[2], switchtotag = true } },
-
      { rule = { class = "QtPass" },
        properties = { floating = true, ontop = true } },
 
@@ -888,6 +885,9 @@ awful.rules.rules = {
        properties = { screen = screens, tag = tags_name[2], switchtotag = true } },
 
      { rule = { class = "Forticlientsslvpn" },
+       properties = { screen = screens, tag = tags_name[2], switchtotag = true, floating = true } },
+
+     { rule = { class = "Droidcam" },
        properties = { screen = screens, tag = tags_name[2], switchtotag = true, floating = true } },
 
      -- 3:web Web
@@ -964,9 +964,6 @@ awful.rules.rules = {
      
      { rule = { name = "irc" },
        properties = { screen = screens, tag = tags_name[7], switchtotag = true } },
-
-     { rule = { class = "Microsoft Teams - Preview" },
-      properties = { screen = screens, tag = tags_name[7], switchtotag = true } },
 
      { rule = { class = "Slack" },
       properties = { screen = screens, tag = tags_name[7], switchtotag = true } },
