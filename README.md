@@ -2,21 +2,22 @@
 
 This is my theme and configuration file for Awesome 4.x WM inspired by Archlinux dark colors and KISS (Keep it simple stupid) philosophy. 
 It uses icons from other [great awesome themes](https://github.com/mikar/awesome-themes) (see credits for details).
-I using it with GTK adawaita dark theme available for GTK 3 and GTK 2 (and now included in default GTK).
-Recently introcuded some great ideas from [awesome-copycats](https://github.com/copycat-killer/awesome-copycats).
+I'm using it with ~~GTK adawaita dark theme~~ [Flat-Remix-Darkest-Blue](https://drasite.com/flat-remix-gtk) available for GTK 3 and GTK 2.
+Recently I introcuded some great ideas from [awesome-copycats](https://github.com/copycat-killer/awesome-copycats).
 
 ## Configuration
 
-I have some variable to control what to show in the panel bar on top, you can customize as you wish.
-I have also some variable to control what default applications to use. In the configuration the default applications labels are used instead of program name,
+I have some variables to control what to show in the panel bar on top, you can customize as you wish.
+I have also some variables to control what default applications to use. In the configuration the default applications labels are used instead of program name,
 e.g. browser instead of Chromium, so it remains quite solid.
-By beautiful you can choose between two themes:
+By beautiful you can choose between three themes:
 * theme_default.lua: heavily based on default colors
 * theme.lua: extends the default colors
+* theme_darker.lua: based on [Flat-Remix-Darkest-Blue](https://drasite.com/flat-remix-gtk) theme 
 
 ```lua
 -- Themes define colours, icons, and wallpapers
-beautiful.init("/home/lg/.config/awesome/themes/kiss/theme_default.lua")
+beautiful.init("/home/lg/.config/awesome/themes/kiss/theme_darker.lua")
 
 -- User / hostname info
 user_hostname = false
@@ -66,15 +67,15 @@ task = "lxtask"
 im = "pidgin"
 irc = terminal .. " -title irc -e weechat"
 teams = "teams"
+slack = "slack"
 music = terminal .. " -e ncmpcpp"
 music_toggle = "mpc toggle"
 music_stream = "spotify"
 music_stream_toggle = "sp play"
 music_stream_data = "sp current-oneline"
 media = "mpv"
---password = "pass -c master"
 password = "rofi-pass"
-clipboard = "rofi -modi \"clipboard:greenclip print\" -show clipboard -run-command '{cmd}'; xdotool type --clearmodifiers $(xclip -o -selection clipboard)"
+clipboard = "rofi -modi \"paste:~/bin/paste-modi.sh\" -show paste"
 vm = "virtualbox"
 remote = "remmina"
 runner = "rofi -show run"
