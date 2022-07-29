@@ -52,7 +52,7 @@ do
 
 -- {{{ Variable definitions
 -- Themes define colours, icons, and wallpapers
-beautiful.init("/home/lg/.config/awesome/themes/kiss/theme_default.lua")
+beautiful.init("/home/lg/.config/awesome/themes/kiss/theme_darker.lua")
 
 -- User / hostname info
 user_hostname = true
