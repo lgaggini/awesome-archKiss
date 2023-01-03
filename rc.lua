@@ -98,6 +98,7 @@ pim = terminal .. " -title pim -e tmuxp load pim"
 news = terminal .. " -title news -e tmuxp load news"
 note = terminal .. " -title note -e tmuxp load note"
 filemanager = terminal .. " -e ranger"
+filemanager_gui = "thunar"
 task = "lxtask"
 im = "pidgin"
 irc = terminal .. " -title irc -e weechat"
@@ -209,7 +210,7 @@ myawesomemenu = {
 
 menu_items = { { "terminal", terminal },
           { "browser", browser },
-          { "file manager", filemanager },
+          { "file manager", filemanager_gui },
           { "editor", editor },
           { "awesome", myawesomemenu },
           { "lock", lock },
@@ -298,7 +299,7 @@ vicious.register(fswidget, vicious.widgets.fs, mounts)
 
 -- Create a fs button
 fsbuttons = awful.util.table.join(
-       awful.button({ }, 1, function () awful.util.spawn(filemanager) end)
+       awful.button({ }, 1, function () awful.util.spawn(filemanager_gui) end)
 )
 fsicon:buttons(fsbuttons)
 fswidget:buttons(fsbuttons)
@@ -651,7 +652,7 @@ globalkeys = awful.util.table.join(
 
     -- Application launcher common
     awful.key({ modkey,         },"b", function () awful.util.spawn_with_shell(browser) end), -- [b]rowser
-    awful.key({ modkey,         },"f", function () awful.util.spawn_with_shell(filemanager) end), -- [f]ilemanager
+    awful.key({ modkey,         },"f", function () awful.util.spawn_with_shell(filemanager_gui) end), -- [f]ilemanager
     awful.key({ modkey,         },"e", function () awful.util.spawn_with_shell(editor) end), -- [e]ditor 
     awful.key({ modkey,         },"m", function () awful.util.spawn_with_shell(email) end), -- e[m]ail
     awful.key({ modkey,         },"s", function () awful.util.spawn_with_shell(pad) end), -- [s]cratch pad
@@ -860,8 +861,8 @@ awful.rules.rules = {
        properties = { screen = screens, tag = tags_name[1], switchtotag = true, maximized_vertical = true, maximized_horizontal = true } },
 
       -- 2:util Utils
-     { rule = { class = "Pcmanfm" },
-       properties = { screen = screens, tag = tags_name[2], switchtotag = true } },
+     { rule = { class = "Thunar" },
+       properties = { screen = screens, tag = tags_name[2], switchtotag = true, floating = true } },
 
      { rule = { name = "ranger" },
        properties = { screen = screens, tag = tags_name[2], switchtotag = true } },
@@ -966,6 +967,9 @@ awful.rules.rules = {
        properties = { screen = screens, tag = tags_name[7], switchtotag = true } },
 
      { rule = { class = "Slack" },
+      properties = { screen = screens, tag = tags_name[7], switchtotag = true } },
+
+     { rule = { name = "Zoom - Account gratuito" },
       properties = { screen = screens, tag = tags_name[7], switchtotag = true } },
 
      -- 8:ent Entertainment
