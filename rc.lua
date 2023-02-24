@@ -976,7 +976,7 @@ awful.rules.rules = {
      { rule = { class = "mpv" },
        properties = { screen = screens, tag = tags_name[8], switchtotag = true } },
 
-     { rule = { class = "Spotify" },
+     { rule = { name = "Spotify" },
        properties = { screen = screens, tag = tags_name[8], switchtotag = true } },
 
      { rule = { name = "ncmpcpp" },
