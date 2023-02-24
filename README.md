@@ -3,7 +3,7 @@
 This is my theme and configuration file for Awesome 4.x WM inspired by Archlinux dark colors and KISS (Keep it simple stupid) philosophy. 
 It uses icons from other [great awesome themes](https://github.com/mikar/awesome-themes) (see credits for details).
 I'm using it with ~~GTK adawaita dark theme~~ [Flat-Remix-Darkest-Blue](https://drasite.com/flat-remix-gtk) available for GTK 3 and GTK 2.
-Recently I introcuded some great ideas from [awesome-copycats](https://github.com/copycat-killer/awesome-copycats).
+Recently I introduced some great ideas from [awesome-copycats](https://github.com/copycat-killer/awesome-copycats).
 
 ## Configuration
 
