@@ -119,6 +119,8 @@ wswitcher = "rofi -show window"
 bright_down = "xbacklight -dec 10"
 bright_up = "xbacklight -inc 10"
 audio_toggle = "mpc toggle"
+audio_up = "amixer -D pulse sset Master 2%+"
+audio_down = "amixer -D pulse sset Master 2%-"
 lock = "i3lock-fancy"
 poweroff = "sudo poweroff"
 reboot = "sudo reboot"
@@ -617,6 +619,8 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey,           }, "Return", function () awful.util.spawn(terminal) end),
     awful.key({                   }, "XF86MonBrightnessDown", function () awful.util.spawn_with_shell(bright_down) end),
     awful.key({                   }, "XF86MonBrightnessUp",   function () awful.util.spawn_with_shell(bright_up) end),
+    awful.key({                   }, "XF86AudioLowerVolume", function () awful.util.spawn_with_shell(audio_down) end),
+    awful.key({                   }, "XF86AudioRaiseVolume",   function () awful.util.spawn_with_shell(audio_up) end),
     awful.key({                   }, "XF86AudioPlay",   function () awful.util.spawn_with_shell(music_toggle) end),
     awful.key({ modkey, "Shift"   }, "p", function () awful.util.spawn_with_shell(audio_toggle) end),
     awful.key({ modkey, "Control" }, "r", awesome.restart),
