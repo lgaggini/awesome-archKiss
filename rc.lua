@@ -52,7 +52,7 @@ do
 
 -- {{{ Variable definitions
 -- Themes define colours, icons, and wallpapers
-beautiful.init("/home/lg/.config/awesome/themes/kiss/theme_darker.lua")
+beautiful.init("/home/lg/.config/awesome/themes/kiss/theme_nature.lua")
 
 -- User / hostname info
 user_hostname = true
@@ -124,7 +124,7 @@ poweroff = "sudo poweroff"
 reboot = "sudo reboot"
 
 -- One line calendar command
-onelinecal = [[ cal | tail -n +3 | sed -e "s/\<$(date +%-d)\>/\<span color=\"]] .. "#1994d1" .. [[\">&\<\/span>/" | sed 's/^[ \t]*//' | tr "\n" " "]]
+onelinecal = [[ cal | tail -n +3 | sed -e "s/\<$(date +%-d)\>/\<span color=\"]] .. "#c37837" .. [[\">&\<\/span>/" | sed 's/^[ \t]*//' | tr "\n" " "]]
 
 -- Default modkey.
 -- Usually, Mod4 is the key with a logo between Control and Alt.
