@@ -24,19 +24,21 @@ theme.font          = "sans 9"
 theme.taglist_font = "sans 12"
 
 -- Main colors
-theme.bg_normal     = "#202020"
-theme.bg_focus      = "#202020"
-theme.bg_urgent     = "#303030"
-theme.bg_minimize   = "#101010"
-theme.fg_normal     = "#636363"
-theme.fg_focus      = "#0090B4"
-theme.fg_urgent     = "#ff0000"
-theme.fg_minimize   = "#505050"
+theme.bg_normal     = "#222222"
+theme.bg_focus      = "#535d6c"
+theme.bg_urgent     = "#ff0000"
+theme.bg_minimize   = "#444444"
+theme.bg_systray    = theme.bg_normal
+
+theme.fg_normal     = "#cccccc"
+theme.fg_focus      = "#ffffff"
+theme.fg_urgent     = "#ffffff"
+theme.fg_minimize   = "#ffffff"
 
 -- Main borders
 theme.border_width  = "1"
-theme.border_normal = theme.bg_urgent 
-theme.border_focus  = theme.fg_focus 
+theme.border_normal = theme.bg_normal
+theme.border_focus  = theme.bg_focus
 theme.border_marked = "#91231c"
 
 -- Tooltips

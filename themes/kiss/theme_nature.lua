@@ -15,8 +15,8 @@ themes        = config .. "/themes"
 themename     = "/kiss"
 themedir      = themes .. themename
 taglistdir    = themedir .. "/taglist"
-titlebardir   = themedir .. "/titlebar"
-layoutdir     = themedir .. "/layouts"
+titlebardir   = themedir .. "/titlebar/nature"
+layoutdir     = themedir .. "/layouts/nature"
 icondir       = themedir .. "/icons"
 
 -- Fonts
@@ -25,9 +25,8 @@ theme.taglist_font = "sans 12"
 
 -- Main colors
 theme.bg_normal     = "#000000"
-theme.bg_focus      = "#1f1f1f"
--- theme.bg_urgent     = "#2777ff"
-theme.bg_urgent     = "#c37837"
+theme.bg_focus      = "#3c4d14"
+theme.bg_urgent     = "#3c4d14"
 theme.bg_minimize   = "#0d0d0d"
 theme.bg_systray    = theme.bg_normal
 
@@ -38,8 +37,8 @@ theme.fg_minimize   = "#ffffff"
 
 -- Main borders
 theme.border_width  = "1"
-theme.border_normal = "#000000"
-theme.border_focus  = "#1f1f1f"
+theme.border_normal = theme.bg_normal 
+theme.border_focus  = theme.bg_focus 
 theme.border_marked = "#91231c"
 
 -- Tooltips
@@ -68,8 +67,7 @@ theme.tasklist_fg_urgent = theme.fg_urgent
 -- Menu
 theme.menu_bg_normal = theme.bg_normal
 theme.menu_fg_normal = theme.fg_normal
--- theme.menu_bg_focus = theme.bg_focus 
-theme.menu_bg_focus  = theme.bg_urgent
+theme.menu_bg_focus = theme.bg_focus 
 theme.menu_fg_focus = theme.fg_focus
 theme.menu_height = "15"
 theme.menu_width  = "100"
@@ -82,7 +80,7 @@ theme.taglist_squares_unsel = taglistdir  .. "/square.png"
 
 -- Misc icons
 theme.awesome_icon = themedir .. "/arch.png"
-theme.menu_submenu_icon = themedir .. "/submenu.png"
+theme.menu_submenu_icon = themedir .. "/submenu_nature.png"
 theme.tasklist_floating_icon = themedir .. "/tasklist/floatingw.png"
 
 -- Titlebar button icons

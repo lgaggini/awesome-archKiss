@@ -15,8 +15,8 @@ themes        = config .. "/themes"
 themename     = "/kiss"
 themedir      = themes .. themename
 taglistdir    = themedir .. "/taglist"
-titlebardir   = themedir .. "/titlebar"
-layoutdir     = themedir .. "/layouts"
+titlebardir   = themedir .. "/titlebar/arch"
+layoutdir     = themedir .. "/layouts/arch"
 icondir       = themedir .. "/icons"
 
 -- Fonts
@@ -24,10 +24,10 @@ theme.font          = "sans 9"
 theme.taglist_font = "sans 12"
 
 -- Main colors
-theme.bg_normal     = "#222222"
-theme.bg_focus      = "#535d6c"
-theme.bg_urgent     = "#ff0000"
-theme.bg_minimize   = "#444444"
+theme.bg_normal     = "#000000"
+theme.bg_focus      = "#002bb3"
+theme.bg_urgent     = "#002bb3"
+theme.bg_minimize   = "#101010"
 theme.bg_systray    = theme.bg_normal
 
 theme.fg_normal     = "#cccccc"
@@ -37,8 +37,8 @@ theme.fg_minimize   = "#ffffff"
 
 -- Main borders
 theme.border_width  = "1"
-theme.border_normal = "#000000"
-theme.border_focus  = "#535d6c"
+theme.border_normal = theme.bg_normal 
+theme.border_focus  = theme.bg_focus 
 theme.border_marked = "#91231c"
 
 -- Tooltips
