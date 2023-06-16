@@ -484,7 +484,12 @@ awful.screen.connect_for_each_screen(function(s)
     set_wallpaper(s)
 
     -- Each screen has its own tag table.
-    awful.tag(tags_name, s, layouts[6])
+    local geometry = s.geometry
+    if geometry.width < geometry.height then
+        awful.tag(tags_name, s, layouts[7])
+    else
+        awful.tag(tags_name, s, layouts[6])
+    end
 
     -- Create a promptbox for each screen
     s.mypromptbox = awful.widget.prompt()
