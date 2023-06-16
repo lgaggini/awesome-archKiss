@@ -2,8 +2,8 @@
 
 This is my theme and configuration file for Awesome 4.x WM inspired by Archlinux dark colors and KISS (Keep it simple stupid) philosophy. 
 It uses icons from other [great awesome themes](https://github.com/mikar/awesome-themes) (see credits for details).
-I'm using it with ~~GTK adawaita dark theme~~ [Flat-Remix-Darkest-Blue](https://drasite.com/flat-remix-gtk) available for GTK 3 and GTK 2.
-Recently I introduced some great ideas from [awesome-copycats](https://github.com/copycat-killer/awesome-copycats).
+I'm using it with ~~GTK adawaita dark theme~~ [Flat-Remix-Darkest](https://drasite.com/flat-remix-gtk) available for GTK 3 and GTK 2.
+Recently I introduced some great ideas from [awesome-copycats](https://github.com/lcpz/awesome-copycats).
 
 ## Configuration
 
@@ -11,25 +11,27 @@ I have some variables to control what to show in the panel bar on top, you can c
 I have also some variables to control what default applications to use. In the configuration the default applications labels are used instead of program name,
 e.g. browser instead of Chromium, so it remains quite solid.
 By beautiful you can choose between three themes:
-* theme_default.lua: heavily based on default colors
-* theme.lua: extends the default colors
-* theme_darker.lua: based on [Flat-Remix-Darkest-Blue](https://drasite.com/flat-remix-gtk) theme 
+* theme_grey.lua: inspired on default awesome colors
+* theme_dark.lua: a mix between awesome default colors and Archlinux colors
+* theme_arch.lua: inspired by Archlinux colors
+* theme_nature.lua: inspired by nature colors
 
 ```lua
+-- {{{ Variable definitions
 -- Themes define colours, icons, and wallpapers
-beautiful.init("/home/lg/.config/awesome/themes/kiss/theme_darker.lua")
+beautiful.init("/home/lg/.config/awesome/themes/kiss/theme_nature.lua")
 
 -- User / hostname info
-user_hostname = false
+user_hostname = true
 
 -- Kernel version monitoring
 kernel_mon = true
 
 -- Uptime
-uptime = false
+uptime = true
 
 -- Nic interfaces to monitor, fifo
-nics = {"enp0s25", "wlo1"}
+nics = {"enp0s31f6", "wlp1s0"}
 
 -- Maildir monitor, false or maildir location
 mail_mon = false
@@ -41,7 +43,7 @@ hwmonitor = true
 laptop = true
 
 -- Mountpoint(s) to monitor
-mounts = " /: ${/ used_p}% ~: ${/home used_p}%"
+mounts = " /: ${/ used_p}%"
 
 -- Enable full calendar on 2nd monitor
 full_cal = true
@@ -84,9 +86,12 @@ wswitcher = "rofi -show window"
 bright_down = "xbacklight -dec 10"
 bright_up = "xbacklight -inc 10"
 audio_toggle = "mpc toggle"
+audio_up = "amixer -D pulse sset Master 2%+"
+audio_down = "amixer -D pulse sset Master 2%-"
 lock = "i3lock-fancy"
 poweroff = "sudo poweroff"
 reboot = "sudo reboot"
+
 ```
 
 ## Screenshoot
@@ -95,7 +100,7 @@ reboot = "sudo reboot"
 
 ## Credits
 * Taglists squares: dust awesome theme by tdy
-* Titlebar icons: zenburn awesome theme by Adrian C. (anrxc)
-* Layout icons: grey-new awesome theme by Andreas Persson (greyscale, grey)
+* Titlebar icons: zenburn awesome theme by Adrian C. (anrxc), [copland and dremora awesome theme by icpz] (https://github.com/lcpz/awesome-copycats)
+* Layout icons: grey-new awesome theme by Andreas Persson (greyscale, grey), [copland and dremora awesome theme by icpz] (https://github.com/lcpz/awesome-copycats)
 * Widget icons: sunjack awesome theme by ?
 * Screenshoot wallpaper: [Archlinux wallpaper by giancarlo64](https://www.deviantart.com/giancarlo64/art/ArchLinux-Wallpaper-360078960)
