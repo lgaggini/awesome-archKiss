@@ -95,7 +95,10 @@ reboot = "sudo reboot"
 
 ## Screenshot
 
-![archKiss](archKiss.png)
+![theme_grey](theme_grey.png)
+![theme_dark](theme_dark.png)
+![theme_arch](theme_arch.png)
+![theme_nature](theme_nature.png)
 
 ## Credits
 * Taglists squares: dust awesome theme by tdy
