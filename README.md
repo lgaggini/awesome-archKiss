@@ -17,7 +17,6 @@ By beautiful you can choose between three themes:
 * theme_nature.lua: inspired by nature colors
 
 ```lua
--- {{{ Variable definitions
 -- Themes define colours, icons, and wallpapers
 beautiful.init("/home/lg/.config/awesome/themes/kiss/theme_nature.lua")
 
@@ -94,13 +93,13 @@ reboot = "sudo reboot"
 
 ```
 
-## Screenshoot
+## Screenshot
 
 ![archKiss](archKiss.png)
 
 ## Credits
 * Taglists squares: dust awesome theme by tdy
-* Titlebar icons: zenburn awesome theme by Adrian C. (anrxc), [copland and dremora awesome theme by icpz] (https://github.com/lcpz/awesome-copycats)
-* Layout icons: grey-new awesome theme by Andreas Persson (greyscale, grey), [copland and dremora awesome theme by icpz] (https://github.com/lcpz/awesome-copycats)
+* Titlebar icons: zenburn awesome theme by Adrian C. (anrxc), [copland and dremora awesome theme by icpz](https://github.com/lcpz/awesome-copycats)
+* Layout icons: grey-new awesome theme by Andreas Persson (greyscale, grey), [copland and dremora awesome theme by icpz](https://github.com/lcpz/awesome-copycats)
 * Widget icons: sunjack awesome theme by ?
 * Screenshoot wallpaper: [Archlinux wallpaper by giancarlo64](https://www.deviantart.com/giancarlo64/art/ArchLinux-Wallpaper-360078960)
