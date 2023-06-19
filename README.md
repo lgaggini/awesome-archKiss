@@ -95,9 +95,13 @@ reboot = "sudo reboot"
 
 ## Screenshot
 
+* theme_grey
 ![theme_grey](theme_grey.png)
+* theme_dark
 ![theme_dark](theme_dark.png)
+* theme_arch
 ![theme_arch](theme_arch.png)
+* theme_nature
 ![theme_nature](theme_nature.png)
 
 ## Credits
