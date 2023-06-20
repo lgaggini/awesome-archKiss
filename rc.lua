@@ -544,7 +544,7 @@ awful.screen.connect_for_each_screen(function(s)
             screens == 1 and mytextday,
             -- screens == 2 and s.index == 2 and mytextday,
             s.index == 1 and full_cal and s.geometry.width >= 1920 and calwidget,
-            screens == 1 and s.index == 1 and full_cal and s.geometry.width >= 1920 and calwidget,
+            -- screens == 1 and s.index == 1 and full_cal and s.geometry.width >= 1920 and calwidget,
             -- s.index == 2 and (not full_cal or s.geometry.width < 1920) and mytextdaynumber,
             screens == 1 and s.geometry.width < 1920 and mytextdaynumber,
             s.index == 1 and mytextmonthandyear,
