@@ -56,10 +56,10 @@ spotify = true
 -- This is used later as the default applications to run.
 terminal = "urxvt"
 browser = "firefox"
-editor = "gvim"
+editor = "gvim -rv --role editor"
 email = terminal .. " -e neomutt"
 email_gui = "thunderbird"
-pad = "leafpad"
+pad = "gvim -rv --role pad"
 pim = terminal .. " -title pim -e tmuxp load pim"
 news = terminal .. " -title news -e tmuxp load news"
 note = terminal .. " -title note -e tmuxp load note"
