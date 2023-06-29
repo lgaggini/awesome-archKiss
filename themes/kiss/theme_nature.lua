@@ -20,8 +20,8 @@ layoutdir     = themedir .. "/layouts/nature"
 icondir       = themedir .. "/icons"
 
 -- Fonts
-theme.font          = "sans 9"
-theme.taglist_font = "sans 12"
+theme.font          = "sans 10"
+theme.taglist_font = "sans 13"
 
 -- Main colors
 theme.bg_normal     = "#000000"
