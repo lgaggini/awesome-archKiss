@@ -90,10 +90,10 @@ spotify = true
 -- This is used later as the default applications to run.
 terminal = "urxvt"
 browser = "firefox"
-editor = "gvim"
+editor = "gvim -rv --role editor"
 email = terminal .. " -e neomutt"
 email_gui = "thunderbird"
-pad = "leafpad"
+pad = "gvim -rv --role pad"
 pim = terminal .. " -title pim -e tmuxp load pim"
 news = terminal .. " -title news -e tmuxp load news"
 note = terminal .. " -title note -e tmuxp load note"
@@ -901,14 +901,11 @@ awful.rules.rules = {
        properties = { screen = screens, tag = tags_name[3], switchtotag = true, floating = false } },
 
      -- 4:dev - Development
-     { rule = { class = "Gvim" },
+     { rule = { class = "Gvim", role = "editor" },
        properties = { screen = 1, tag = tags_name[4], switchtotag = true } },
 
      { rule = { class = "Gitg" },
        properties = { screen = screens, tag = tags_name[9], switchtotag = true } },
-
-     { rule = { name = "note" },
-       properties = { screen = screens, tag = tags_name[6], switchtotag = true } },
 
     -- 5:mail - Mail
      { rule = { class = "Thunderbird" },
@@ -936,11 +933,22 @@ awful.rules.rules = {
      { rule = { class = "libreoffice-impress" },
        properties = { screen = screens, tag = tags_name[6], switchtotag = true, floating = false } },
 
+     { rule = { name = "note" },
+       properties = { screen = screens, tag = tags_name[6], switchtotag = true } },
+
      { rule = { class = "Zathura" },
        properties = { screen = screens, tag = tags_name[6], switchtotag = true } },
 
+     { rule = { class = "Gvim", role = "pad" },
+       properties = { screen = screens, floating=true },
+
+       callback = function( c )
+        c:geometry( { width = 720 , height = 720 } )
+       end
+     },
+
      { rule = { class = "Leafpad" },
-       properties = { floating = true, sticky = true, ontop = true } },
+       properties = { screen = screens, floating = true, sticky = true, ontop = true } },
 
      { rule = { class = "Ristretto" },
        properties = { screen = screens, tag = tags_name[6], switchtotag = true } },
