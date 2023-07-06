@@ -982,8 +982,8 @@ awful.rules.rules = {
      { rule = { class = "Slack" },
       properties = { screen = screens, tag = tags_name[7], switchtotag = true } },
 
-     { rule = { name = "Zoom - Account gratuito" },
-      properties = { screen = screens, tag = tags_name[7], switchtotag = true } },
+     { rule = { class = "zoom" },
+      properties = { screen = 1, tag = tags_name[7], switchtotag = true } },
 
      -- 8:ent Entertainment
      { rule = { class = "mpv" },
