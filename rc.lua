@@ -189,7 +189,7 @@ end
 
 -- {{{ Wallpaper
 -- Random selection from theme related wallpaper directory
-os.execute("find " .. beautiful.wallpaper_dir .. " -type f -print0 | shuf -n1 -z | xargs -0 feh --bg-scale")
+os.execute("feh --bg-scale --randomize " .. beautiful.wallpaper_dir)
 -- }}}
 
 -- {{{ Tags
