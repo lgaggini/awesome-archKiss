@@ -112,6 +112,7 @@ music_stream_data = "sp current-oneline"
 media = "mpv"
 password = "rofi-pass"
 clipboard = "rofi -modi \"paste:~/bin/paste-modi.sh\" -show paste"
+calculator = "rofi -show calc -modi calc -no-show-match -no-sort"
 vm = "virtualbox"
 remote = "remmina"
 runner = "rofi -show run"
@@ -189,7 +190,7 @@ end
 
 -- {{{ Wallpaper
 -- Random selection from theme related wallpaper directory
-os.execute("feh --bg-scale --randomize " .. beautiful.wallpaper_dir)
+os.execute("feh --bg-scale $(shuf -en1 ~/.wallpaper/*) $(shuf -en1 ~/.wallpaper_portrait/*)")
 -- }}}
 
 -- {{{ Tags
@@ -672,6 +673,7 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey,         },"h", function () awful.util.spawn_with_shell(clipboard) end), -- clipboard [h]istory
     awful.key({ modkey,         },"a", function () awful.util.spawn_with_shell(music) end), -- [a]udio
     awful.key({ modkey,         },"r", function () awful.util.spawn_with_shell(runner) end), -- [r]unner
+    awful.key({ modkey,         },"u", function () awful.util.spawn_with_shell(calculator) end), -- calc[u]lator
     awful.key({ modkey, "Shift" },"l", function () awful.util.spawn_with_shell(lock) end) -- [l]ock
 )
 
@@ -884,17 +886,8 @@ awful.rules.rules = {
      { rule = { class = "Lxtask" },
        properties = { screen = screens, tag = tags_name[2], switchtotag = true } },
 
-     { rule = { class = "QtPass" },
-       properties = { floating = true, ontop = true } },
-
      { rule = { class = "System-config-printer.py" },
        properties = { screen = screens, tag = tags_name[2], switchtotag = true } },
-
-     { rule = { class = "Forticlientsslvpn" },
-       properties = { screen = screens, tag = tags_name[2], switchtotag = true, floating = true } },
-
-     { rule = { class = "Droidcam" },
-       properties = { screen = screens, tag = tags_name[2], switchtotag = true, floating = true } },
 
      -- 3:web Web
      { rule = { class = "firefox" },
@@ -940,18 +933,12 @@ awful.rules.rules = {
        properties = { screen = screens, tag = tags_name[6], switchtotag = true } },
 
      { rule = { class = "Gvim", role = "pad" },
-       properties = { screen = screens, floating=true },
+       properties = { screen = screens, floating=true, sticky=true, ontop = true },
 
        callback = function( c )
-        c:geometry( { width = 720 , height = 720 } )
+        c:geometry( { width = 720,  height = 360 } )
        end
      },
-
-     { rule = { class = "Leafpad" },
-       properties = { screen = screens, floating = true, sticky = true, ontop = true } },
-
-     { rule = { class = "Ristretto" },
-       properties = { screen = screens, tag = tags_name[6], switchtotag = true } },
 
      { rule = { name = "news" },
        properties = { screen = screens, tag = tags_name[6], switchtotag = true } },
@@ -1002,8 +989,6 @@ awful.rules.rules = {
      { rule = { class = "Remmina" },
        properties = { screen = 1, tag = tags_name[9], switchtotag = true, maximized_vertical = true, maximized_horizontal = true } },
 
-     { rule = { class = "sun-applet-PluginMain" },
-       properties = { screen = 1, tag = tags_name[9], switchtotag = true } },
 }
 
 
