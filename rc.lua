@@ -89,7 +89,8 @@ spotify = true
 
 -- This is used later as the default applications to run.
 terminal = "urxvt"
-browser = "firefox"
+browser_work = "firefox --class work-default"
+browser_personal = "firefox --class personal-default -p personal-default"
 editor = "gvim -rv --role editor"
 email = terminal .. " -e neomutt"
 email_gui = "thunderbird"
@@ -208,7 +209,8 @@ myawesomemenu = {
 }
 
 menu_items = { { "terminal", terminal },
-          { "browser", browser },
+          { "browser_work", browser_work },
+          { "browser_personal", browser_personal },
           { "file manager", filemanager_gui },
           { "editor", editor },
           { "awesome", myawesomemenu },
@@ -657,7 +659,7 @@ globalkeys = awful.util.table.join(
               {description = "show the menubar", group = "launcher"}),
 
     -- Application launcher common
-    awful.key({ modkey,         },"b", function () awful.util.spawn_with_shell(browser) end), -- [b]rowser
+    awful.key({ modkey,         },"b", function () awful.util.spawn_with_shell(browser_work) end), -- [b]rowser
     awful.key({ modkey,         },"f", function () awful.util.spawn_with_shell(filemanager_gui) end), -- [f]ilemanager
     awful.key({ modkey,         },"e", function () awful.util.spawn_with_shell(editor) end), -- [e]ditor 
     awful.key({ modkey,         },"m", function () awful.util.spawn_with_shell(email) end), -- e[m]ail
@@ -890,7 +892,7 @@ awful.rules.rules = {
        properties = { screen = screens, tag = tags_name[2], switchtotag = true } },
 
      -- 3:web Web
-     { rule = { class = "firefox" },
+     { rule = { class = "work-default" },
        properties = { screen = screens, tag = tags_name[3], switchtotag = true, floating = false } },
 
      -- 4:dev - Development
@@ -942,6 +944,9 @@ awful.rules.rules = {
 
      { rule = { name = "news" },
        properties = { screen = screens, tag = tags_name[6], switchtotag = true } },
+
+     { rule = { class = "personal-default" },
+       properties = { screen = 1, tag = tags_name[6], switchtotag = true, floating = false } },
 
      -- 7:com - Communication
      { rule = { class = "Pidgin", role = "buddy_list" },
