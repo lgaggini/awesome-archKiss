@@ -976,6 +976,9 @@ awful.rules.rules = {
      { rule = { name = "ncmpcpp" },
        properties = { screen = screens, tag = tags_name[8], switchtotag = true } },
 
+     { rule = { class = "WebApp-Soundcloud3768" },
+       properties = { screen = screens, tag = tags_name[8], switchtotag = true } },
+
     -- 9:vm Virtual Machines
      { rule = { class = "VirtualBox" },
        properties = { screen = 1, tag = tags_name[9], switchtotag = true } },
