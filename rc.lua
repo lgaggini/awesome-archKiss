@@ -871,7 +871,7 @@ awful.rules.rules = {
      { rule = { class = "Filezilla" },
        properties = { screen = 1, tag = tags_name[2], switchtotag = true } },
 
-     { rule = { class = "File-roller" },
+     { rule = { class = "Engrampa" },
        properties = { floating = true, tag = tags_name[2]} },
 
      { rule = { class = "Lxtask" },
