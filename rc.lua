@@ -91,7 +91,7 @@ spotify = true
 terminal = "urxvt"
 browser_work = "firefox --class work-default"
 browser_personal = "firefox --class personal-default -p personal-default"
-editor = "gvim --role editor"
+editor = "neovide"
 email = terminal .. " -e neomutt"
 email_gui = "thunderbird"
 pad = "gvim --role pad"
@@ -114,6 +114,7 @@ media = "mpv"
 password = "rofi-pass"
 clipboard = "rofi -modi \"paste:~/bin/paste-modi.sh\" -show paste"
 calculator = "rofi -show calc -modi calc -no-show-match -no-sort"
+snippets = "rofi-snippy"
 vm = "virtualbox"
 remote = "remmina"
 runner = "rofi -show run"
@@ -676,6 +677,7 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey,         },"a", function () awful.util.spawn_with_shell(music) end), -- [a]udio
     awful.key({ modkey,         },"r", function () awful.util.spawn_with_shell(runner) end), -- [r]unner
     awful.key({ modkey,         },"u", function () awful.util.spawn_with_shell(calculator) end), -- calc[u]lator
+    awful.key({ modkey,         },"g", function () awful.util.spawn_with_shell(snippets) end), -- snippets [g]
     awful.key({ modkey, "Shift" },"l", function () awful.util.spawn_with_shell(lock) end) -- [l]ock
 )
 
@@ -885,7 +887,7 @@ awful.rules.rules = {
        properties = { screen = screens, tag = tags_name[3], switchtotag = true, floating = false } },
 
      -- 4:dev - Development
-     { rule = { class = "Gvim", role = "editor" },
+     { rule = { class = "neovide" },
        properties = { screen = 1, tag = tags_name[4], switchtotag = true } },
 
      { rule = { class = "Gitg" },
@@ -927,7 +929,7 @@ awful.rules.rules = {
        properties = { screen = screens, floating=true, sticky=true, ontop = true },
 
        callback = function( c )
-        c:geometry( { width = 720,  height = 360 } )
+        c:geometry( { width = 1080,  height = 720 } )
        end
      },
 
