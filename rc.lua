@@ -192,7 +192,7 @@ end
 
 -- {{{ Wallpaper
 -- Random selection from theme related wallpaper directory
-os.execute("feh --bg-scale $(shuf -en1 ~/.wallpaper/*) $(shuf -en1 ~/.wallpaper_portrait/*)")
+os.execute("feh --bg-scale $(shuf -en1 ~/.wallpaper/*)")
 -- }}}
 
 -- {{{ Tags
