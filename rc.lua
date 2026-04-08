@@ -367,7 +367,7 @@ if spotify then
                 spotifyicon:set_visible(true)
                 widget:set_visible(true)
                 split = {}
-                for substr in string.gmatch(stdout, "[^|]*") do
+                for substr in string.gmatch(stdout, "([^|]+)") do
                     if substr ~= nil and string.len(substr) > 0 then
                         table.insert(split,substr)
                     end
