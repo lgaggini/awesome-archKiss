@@ -25,8 +25,8 @@ theme.taglist_font = "sans 13"
 
 -- Main colors
 theme.bg_normal     = "#000000"
-theme.bg_focus      = "#3c4d14"
-theme.bg_urgent     = "#3c4d14"
+theme.bg_focus      = "#22541a"
+theme.bg_urgent     = "#22541a"
 theme.bg_minimize   = "#0d0d0d"
 theme.bg_systray    = theme.bg_normal
 
@@ -67,7 +67,7 @@ theme.tasklist_fg_urgent = theme.fg_urgent
 -- Menu
 theme.menu_bg_normal = theme.bg_normal
 theme.menu_fg_normal = theme.fg_normal
-theme.menu_bg_focus = theme.bg_focus 
+theme.menu_bg_focus  = theme.bg_focus
 theme.menu_fg_focus = theme.fg_focus
 theme.menu_height = "15"
 theme.menu_width  = "100"
