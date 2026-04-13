@@ -128,7 +128,7 @@ poweroff = "sudo poweroff"
 reboot = "sudo reboot"
 
 -- One line calendar command
-onelinecal = [[ cal | tail -n +3 | sed -e "s/\<$(date +%-d)\>/\<span color=\"]] .. "#c37837" .. [[\">&\<\/span>/" | sed 's/^[ \t]*//' | tr "\n" " "]]
+onelinecal = [[ cal | tail -n +3 | sed -e "s/\<$(date +%-d)\>/\<span color=\"]] .. theme.fg_widget .. [[\">&\<\/span>/" | sed 's/^[ \t]*//' | tr "\n" " "]]
 
 -- Default modkey.
 -- Usually, Mod4 is the key with a logo between Control and Alt.
