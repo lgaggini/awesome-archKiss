@@ -26,8 +26,8 @@ theme.taglist_font = "sans 13"
 
 -- Main colors
 theme.bg_normal     = "#000000"
-theme.bg_focus      = "#002bb3"
-theme.bg_urgent     = "#002bb3"
+theme.bg_focus      = "#1793d1"
+theme.bg_urgent     = "#1793d1"
 theme.bg_minimize   = "#101010"
 theme.bg_systray    = theme.bg_normal
 
