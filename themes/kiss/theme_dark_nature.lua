@@ -26,8 +26,8 @@ theme.taglist_font = "sans 13"
 
 -- Main colors
 theme.bg_normal     = "#000000"
-theme.bg_focus      = "#8b4513"
-theme.bg_urgent     = "#8b4513"
+theme.bg_focus      = "#1f1f1f"
+theme.bg_urgent     = "#3c4d14"
 theme.bg_minimize   = "#0d0d0d"
 theme.bg_systray    = theme.bg_normal
 
@@ -53,7 +53,7 @@ theme.titlebar_bg_normal = theme.bg_normal
 theme.titlebar_bg_focus  = theme.bg_focus
 
 -- Widgets colors
-theme.fg_widget        = "#cc7722"
+theme.fg_widget        = "#8b4513"
 
 -- Taglist and Tasklist colors
 theme.taglist_bg_focus = theme.bg_focus
