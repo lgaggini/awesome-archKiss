@@ -1,5 +1,6 @@
 ---------------------------
 -- "archKiss" theme.lua  --
+--  dark forest variant  --
 --      by lgaggini      --
 --      CC BY-SA 3.0     --
 ---------------------------
