@@ -40,7 +40,7 @@ theme.fg_minimize   = "#ffffff"
 theme.border_width  = "1"
 theme.border_normal = theme.bg_normal
 theme.border_focus  = theme.bg_focus
-theme.border_marked = "#91231c"
+theme.border_marked = theme.bg_urgent
 
 -- Tooltips
 theme.tooltip_bg_color = theme.bg_urgent
