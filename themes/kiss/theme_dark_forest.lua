@@ -53,7 +53,7 @@ theme.titlebar_bg_normal = theme.bg_normal
 theme.titlebar_bg_focus  = theme.bg_focus
 
 -- Widgets colors
-theme.fg_widget        = "#1994d1"
+theme.fg_widget        = "#00ff7f"
 
 -- Taglist and Tasklist colors
 theme.taglist_bg_focus = theme.bg_focus
