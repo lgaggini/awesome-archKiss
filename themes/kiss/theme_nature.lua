@@ -21,7 +21,7 @@ layoutdir     = themedir .. "/layouts/nature"
 icondir       = themedir .. "/icons"
 
 -- Fonts
-theme.font          = "sans 10"
+theme.font          = "sans 12"
 theme.taglist_font = "sans 13"
 
 -- Main colors
@@ -70,8 +70,8 @@ theme.menu_bg_normal = theme.bg_normal
 theme.menu_fg_normal = theme.fg_normal
 theme.menu_bg_focus = theme.bg_focus 
 theme.menu_fg_focus = theme.fg_focus
-theme.menu_height = "15"
-theme.menu_width  = "100"
+theme.menu_height = "25"
+theme.menu_width  = "300"
 theme.menu_border_color = theme.border_color
 theme.menu_border_width = theme.border_width
 
