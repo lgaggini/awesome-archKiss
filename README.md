@@ -1,24 +1,27 @@
 # Awesome 4.x archKiss
 
 This is my theme and configuration file for Awesome 4.x WM inspired by Archlinux dark colors and KISS (Keep it simple stupid) philosophy. 
-It uses icons from other [great awesome themes](https://github.com/mikar/awesome-themes) (see credits for details).
-I'm using it with ~~GTK adawaita dark theme~~ [Flat-Remix-Darkest](https://drasite.com/flat-remix-gtk) available for GTK 3 and GTK 2.
-Recently I introduced some great ideas from [awesome-copycats](https://github.com/lcpz/awesome-copycats).
+It uses status bar icons from other [great awesome themes](https://github.com/mikar/awesome-themes) (see credits for details).
+I'm using it with ~~Flat Remix dark theme~~ [Flat-Remix-Darkest](https://github.com/daniruiz/Flat-Remix-GTK) in custom [variant](https://github.com/daniruiz/flat-remix-gtk/blob/master/generate-color-theme.sh) and available for GTK 3, GTK 2 and GTK4.
+I use also some great ideas from [awesome-copycats](https://github.com/lcpz/awesome-copycats).
 
 ## Configuration
 
 I have some variables to control what to show in the panel bar on top, you can customize as you wish.
 I have also some variables to control what default applications to use. In the configuration the default applications labels are used instead of program name,
-e.g. browser instead of Chromium, so it remains quite solid.
-By beautiful you can choose between three themes:
+e.g. browser instead of Chromium, so it remains quite portable.
+By beautiful you can choose between 7 variants:
 * theme_grey.lua: inspired on default awesome colors
 * theme_dark.lua: a mix between awesome default colors and Archlinux colors
 * theme_arch.lua: inspired by Archlinux colors
 * theme_nature.lua: inspired by nature colors
+* theme_dark_nature.lua: a mix between dark and nature variant
+* theme_forest.lua: inspired by forest colors
+* theme_dark_forest.lua: a mix between dark and forest variant
 
 ```lua
 -- Themes define colours, icons, and wallpapers
-beautiful.init("/home/lg/.config/awesome/themes/kiss/theme_nature.lua")
+beautiful.init("/home/lg/.config/awesome/themes/kiss/theme_forest.lua")
 
 -- User / hostname info
 user_hostname = true
@@ -105,10 +108,15 @@ reboot = "sudo reboot"
 ![theme_arch](theme_arch.png)
 * theme_nature
 ![theme_nature](theme_nature.png)
+* theme_dark_nature
+![theme_nature](theme_dark_nature.png)
+* theme_forest
+![theme_forest](theme_forest.png)
+* theme_dark_forest
+![theme_dark_forest](theme_dark_forest.png)
 
 ## Credits
 * Taglists squares: dust awesome theme by tdy
 * Titlebar icons: zenburn awesome theme by Adrian C. (anrxc), [copland and dremora awesome theme by icpz](https://github.com/lcpz/awesome-copycats)
 * Layout icons: grey-new awesome theme by Andreas Persson (greyscale, grey), [copland and dremora awesome theme by icpz](https://github.com/lcpz/awesome-copycats)
 * Widget icons: sunjack awesome theme by ?
-* Screenshoot wallpaper: [Archlinux wallpaper by giancarlo64](https://www.deviantart.com/giancarlo64/art/ArchLinux-Wallpaper-360078960)
