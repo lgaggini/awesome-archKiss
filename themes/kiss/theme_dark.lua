@@ -81,7 +81,7 @@ theme.taglist_squares_unsel = taglistdir  .. "/square.png"
 
 -- Misc icons
 theme.awesome_icon = themedir .. "/arch.png"
-theme.menu_submenu_icon = themedir .. "/submenu.png"
+theme.menu_submenu_icon = themedir .. "/submenu_arch.png"
 theme.tasklist_floating_icon = themedir .. "/tasklist/floatingw.png"
 
 -- Titlebar button icons
