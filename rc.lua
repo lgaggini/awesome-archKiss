@@ -530,14 +530,33 @@ awful.screen.connect_for_each_screen(function(s)
             s.mypromptbox,
         },
         s.mytasklist, -- Middle widget
-        { -- Right widgets
+        {   -- Right widgets
             layout = wibox.layout.fixed.horizontal,
-            screens == 2 and s.index == 1 and user_hostname and hosticon,
-            screens == 2 and s.index == 1 and user_hostname and hostwidget,
+
+            -- music
+            s.index == 1 and mpd and mpdicon,
+            s.index == 1 and mpd and mpdwidget,
+            s.index == 1 and spotify and spotifyicon,
+            s.index == 1 and spotify and spotifywidget,
+            s.index == 1 and mpris and mprisicon,
+            s.index == 1 and mpris and mpriswidget,
+
+            -- calendar
+            s.index == 1 and calicon,
+            s.index == 1 and mytextday,
+            s.index == 1 and full_cal and calwidget,
+            s.index == 1 and mytextdaynumber,
+            s.index == 1 and mytextmonthandyear,
+            s.index == 1 and mdiricon,
+            s.index == 1 and mdirwidget,
+
+            -- info and stats
+            s.index == 1 and user_hostname and hosticon,
+            s.index == 1 and user_hostname and hostwidget,
             s.index == 1 and osicon,
             s.index == 1 and oswidget,
-            screens == 2 and s.index == 1 and uptime and upicon,
-            screens == 2 and s.index == 1 and uptime and upwidget,
+            s.index == 1 and uptime and upicon,
+            s.index == 1 and uptime and upwidget,
             s.index == 1 and cpuicon,
             s.index == 1 and cpuwidget,
             s.index == 1 and ramicon,
@@ -546,30 +565,15 @@ awful.screen.connect_for_each_screen(function(s)
             s.index == 1 and tempwidget,
             s.index == 1 and fsicon,
             s.index == 1 and fswidget,
-            s.index == 1 and calicon,
-            -- screens == 2 and s.index == 2 and calicon,
-            screens == 1 and mytextday,
-            -- screens == 2 and s.index == 2 and mytextday,
-            s.index == 1 and full_cal and s.geometry.width >= 1920 and calwidget,
-            -- screens == 1 and s.index == 1 and full_cal and s.geometry.width >= 1920 and calwidget,
-            -- s.index == 2 and (not full_cal or s.geometry.width < 1920) and mytextdaynumber,
-            screens == 1 and s.geometry.width < 1920 and mytextdaynumber,
-            s.index == 1 and mytextmonthandyear,
-            -- screens == 2 and s.index == 2 and mytextmonthandyear,
-            s.index == 1 and mdiricon,
-            s.index == 1 and mdirwidget,
-            (screens == 1 or screens == 2) and s.index == 1 and s.geometry.width >= 1920 and mpd and mpdicon,
-            (screens == 1 or screens == 2) and s.index == 1 and s.geometry.width >= 1920 and mpd and mpdwidget,
-            (screens == 1 or screens == 2) and s.index == 1 and s.geometry.width >= 1920 and spotify and spotifyicon,
-            (screens == 1 or screens == 2) and s.index == 1 and s.geometry.width >= 1920 and spotify and spotifywidget,
             s.index == 1 and batteryicon,
             s.index == 1 and batterywidget,
-            s.index == 1 and  neticon,
-            s.index == 1 and  netwidget,
+            s.index == 1 and neticon,
+            s.index == 1 and netwidget,
+
+            -- systray
             s.index == 1 and mysystray:set_screen(s),
             mysystray,
             s.index == 1 and mytextclock,
-            -- screens == 2 and s.index == 2 and mytextclock,
             s.mylayoutbox,
         },
     }
