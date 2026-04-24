@@ -80,7 +80,7 @@ theme.taglist_squares_sel   = taglistdir  .. "/squaref.png"
 theme.taglist_squares_unsel = taglistdir  .. "/square.png"
 
 -- Misc icons
-theme.awesome_icon = themedir .. "/arch.png"
+theme.awesome_icon = themedir .. "/tumbleweed.png"
 theme.menu_submenu_icon = themedir .. "/submenu_nature.png"
 theme.tasklist_floating_icon = themedir .. "/tasklist/floatingw.png"
 
