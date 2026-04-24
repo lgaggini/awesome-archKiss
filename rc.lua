@@ -50,6 +50,9 @@ do
   end
 -- }}}
 
+-- set icon preferred size to prevent blur on scale
+awesome.set_preferred_icon_size(48)
+
 -- {{{ Variable definitions
 -- Themes define colours, icons, and wallpapers
 beautiful.init("/home/lg/.config/awesome/themes/kiss/theme_dark.lua")
@@ -513,8 +516,9 @@ awful.screen.connect_for_each_screen(function(s)
     -- Create the wibox
     s.mywibox = awful.wibar({ position = "top", screen = s })
 
-    -- Create the systary
+    -- Create the systray
     mysystray = wibox.widget.systray()
+    mysystray:set_base_size(24)
 
     -- Add widgets to the wibox
     s.mywibox:setup {
