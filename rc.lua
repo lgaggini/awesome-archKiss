@@ -200,7 +200,7 @@ os.execute("feh --bg-scale $(shuf -en1 ~/.wallpaper/*)")
 
 -- {{{ Tags
 -- Define a tag table which hold all screen tags.
-tags_name = { "", "", "", "", "", "", "", "🎶",""}
+tags_name = { "", "", "", "", "🎶"}
 
 -- {{{ Menu
 -- Create a laucher widget and a main menu
@@ -776,9 +776,9 @@ end
 
 -- Bind custom keys to tags.
 -- Keys to tags association are defined in the tag_keys tables.
---- Main (terms), [x]tools, [w]eb browser, [e]ditor, [p]ost (mail), [r]eaders (doc), [i]m, a[udio] ,[v]irtual
-tag_keys = {"Return","x","w","e","p","r","i","a","v"}
-for i = 1, 9 do
+--- Main (terms), [w]eb browser, [i]m, [d]ata management, [a]udio
+tag_keys = {"Return", "w","i","d","a"}
+for i = 1, 5 do
     globalkeys = awful.util.table.join(globalkeys,
         -- View tag only.
         awful.key({ altkey }, tag_keys[i],
@@ -890,9 +890,9 @@ awful.rules.rules = {
      { rule = { class = "zoom" },
       properties = { screen = 1, tag = tags_name[3], switchtotag = true } },
 
-    -- 4:tools - Tools
+    -- 4:tools - Tools / Data Management
 
-    -- 5:ent Entertainment
+    -- 5:ent: Entertainment
      { rule = { name = "Spotify" },
        properties = { screen = screens, tag = tags_name[5], switchtotag = true } },
 
