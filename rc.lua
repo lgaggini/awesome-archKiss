@@ -583,6 +583,8 @@ root.buttons(awful.util.table.join(
 
 -- {{{ Key bindings
 globalkeys = awful.util.table.join(
+
+    -- Navigation
     awful.key({ altkey,           }, "h", awful.tag.viewprev       ),
     awful.key({ altkey,           }, "l", awful.tag.viewnext       ),
     awful.key({ altkey,           }, "Escape", awful.tag.history.restore),
@@ -597,12 +599,8 @@ globalkeys = awful.util.table.join(
             awful.client.focus.byidx(-1)
             if client.focus then client.focus:raise() end
         end),
-    awful.key({ modkey,           }, "w", function () mymainmenu:show() end),
 
-    -- Layout manipulation
-    awful.key({ altkey, "Shift"   }, "j", function () awful.client.swap.byidx(  1)    end),
-    awful.key({ altkey, "Shift"   }, "k", function () awful.client.swap.byidx( -1)    end),
-    awful.key({ altkey,           }, "u", awful.client.urgent.jumpto),
+    -- Alt-Tab replaced by rofi
     --awful.key({ altkey,           }, "Tab",
         --function ()
             --awful.client.focus.history.previous()
@@ -619,27 +617,31 @@ globalkeys = awful.util.table.join(
             lain.util.menu_clients_current_tags({ width = 350 }, { keygrabber = true })
         end),
 
-    -- Standard program
-    awful.key({ modkey,           }, "Return", function () awful.util.spawn(terminal) end),
+    -- Standard shortcuts
+    awful.key({ modkey,           }, "w", function () mymainmenu:show() end),
     awful.key({                   }, "XF86MonBrightnessDown", function () awful.util.spawn_with_shell(bright_down) end),
     awful.key({                   }, "XF86MonBrightnessUp",   function () awful.util.spawn_with_shell(bright_up) end),
     awful.key({                   }, "XF86AudioLowerVolume", function () awful.util.spawn_with_shell(audio_down) end),
     awful.key({                   }, "XF86AudioRaiseVolume",   function () awful.util.spawn_with_shell(audio_up) end),
     awful.key({                   }, "XF86AudioPlay",   function () awful.util.spawn_with_shell(music_toggle) end),
-    awful.key({ modkey, "Shift"   }, "p", function () awful.util.spawn_with_shell(audio_toggle) end),
+    awful.key({ modkey, "Shift"   }, "p", function () awful.util.spawn_with_shell(mpris_toggle) end),
     awful.key({ modkey, "Control" }, "r", awesome.restart),
     awful.key({ modkey, "Shift"   }, "q", awesome.quit),
 
+    -- Layout manipulation
+    awful.key({ altkey, "Shift"   }, "j", function () awful.client.swap.byidx(  1)    end),
+    awful.key({ altkey, "Shift"   }, "k", function () awful.client.swap.byidx( -1)    end),
+    awful.key({ altkey,           }, "u", awful.client.urgent.jumpto),
     awful.key({ altkey,           }, "+",     function () awful.tag.incmwfact( 0.05)    end),
     awful.key({ altkey,           }, "-",     function () awful.tag.incmwfact(-0.05)    end),
     awful.key({ altkey, "Shift"   }, "+",     function () awful.tag.incncol( 1)         end),
     awful.key({ altkey, "Shift"   }, "-",     function () awful.tag.incncol(-1)         end),
-    awful.key({ altkey,           }, "space", function () awful.layout.inc(layouts,  1) end),
-    awful.key({ altkey, "Shift"   }, "space", function () awful.layout.inc(layouts, -1) end),
+    awful.key({ altkey,           }, "space", function () awful.layout.inc(awful.layout.layouts,  1) end),
+    awful.key({ altkey, "Shift"   }, "space", function () awful.layout.inc(awful.layout.layouts, -1) end),
 
     awful.key({ altkey, "Control" }, "r", awful.client.restore),
 
-    -- Prompt
+    -- Prompt - replaced by rofi
     --awful.key({ modkey },            "r",     function () awful.screen.focused().mypromptbox:run() end,
               --{description = "run prompt", group = "launcher"}),
 
@@ -659,21 +661,31 @@ globalkeys = awful.util.table.join(
               {description = "show the menubar", group = "launcher"}),
 
     -- Application launcher common
+    -- Basic
+    awful.key({ modkey,         }, "Return", function () awful.util.spawn(terminal) end),
     awful.key({ modkey,         },"b", function () awful.util.spawn_with_shell(browser_work) end), -- [b]rowser
-    awful.key({ modkey,         },"f", function () awful.util.spawn_with_shell(filemanager_gui) end), -- [f]ilemanager
+    awful.key({ modkey,         },"f", function () awful.util.spawn_with_shell(filemanager) end), -- [f]ilemanager
     awful.key({ modkey,         },"e", function () awful.util.spawn_with_shell(editor) end), -- [e]ditor 
+
+    -- Pim
     awful.key({ modkey,         },"m", function () awful.util.spawn_with_shell(email) end), -- e[m]ail
-    awful.key({ modkey,         },"s", function () awful.util.spawn_with_shell(pad) end), -- [s]cratch pad
     awful.key({ modkey,         },"n", function () awful.util.spawn_with_shell(note) end), -- [n]ote
-    awful.key({ modkey,         },"c", function () awful.util.spawn_with_shell(slack) end), -- [c]hat
-    awful.key({ modkey,         },"k", function () awful.util.spawn_with_shell(irc) end), -- ir[k]
     awful.key({ modkey,         },"i", function () awful.util.spawn_with_shell(pim) end), -- p[i]m
+
+    -- Communication
+    awful.key({ modkey,         },"c", function () awful.util.spawn_with_shell(im) end), -- [c]hat
+    awful.key({ modkey,         },"k", function () awful.util.spawn_with_shell(irc) end), -- ir[k]
     awful.key({ modkey,         },"d", function () awful.util.spawn_with_shell(news) end), -- fee[d]
-    awful.key({ modkey,         },"v", function () awful.util.spawn_with_shell(remote) end), -- [v]irtual / rdp
+    awful.key({ modkey,         },"v", function () awful.util.spawn_with_shell(videoconference) end), -- [v]ideoconference
+
+    -- Multimedia
+    awful.key({ modkey,         },"a", function () awful.util.spawn_with_shell(music) end), -- [a]udio
+
+    -- Utilities
+    awful.key({ modkey,         },"s", function () awful.util.spawn_with_shell(pad) end), -- [s]cratch pad
     awful.key({ modkey,         },"t", function () awful.util.spawn_with_shell(task) end), -- [t]ask manager
     awful.key({ modkey,         },"p", function () awful.util.spawn_with_shell(password) end), -- [p]assword
     awful.key({ modkey,         },"h", function () awful.util.spawn_with_shell(clipboard) end), -- clipboard [h]istory
-    awful.key({ modkey,         },"a", function () awful.util.spawn_with_shell(music) end), -- [a]udio
     awful.key({ modkey,         },"r", function () awful.util.spawn_with_shell(runner) end), -- [r]unner
     awful.key({ modkey,         },"u", function () awful.util.spawn_with_shell(calculator) end), -- calc[u]lator
     awful.key({ modkey,         },"g", function () awful.util.spawn_with_shell(snippets) end), -- snippets [g]
@@ -698,6 +710,7 @@ clientkeys = awful.util.table.join(
             c.maximized_vertical   = not c.maximized_vertical
         end),
     awful.key({ altkey, "Shift"   }, "m",       lain.util.magnify_client                        ),
+
     -- Multiscreen facilities
     awful.key({ altkey,           }, "s",       function () awful.screen.focus_relative( 1) end),
     awful.key({ altkey,           }, "F1",      function () awful.screen.focus(1) end),
