@@ -17,7 +17,7 @@ themename     = "/kiss"
 themedir      = themes .. themename
 taglistdir    = themedir .. "/taglist"
 titlebardir   = themedir .. "/titlebar"
-layoutdir     = themedir .. "/layouts"
+layoutdir     = themedir .. "/layouts/arch"
 icondir       = themedir .. "/icons"
 
 -- Fonts
