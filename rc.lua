@@ -81,11 +81,11 @@ mounts = " /: ${/ used_p}%"
 -- Enable full calendar on 2nd monitor
 full_cal = true
 
--- Enable mpd bar
-mpd = true
+-- Enable mpris bar
+mpris = true
 
--- Enable spotify bar
-spotify = true
+-- Enable mpd bar
+mpd = false
 
 -- This is used later as the default applications to run.
 terminal = "urxvt"
@@ -323,6 +323,43 @@ vicious.register(netwidget, vicious.widgets.net,
         return "no network"
     end,1)
 
+-- Create a mpris widget
+if mpris then
+    mprisicon = wibox.widget.imagebox()
+    mprisicon:set_image(beautiful.music)
+    mpriswidget = awful.widget.watch(mpris_data, 5,
+        function(widget, stdout)
+            local split = {}
+            for substr in string.gmatch(stdout, "([^|]+)") do
+                if substr ~= nil and string.len(substr) > 0 then
+                    table.insert(split,substr)
+                end
+            end
+            local status = split[1]
+            if  status == "No players found" then
+                mprisicon:set_visible(false)
+                mpriswidget:set_visible(false)
+            else
+              mprisicon:set_visible(true)
+              local artist = split[2]
+              local title = split[3]
+              widget:set_text(title)
+              if status == "playing" then
+                  mprisicon:set_image(beautiful.music)
+              elseif status == "paused" then
+                  mprisicon:set_image(beautiful.music_pause)
+              end
+            end
+      end)
+
+    -- Create a mpris button
+    mprisbuttons = awful.util.table.join(
+    awful.button({ }, 1, function () awful.util.spawn_with_shell(mpris_toggle) end)
+    )
+    mprisicon:buttons(mprisbuttons)
+    mpriswidget:buttons(mprisbuttons)
+end
+
 -- Create a mpd widget
 if mpd then
     mpdicon = wibox.widget.imagebox()
@@ -351,43 +388,6 @@ if mpd then
     mpdicon:buttons(mpdbuttons)
     mpdwidget:buttons(mpdbuttons)
 end
-
-
--- Create a spotify widget (https://github.com/streetturtle/awesome-wm-widgets/tree/master/spotify-widget)
-if spotify then
-    spotifyicon = wibox.widget.imagebox()
-    spotifyicon:set_image(beautiful.music)
-    spotifywidget = awful.widget.watch(music_stream_data, 5,
-        function(widget, stdout)
-            if string.find(stdout, "Error: Spotify is not running.") ~= nil then
-                spotifyicon:set_visible(false)
-                widget:set_visible(false)
-            else
-                spotifyicon:set_visible(true)
-                widget:set_visible(true)
-                split = {}
-                for substr in string.gmatch(stdout, "([^|]+)") do
-                    if substr ~= nil and string.len(substr) > 0 then
-                        table.insert(split,substr)
-                    end
-                end
-                if  split[1] == "Paused" then
-                    spotifyicon:set_image(beautiful.music_pause)
-                elseif split[1] == "Playing" then
-                    spotifyicon:set_image(beautiful.music)
-                end
-                widget:set_text(split[2])
-            end
-        end)
-
-    -- Create a spotify button
-    spotifybuttons = awful.util.table.join(
-    awful.button({ }, 1, function () awful.util.spawn_with_shell(music_stream_toggle) end)
-    )
-    spotifyicon:buttons(spotifybuttons)
-    spotifywidget:buttons(spotifybuttons)
-end
-
 
 -- Create a maildir widget
 if mail_mon then
