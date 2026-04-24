@@ -25,10 +25,10 @@ theme.font          = "sans 12"
 theme.taglist_font = "sans 13"
 
 -- Main colors
-theme.bg_normal     = "#000000"
-theme.bg_focus      = "#22541a"
-theme.bg_urgent     = "#22541a"
-theme.bg_minimize   = "#0d0d0d"
+theme.bg_normal     = "#000000BB"
+theme.bg_focus      = "#22541aBB"
+theme.bg_urgent     = "#22541aBB"
+theme.bg_minimize   = "#0d0d0dBB"
 theme.bg_systray    = theme.bg_normal
 
 theme.fg_normal     = "#cccccc"
