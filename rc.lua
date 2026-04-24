@@ -88,44 +88,44 @@ mpris = true
 mpd = false
 
 -- This is used later as the default applications to run.
-terminal = "urxvt"
+terminal = "alacritty"
 browser_work = "firefox --class work-default"
 browser_personal = "firefox --class personal-default -p personal-default"
-editor = "neovide"
-email = terminal .. " -e neomutt"
-email_gui = "thunderbird"
-pad = "neovide --x11-wm-class pad"
-pim = terminal .. " -title pim -e tmuxp load pim"
-news = terminal .. " -title news -e tmuxp load news"
-note = terminal .. " -title note -e tmuxp load note"
-filemanager = terminal .. " -e ranger"
-filemanager_gui = "thunar"
-task = "lxtask"
-im = "pidgin"
-irc = terminal .. " -title irc -e weechat"
-slack = "slack"
-music = terminal .. " -e ncmpcpp"
-music_toggle = "mpc toggle"
-music_stream = "spotify"
-music_stream_toggle = "sp play"
-music_stream_data = "sp current-oneline"
-media = "mpv"
+im = "slack"
+videoconference = "zoom"
+task = "resources"
 password = "rofi-pass"
 clipboard = "rofi -modi \"paste:~/bin/paste-modi.sh\" -show paste"
 calculator = "rofi -show calc -modi calc -no-show-match -no-sort"
 snippets = "rofi-snippy"
-vm = "virtualbox"
-remote = "remmina"
 runner = "rofi -show run"
 wswitcher = "rofi -show window"
-bright_down = "xbacklight -dec 10"
-bright_up = "xbacklight -inc 10"
-audio_toggle = "mpc toggle"
-audio_up = "amixer -D pulse sset Master 2%+"
-audio_down = "amixer -D pulse sset Master 2%-"
-lock = "i3lock-fancy"
+
+music = "soundcloud"
+mpris_data = "playerctl metadata --format '{{lc(status)}}|{{artist}}|{{title}}'"
+mpris_toggle = "playerctl play-pause"
+
+lock = "dm-tool lock"
 poweroff = "sudo poweroff"
 reboot = "sudo reboot"
+
+-- TBD
+-- editor = "neovide"
+-- filemanager = terminal .. " -e ranger"
+-- filemanager_gui = "thunar"
+-- email = terminal .. " -e neomutt"
+-- email_gui = "thunderbird"
+-- pad = "neovide --x11-wm-class pad"
+-- pim = terminal .. " -T pim -e tmuxp load pim"
+-- news = terminal .. " -T news -e tmuxp load news"
+-- note = terminal .. " -T note -e tmuxp load note"
+-- irc = terminal .. " -T irc -e weechat"
+-- music_stream = "spotify"
+-- media = "mpv"
+-- bright_down = "xbacklight -dec 10"
+-- bright_up = "xbacklight -inc 10"
+-- audio_up = "amixer -D pulse sset Master 2%+"
+-- audio_down = "amixer -D pulse sset Master 2%-"
 
 -- One line calendar command
 onelinecal = [[ cal | tail -n +3 | sed -e "s/\<$(date +%-d)\>/\<span color=\"]] .. theme.fg_widget .. [[\">&\<\/span>/" | sed 's/^[ \t]*//' | tr "\n" " "]]
@@ -203,18 +203,18 @@ tags_name = { "", "", "", "", "", "", "", "🎶",""}
 myawesomemenu = {
    { "hotkeys", function() return false, hotkeys_popup.show_help end},
    { "manual", terminal .. " -e man awesome" },
-   { "edit config", editor .. " " .. awesome.conffile },
-   { "restart", awesome.restart },
-   { "quit", function() awesome.quit() end}
+   -- { "edit config", editor .. " " .. awesome.conffile },
+   { "restart", awesome.restart }
 }
 
 menu_items = { { "terminal", terminal },
           { "browser_work", browser_work },
-          { "browser_personal", browser_personal },
-          { "file manager", filemanager_gui },
-          { "editor", editor },
+          -- { "browser_personal", browser_personal },
+          -- { "file manager", filemanager_gui },
+          -- { "editor", editor },
           { "awesome", myawesomemenu },
           { "lock", lock },
+          { "quit", function() awesome.quit() end},
           { "reboot", reboot },
           { "poweroff", poweroff }
         }
@@ -842,8 +842,11 @@ awful.rules.rules = {
         instance = {
         },
         class = {
+          "feh",
           "Arandr",
           "pinentry",
+          "Resources",
+          "zoom",
         },
         name = {
           "Event Tester",  -- xev.
@@ -852,140 +855,32 @@ awful.rules.rules = {
         }
       }, properties = { floating = true }},
 
-    -- 1:adm Admin
-     { rule = { class = "URxvt" },
+    -- 1:term Terminal
+     { rule = { class = "Alacritty" },
        properties = { screen = 1, tag = tags_name[1], switchtotag = true, maximized_vertical = true, maximized_horizontal = true } },
 
-     { rule = { class = "Wireshark" },
-       properties = { screen = screens, tag = tags_name[1], switchtotag = true, maximized_vertical = true, maximized_horizontal = true } },
-
-      -- 2:util Utils
-     { rule = { class = "Thunar" },
-       properties = { screen = 1, tag = tags_name[2], switchtotag = true, floating = true } },
-
-     { rule = { name = "ranger" },
-       properties = { screen = 1, tag = tags_name[2], switchtotag = true } },
-
-     { rule = { class = "Arandr" },
-       properties = { screen = 1, tag = tags_name[2], switchtotag = true } },
-
-     { rule = { class = "Filezilla" },
-       properties = { screen = 1, tag = tags_name[2], switchtotag = true } },
-
-     { rule = { class = "Engrampa" },
-       properties = { floating = true, tag = tags_name[2]} },
-
-     { rule = { class = "Lxtask" },
-       properties = { screen = screens, tag = tags_name[2], switchtotag = true } },
-
-     { rule = { class = "System-config-printer.py" },
-       properties = { screen = screens, tag = tags_name[2], switchtotag = true } },
-
-     -- 3:web Web
+    -- 2:web Web
      { rule = { class = "work-default" },
-       properties = { screen = screens, tag = tags_name[3], switchtotag = true, floating = false } },
-
-     -- 4:dev - Development
-     { rule = { class = "neovide" },
-       properties = { screen = 1, tag = tags_name[4], switchtotag = true } },
-
-     { rule = { class = "Gitg" },
-       properties = { screen = screens, tag = tags_name[9], switchtotag = true } },
-
-    -- 5:mail - Mail
-     { rule = { class = "Thunderbird" },
-        properties = { screen = screens, tag = tags_name[5], switchtotag = true } },
-
-     { rule = { class = "Thunderbird", role = "Msgcompose" },
-        properties = { screen = screens, tag = tags_name[4], switchtotag = true } },
-
-     { rule = { name = "neomutt" },
-        properties = { screen = screens, tag = tags_name[5], switchtotag = true } },
-
-     { rule = { name = "pim" },
-       properties = { screen = screens, tag = tags_name[5], switchtotag = true } },
-
-     -- 6:doc - Documentation
-     { rule = { name = "LibreOffice" },
-       properties = { screen = screens, tag = tags_name[6], switchtotag = true } },
-
-     { rule = { class = "libreoffice-writer" },
-       properties = { screen = screens, tag = tags_name[6], switchtotag = true, floating = false } },
-
-     { rule = { class = "libreoffice-calc" },
-       properties = { screen = screens, tag = tags_name[6], switchtotag = true, floating = false } },
-
-     { rule = { class = "libreoffice-impress" },
-       properties = { screen = screens, tag = tags_name[6], switchtotag = true, floating = false } },
-
-     { rule = { name = "note" },
-       properties = { screen = screens, tag = tags_name[6], switchtotag = true } },
-
-     { rule = { class = "Zathura" },
-       properties = { screen = screens, tag = tags_name[6], switchtotag = true } },
-
-     { rule = { class = "Gvim", role = "pad" },
-       properties = { screen = screens, floating=true, sticky=true, ontop = true },
-
-       callback = function( c )
-        c:geometry( { width = 1080,  height = 720 } )
-       end
-     },
-
-     { rule = { name = "news" },
-       properties = { screen = screens, tag = tags_name[6], switchtotag = true } },
+       properties = { screen = 1, tag = tags_name[2], switchtotag = true, floating = false } },
 
      { rule = { class = "personal-default" },
-       properties = { screen = 1, tag = tags_name[6], switchtotag = true, floating = false } },
+       properties = { screen = screens, tag = tags_name[2], switchtotag = true, floating = false } },
 
-     -- 7:com - Communication
-     { rule = { class = "Pidgin", role = "buddy_list" },
-       properties = { screen = screens, tag = tags_name[7], switchtotag = true, floating = true, maximized = false },
-
-       callback = function( c )
-        local strutwidth = 200
-        local w_area = screen[ c.screen ].workarea
-        local cl_strut = c:struts()
-        if c:isvisible() and cl_strut ~= nil and cl_strut.left > 0 then 
-            c:geometry( { x= w_area.x - cl_strut.left, y = w_area.y, width=cl_strut.left } )
-        else
-            c:struts( { left = strutwidth, right=0 } )
-            c:geometry({x = w_area.x, y = w_area.y, width = strutwidth})
-        end
-       end
-     },
-     
-     { rule = { class = "Pidgin", role = "conversation" },
-      properties = { screen = screens, tag = tags_name[7], switchtotag = true, floating = true, maximized = true } },
-     
-     { rule = { name = "irc" },
-       properties = { screen = screens, tag = tags_name[7], switchtotag = true } },
-
+    -- 3:com - Communication
      { rule = { class = "Slack" },
-      properties = { screen = screens, tag = tags_name[7], switchtotag = true } },
+      properties = { screen = 1, tag = tags_name[3], switchtotag = true } },
 
      { rule = { class = "zoom" },
-      properties = { screen = 1, tag = tags_name[7], switchtotag = true } },
+      properties = { screen = 1, tag = tags_name[3], switchtotag = true } },
 
-     -- 8:ent Entertainment
-     { rule = { class = "mpv" },
-       properties = { screen = screens, tag = tags_name[8], switchtotag = true } },
+    -- 4:tools - Tools
 
+    -- 5:ent Entertainment
      { rule = { name = "Spotify" },
-       properties = { screen = screens, tag = tags_name[8], switchtotag = true } },
+       properties = { screen = screens, tag = tags_name[5], switchtotag = true } },
 
-     { rule = { name = "ncmpcpp" },
-       properties = { screen = screens, tag = tags_name[8], switchtotag = true } },
-
-     { rule = { class = "WebApp-Soundcloud3768" },
-       properties = { screen = screens, tag = tags_name[8], switchtotag = true } },
-
-    -- 9:vm Virtual Machines
-     { rule = { class = "VirtualBox" },
-       properties = { screen = 1, tag = tags_name[9], switchtotag = true } },
-
-     { rule = { class = "Remmina" },
-       properties = { screen = 1, tag = tags_name[9], switchtotag = true, maximized_vertical = true, maximized_horizontal = true } },
+     { rule = { class = "Soundcloud" },
+       properties = { screen = screens, tag = tags_name[5], switchtotag = true } },
 
 }
 
