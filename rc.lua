@@ -529,8 +529,6 @@ awful.screen.connect_for_each_screen(function(s)
             -- music
             s.index == 1 and mpd and mpdicon,
             s.index == 1 and mpd and mpdwidget,
-            s.index == 1 and spotify and spotifyicon,
-            s.index == 1 and spotify and spotifywidget,
             s.index == 1 and mpris and mprisicon,
             s.index == 1 and mpris and mpriswidget,
 
@@ -646,16 +644,16 @@ globalkeys = awful.util.table.join(
     --awful.key({ modkey },            "r",     function () awful.screen.focused().mypromptbox:run() end,
               --{description = "run prompt", group = "launcher"}),
 
-    awful.key({ modkey }, "l",
-              function ()
-                  awful.prompt.run {
-                    prompt       = "Run Lua code: ",
-                    textbox      = awful.screen.focused().mypromptbox.widget,
-                    exe_callback = awful.util.eval,
-                    history_path = awful.util.get_cache_dir() .. "/history_eval"
-                  }
-              end,
-            {description = "lua execute prompt", group = "awesome"}),
+    -- awful.key({ modkey }, "l",
+    --           function ()
+    --               awful.prompt.run {
+    --                 prompt       = "Run Lua code: ",
+    --                 textbox      = awful.screen.focused().mypromptbox.widget,
+    --                 exe_callback = awful.util.eval,
+    --                 history_path = awful.util.get_cache_dir() .. "/history_eval"
+    --               }
+    --           end,
+    --         {description = "lua execute prompt", group = "awesome"}),
 
     -- Menubar
     awful.key({ modkey }, "x", function() menubar.show() end,
