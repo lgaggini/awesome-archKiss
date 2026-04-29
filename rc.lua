@@ -92,10 +92,14 @@ mpd = false
 
 -- This is used later as the default applications to run.
 terminal = "alacritty"
+editor = terminal .. " --class editor -e nvim"
 browser_work = "firefox --class work-default"
 browser_personal = "firefox --class personal-default -p personal-default"
 im = "slack"
 videoconference = "zoom"
+note = terminal .. " --class note --working-directory ~/note/ -e nvim"
+spotify = "flatpak run com.spotify.Client"
+soundcloud = "soundcloud"
 task = "resources"
 password = "rofi-pass"
 clipboard = "rofi -modi \"paste:~/bin/paste-modi.sh\" -show paste"
@@ -103,8 +107,8 @@ calculator = "rofi -show calc -modi calc -no-show-match -no-sort"
 snippets = "rofi-snippy"
 runner = "rofi -show run"
 wswitcher = "rofi -show window"
+screenshooter = "xfce4-screenshooter"
 
-music = "soundcloud"
 mpris_data = "playerctl metadata --format '{{lc(status)}}|{{artist}}|{{title}}'"
 mpris_toggle = "playerctl play-pause"
 
@@ -113,18 +117,11 @@ poweroff = "sudo poweroff"
 reboot = "sudo reboot"
 
 -- TBD
--- editor = "neovide"
--- filemanager = terminal .. " -e ranger"
--- filemanager_gui = "thunar"
+-- filemanager = "thunar"
 -- email = terminal .. " -e neomutt"
--- email_gui = "thunderbird"
--- pad = "neovide --x11-wm-class pad"
--- pim = terminal .. " -T pim -e tmuxp load pim"
 -- news = terminal .. " -T news -e tmuxp load news"
--- note = terminal .. " -T note -e tmuxp load note"
 -- irc = terminal .. " -T irc -e weechat"
--- music_stream = "spotify"
--- media = "mpv"
+-- multimedia = "mpv"
 -- bright_down = "xbacklight -dec 10"
 -- bright_up = "xbacklight -inc 10"
 -- audio_up = "amixer -D pulse sset Master 2%+"
@@ -213,9 +210,9 @@ myawesomemenu = {
 
 menu_items = { { "terminal", terminal },
           { "browser_work", browser_work },
-          -- { "browser_personal", browser_personal },
-          -- { "file manager", filemanager_gui },
-          -- { "editor", editor },
+          { "browser_personal", browser_personal },
+          -- { "file manager", filemanager },
+          { "editor", editor },
           { "awesome", myawesomemenu },
           { "lock", lock },
           { "quit", function() awesome.quit() end},
@@ -304,7 +301,7 @@ vicious.register(fswidget, vicious.widgets.fs, mounts)
 
 -- Create a fs button
 fsbuttons = awful.util.table.join(
-       awful.button({ }, 1, function () awful.util.spawn(filemanager_gui) end)
+       awful.button({ }, 1, function () awful.util.spawn(filemanager) end)
 )
 fsicon:buttons(fsbuttons)
 fswidget:buttons(fsbuttons)
@@ -666,15 +663,14 @@ globalkeys = awful.util.table.join(
 
     -- Application launcher common
     -- Basic
-    awful.key({ modkey,         }, "Return", function () awful.util.spawn(terminal) end),
+    awful.key({ modkey,         },"Return", function () awful.util.spawn(terminal) end),
     awful.key({ modkey,         },"b", function () awful.util.spawn_with_shell(browser_work) end), -- [b]rowser
     awful.key({ modkey,         },"f", function () awful.util.spawn_with_shell(filemanager) end), -- [f]ilemanager
-    awful.key({ modkey,         },"e", function () awful.util.spawn_with_shell(editor) end), -- [e]ditor 
+    awful.key({ modkey,         },"e", function () awful.util.spawn_with_shell(editor) end), -- [e]ditor
 
     -- Pim
     awful.key({ modkey,         },"m", function () awful.util.spawn_with_shell(email) end), -- e[m]ail
     awful.key({ modkey,         },"n", function () awful.util.spawn_with_shell(note) end), -- [n]ote
-    awful.key({ modkey,         },"i", function () awful.util.spawn_with_shell(pim) end), -- p[i]m
 
     -- Communication
     awful.key({ modkey,         },"c", function () awful.util.spawn_with_shell(im) end), -- [c]hat
@@ -683,10 +679,11 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey,         },"v", function () awful.util.spawn_with_shell(videoconference) end), -- [v]ideoconference
 
     -- Multimedia
-    awful.key({ modkey,         },"a", function () awful.util.spawn_with_shell(music) end), -- [a]udio
+    awful.key({ modkey,         },"y", function () awful.util.spawn_with_shell(spotify) end), -- spotif[y]
+    awful.key({ modkey,         },"l", function () awful.util.spawn_with_shell(soundcloud) end), -- [l]ivesets
 
     -- Utilities
-    awful.key({ modkey,         },"s", function () awful.util.spawn_with_shell(pad) end), -- [s]cratch pad
+    awful.key({ modkey,         },"s", function () awful.util.spawn_with_shell(screenshooter) end), -- [s]creenshooter
     awful.key({ modkey,         },"t", function () awful.util.spawn_with_shell(task) end), -- [t]ask manager
     awful.key({ modkey,         },"p", function () awful.util.spawn_with_shell(password) end), -- [p]assword
     awful.key({ modkey,         },"h", function () awful.util.spawn_with_shell(clipboard) end), -- clipboard [h]istory
@@ -860,9 +857,11 @@ awful.rules.rules = {
         },
         class = {
           "feh",
+          "editor",
           "Arandr",
           "pinentry",
           "Resources",
+          "Xreader",
           "zoom",
         },
         name = {
@@ -890,7 +889,9 @@ awful.rules.rules = {
      { rule = { class = "zoom" },
       properties = { screen = 1, tag = tags_name[3], switchtotag = true } },
 
-    -- 4:tools - Tools / Data Management
+    -- 4:pim: Pim
+     { rule = { class = "note" },
+      properties = { screen = screens, tag = tags_name[4], switchtotag = true } },
 
     -- 5:ent: Entertainment
      { rule = { name = "Spotify" },
