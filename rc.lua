@@ -55,19 +55,19 @@ awesome.set_preferred_icon_size(48)
 
 -- {{{ Variable definitions
 -- Themes define colours, icons, and wallpapers
-beautiful.init("/home/lg/.config/awesome/themes/kiss/theme_dark.lua")
+beautiful.init("/home/lg/.config/awesome/themes/kiss/theme_forest.lua")
 
 -- User / hostname info
-user_hostname = true
+user_hostname = false
 
 -- Kernel version monitoring
-kernel_mon = true
+kernel_mon = false
 
 -- Uptime
-uptime = true
+uptime = false
 
 -- Nic interfaces to monitor, fifo
-nics = {"enp0s31f6", "wlp1s0"}
+nics = {"enp0s31f6", "wlp0s20f3"}
 
 -- Maildir monitor, false or maildir location
 mail_mon = false
