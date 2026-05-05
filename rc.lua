@@ -56,6 +56,7 @@ awesome.set_preferred_icon_size(48)
 -- {{{ Variable definitions
 -- Themes define colours, icons, and wallpapers
 beautiful.init("/home/lg/.config/awesome/themes/kiss/theme_forest.lua")
+beautiful.useless_gap = 5
 
 -- User / hostname info
 user_hostname = false
@@ -871,7 +872,7 @@ awful.rules.rules = {
 
     -- 1:term Terminal
      { rule = { class = "Alacritty" },
-       properties = { screen = 1, tag = tags_name[1], switchtotag = true, maximized_vertical = true, maximized_horizontal = true } },
+       properties = { screen = 1, tag = tags_name[1], switchtotag = true } },
 
     -- 2:web Web
      { rule = { class = "work-default" },
