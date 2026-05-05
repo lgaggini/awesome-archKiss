@@ -877,9 +877,6 @@ awful.rules.rules = {
      { rule = { class = "work-default" },
        properties = { screen = 1, tag = tags_name[2], switchtotag = true, floating = false } },
 
-     { rule = { class = "personal-default" },
-       properties = { screen = screens, tag = tags_name[2], switchtotag = true, floating = false } },
-
     -- 3:com - Communication
      { rule = { class = "Slack" },
       properties = { screen = 1, tag = tags_name[3], switchtotag = true } },
@@ -890,6 +887,9 @@ awful.rules.rules = {
     -- 4:pim: Pim
      { rule = { class = "note" },
       properties = { screen = screens, tag = tags_name[4], switchtotag = true } },
+
+     { rule = { class = "personal-default" },
+       properties = { screen = 1, tag = tags_name[4], switchtotag = true, floating = false } },
 
     -- 5:ent: Entertainment
      { rule = { name = "Spotify" },
