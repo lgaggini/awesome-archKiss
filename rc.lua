@@ -101,6 +101,7 @@ videoconference = "zoom"
 note = terminal .. " --class note --working-directory ~/note/ -e nvim"
 spotify = "flatpak run com.spotify.Client"
 soundcloud = "soundcloud"
+media_player = "Celluloid"
 task = "resources"
 password = "rofi-pass"
 clipboard = "rofi -modi \"paste:~/bin/paste-modi.sh\" -show paste"
@@ -680,6 +681,7 @@ globalkeys = awful.util.table.join(
     -- Multimedia
     awful.key({ modkey,         },"y", function () awful.util.spawn_with_shell(spotify) end), -- spotif[y]
     awful.key({ modkey,         },"l", function () awful.util.spawn_with_shell(soundcloud) end), -- [l]ivesets
+    awful.key({ modkey,         },"a", function () awful.util.spawn_with_shell(media_player) end), -- medi[a]_player
 
     -- Utilities
     awful.key({ modkey,         },"s", function () awful.util.spawn_with_shell(screenshooter) end), -- [s]creenshooter
@@ -865,6 +867,7 @@ awful.rules.rules = {
         },
         name = {
           "Event Tester",  -- xev.
+          "Celluloid"
         },
         role = {
         }
@@ -897,6 +900,9 @@ awful.rules.rules = {
        properties = { screen = screens, tag = tags_name[5], switchtotag = true } },
 
      { rule = { class = "Soundcloud" },
+       properties = { screen = screens, tag = tags_name[5], switchtotag = true } },
+
+     { rule = { name = "Celluloid" },
        properties = { screen = screens, tag = tags_name[5], switchtotag = true } },
 
 }
