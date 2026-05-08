@@ -329,30 +329,30 @@ vicious.register(netwidget, vicious.widgets.net,
 if mpris then
     mprisicon = wibox.widget.imagebox()
     mprisicon:set_image(beautiful.music)
+    mprisicon:set_visible(false)
     mpriswidget = awful.widget.watch(mpris_data, 5,
         function(widget, stdout)
             local split = {}
-            for substr in string.gmatch(stdout, "([^|]+)") do
-                if substr ~= nil and string.len(substr) > 0 then
-                    table.insert(split,substr)
-                end
+            for substr in string.gmatch(stdout, "([^|]*)") do
+                table.insert(split,substr)
             end
             local status = split[1]
-            if  status == "No players found" then
-                mprisicon:set_visible(false)
-                mpriswidget:set_visible(false)
+            if status == "playing" or status == "paused" then
+                mprisicon:set_visible(true)
+                widget:set_visible(true)
+                local artist = split[2]
+                local title = split[3]
+                widget:set_text(string.sub(title, -100, -1))
+                if status == "playing" then
+                    mprisicon:set_image(beautiful.music)
+                elseif status == "paused" then
+                    mprisicon:set_image(beautiful.music_pause)
+                end
             else
-              mprisicon:set_visible(true)
-              local artist = split[2]
-              local title = split[3]
-              widget:set_text(title)
-              if status == "playing" then
-                  mprisicon:set_image(beautiful.music)
-              elseif status == "paused" then
-                  mprisicon:set_image(beautiful.music_pause)
-              end
+                mprisicon:set_visible(false)
+                widget:set_visible(false)
             end
-      end)
+    end)
 
     -- Create a mpris button
     mprisbuttons = awful.util.table.join(
