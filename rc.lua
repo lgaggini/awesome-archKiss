@@ -113,6 +113,9 @@ screenshooter = "xfce4-screenshooter"
 
 mpris_data = "playerctl metadata --format '{{lc(status)}}|{{artist}}|{{title}}'"
 mpris_toggle = "playerctl play-pause"
+audio_up = "pactl set-sink-volume @DEFAULT_SINK@ +5%"
+audio_down = "pactl set-sink-volume @DEFAULT_SINK@ -5%"
+audio_mute = "pactl set-sink-mute @DEFAULT_SINK@ toggle"
 
 lock = "dm-tool lock"
 poweroff = "sudo poweroff"
@@ -126,8 +129,6 @@ reboot = "sudo reboot"
 -- multimedia = "mpv"
 -- bright_down = "xbacklight -dec 10"
 -- bright_up = "xbacklight -inc 10"
--- audio_up = "amixer -D pulse sset Master 2%+"
--- audio_down = "amixer -D pulse sset Master 2%-"
 
 -- One line calendar command
 onelinecal = [[ cal | tail -n +3 | sed -e "s/\<$(date +%-d)\>/\<span color=\"]] .. theme.fg_widget .. [[\">&\<\/span>/" | sed 's/^[ \t]*//' | tr "\n" " "]]
@@ -624,7 +625,8 @@ globalkeys = awful.util.table.join(
     awful.key({                   }, "XF86MonBrightnessUp",   function () awful.util.spawn_with_shell(bright_up) end),
     awful.key({                   }, "XF86AudioLowerVolume", function () awful.util.spawn_with_shell(audio_down) end),
     awful.key({                   }, "XF86AudioRaiseVolume",   function () awful.util.spawn_with_shell(audio_up) end),
-    awful.key({                   }, "XF86AudioPlay",   function () awful.util.spawn_with_shell(music_toggle) end),
+    awful.key({                   }, "XF86AudioMute",   function () awful.util.spawn_with_shell(audio_mute) end),
+    awful.key({                   }, "XF86AudioPlay",   function () awful.util.spawn_with_shell(mpris_toggle) end),
     awful.key({ modkey, "Shift"   }, "p", function () awful.util.spawn_with_shell(mpris_toggle) end),
     awful.key({ modkey, "Control" }, "r", awesome.restart),
     awful.key({ modkey, "Shift"   }, "q", awesome.quit),
