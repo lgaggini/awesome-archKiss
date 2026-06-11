@@ -98,7 +98,8 @@ browser_work = "firefox --class work-default"
 browser_personal = "firefox --class personal-default -p personal-default"
 im = "slack"
 videoconference = "zoom"
-note = terminal .. " --class note --working-directory ~/note/ -e nvim"
+note = terminal .. " --class note --working-directory ~/pim/note/ -e nvim"
+todo = terminal .. " --class todo --working-directory ~/pim/todo/ -e nvim"
 spotify = "flatpak run com.spotify.Client"
 soundcloud = "soundcloud"
 media_player = "celluloid"
@@ -673,6 +674,7 @@ globalkeys = awful.util.table.join(
     -- Pim
     awful.key({ modkey,         },"m", function () awful.util.spawn_with_shell(email) end), -- e[m]ail
     awful.key({ modkey,         },"n", function () awful.util.spawn_with_shell(note) end), -- [n]ote
+    awful.key({ modkey,         },"o", function () awful.util.spawn_with_shell(todo) end), -- t[o]d[o]
 
     -- Communication
     awful.key({ modkey,         },"c", function () awful.util.spawn_with_shell(im) end), -- [c]hat
@@ -892,6 +894,9 @@ awful.rules.rules = {
 
     -- 4:pim: Pim
      { rule = { class = "note" },
+      properties = { screen = screens, tag = tags_name[4], switchtotag = true } },
+
+     { rule = { class = "todo" },
       properties = { screen = screens, tag = tags_name[4], switchtotag = true } },
 
      { rule = { class = "personal-default" },
