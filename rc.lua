@@ -540,7 +540,7 @@ awful.screen.connect_for_each_screen(function(s)
             s.index == 1 and calicon,
             s.index == 1 and mytextday,
             s.index == 1 and full_cal and calwidget,
-            s.index == 1 and mytextdaynumber,
+            s.index == 1 and not full_cal and mytextdaynumber,
             s.index == 1 and mytextmonthandyear,
             s.index == 1 and mdiricon,
             s.index == 1 and mdirwidget,
