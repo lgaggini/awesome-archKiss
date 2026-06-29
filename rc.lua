@@ -888,7 +888,7 @@ awful.rules.rules = {
        properties = { screen = 1, tag = tags_name[2], switchtotag = true, floating = false } },
 
     -- 3:com - Communication
-     { rule = { class = "Slack" },
+     { rule = { class = "slack" },
       properties = { screen = 1, tag = tags_name[3], switchtotag = true } },
 
      { rule = { class = "zoom" },
