@@ -868,6 +868,8 @@ awful.rules.rules = {
           "Resources",
           "Xreader",
           "zoom",
+          "DBeaver",
+          "Bitwarden"
         },
         name = {
           "Event Tester",  -- xev.
@@ -901,6 +903,12 @@ awful.rules.rules = {
 
      { rule = { class = "personal-default" },
        properties = { screen = 1, tag = tags_name[4], switchtotag = true, floating = false } },
+
+     { rule = { class = "Joplin" },
+      properties = { screen = screens, tag = tags_name[4], switchtotag = true } },
+
+     { rule = { class = "Bitwarden" },
+      properties = { screen = screens, tag = tags_name[4], switchtotag = true } },
 
     -- 5:ent: Entertainment
      { rule = { name = "Spotify" },
